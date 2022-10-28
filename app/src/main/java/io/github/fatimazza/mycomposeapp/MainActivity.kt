@@ -9,6 +9,7 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import io.github.fatimazza.mycomposeapp.ui.theme.MyComposeAppTheme
 
@@ -31,7 +32,9 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(name: String) {
-    Text(text = "Hi, my name is $name!")
+    Surface(color = Color.Yellow) {
+        Text(text = "Hi, my name is $name!")
+    }
 }
 
 @Preview(showBackground = true)
