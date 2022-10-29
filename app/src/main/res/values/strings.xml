@@ -2,5 +2,5 @@
     <string name="app_name">MyComposeApp</string>
     <string name="title_activity_birthday_card">BirthdayCardActivity</string>
     <string name="happy_birthday_text">Happy birthday, Za!</string>
-    <string name="birthday_signature_text">\" - from Fatima\"</string>
+    <string name="birthday_signature_text"> - from Fatima</string>
 </resources>
