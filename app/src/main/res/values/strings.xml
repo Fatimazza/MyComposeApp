@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MyComposeApp</string>
+    <string name="title_activity_birthday_card">BirthdayCardActivity</string>
 </resources>
