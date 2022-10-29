@@ -31,10 +31,14 @@ class BirthdayCardActivity : ComponentActivity() {
 }
 
 @Composable
-fun BirthdayGreetingWithText(message: String){
+fun BirthdayGreetingWithText(message: String, from: String){
     Text(
         text = message,
         fontSize = 36.sp
+    )
+    Text (
+        text = from,
+        fontSize = 24.sp
     )
 }
 
@@ -42,6 +46,6 @@ fun BirthdayGreetingWithText(message: String){
 @Composable
 fun BirthdayCardPreview() {
     MyComposeAppTheme {
-        BirthdayGreetingWithText(message = "Happy birthday, Za!")
+        BirthdayGreetingWithText(message = "Happy birthday, Za!", " - from Fatima")
     }
 }
