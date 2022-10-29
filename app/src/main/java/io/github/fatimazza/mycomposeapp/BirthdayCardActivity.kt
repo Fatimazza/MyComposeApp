@@ -24,7 +24,7 @@ class BirthdayCardActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    
+                    BirthdayGreetingWithText(message = "Happy birthday, Za!", " - from Fatima")
                 }
             }
         }
