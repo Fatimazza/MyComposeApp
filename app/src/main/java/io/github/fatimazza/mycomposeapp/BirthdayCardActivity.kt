@@ -36,7 +36,7 @@ fun Greeting2(name: String) {
 
 @Preview(showBackground = true)
 @Composable
-fun DefaultPreview2() {
+fun BirthdayCardPreview() {
     MyComposeAppTheme {
         Greeting2("Android")
     }
