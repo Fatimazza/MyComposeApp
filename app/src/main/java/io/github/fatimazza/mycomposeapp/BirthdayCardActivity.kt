@@ -29,10 +29,17 @@ class BirthdayCardActivity : ComponentActivity() {
     }
 }
 
+@Composable
+fun BirthdayGreetingWithText(message: String){
+    Text(
+        text = message
+    )
+}
+
 @Preview(showBackground = true)
 @Composable
 fun BirthdayCardPreview() {
     MyComposeAppTheme {
-
+        BirthdayGreetingWithText(message = "Happy birthday, Za!")
     }
 }
