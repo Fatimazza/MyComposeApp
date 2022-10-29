@@ -22,22 +22,17 @@ class BirthdayCardActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Greeting2("Android")
+                    
                 }
             }
         }
     }
 }
 
-@Composable
-fun Greeting2(name: String) {
-    Text(text = "Hello $name!")
-}
-
 @Preview(showBackground = true)
 @Composable
 fun BirthdayCardPreview() {
     MyComposeAppTheme {
-        Greeting2("Android")
+
     }
 }
