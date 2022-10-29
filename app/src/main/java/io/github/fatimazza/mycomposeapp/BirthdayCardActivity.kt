@@ -3,7 +3,7 @@ package io.github.fatimazza.mycomposeapp
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -33,7 +33,7 @@ class BirthdayCardActivity : ComponentActivity() {
 
 @Composable
 fun BirthdayGreetingWithText(message: String, from: String){
-    Row {
+    Column {
         Text(
             text = message,
             fontSize = 36.sp
