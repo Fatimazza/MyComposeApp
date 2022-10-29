@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
@@ -26,7 +27,7 @@ class BirthdayCardActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    BirthdayGreetingWithText(message = "Happy birthday, Za!", " - from Fatima")
+                    BirthdayGreetingWithImage(message = "Happy birthday, Za!", " - from Fatima")
                 }
             }
         }
@@ -50,14 +51,16 @@ fun BirthdayGreetingWithText(message: String, from: String){
 @Composable
 fun BirthdayGreetingWithImage(message: String, from: String){
     val image = painterResource(id = R.drawable.androidparty)
-    Image(painter = image, contentDescription = null)
+    Box {
+        Image(painter = image, contentDescription = null)
+        BirthdayGreetingWithText(message = "Happy birthday, Za!", " - from Fatima")
+    }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun BirthdayCardPreview() {
     MyComposeAppTheme {
-        BirthdayGreetingWithText(message = "Happy birthday, Za!", " - from Fatima")
         BirthdayGreetingWithImage(message = "Happy birthday, Za!", " - from Fatima")
     }
 }
