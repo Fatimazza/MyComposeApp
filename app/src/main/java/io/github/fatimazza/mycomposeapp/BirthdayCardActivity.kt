@@ -28,7 +28,10 @@ class BirthdayCardActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    BirthdayGreetingWithImage(message = "Happy birthday, Za!", " - from Fatima")
+                    BirthdayGreetingWithImage(
+                        message = getString(R.string.happy_birthday_text),
+                        getString(R.string.birthday_signature_text)
+                    )
                 }
             }
         }
