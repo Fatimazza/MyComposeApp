@@ -40,7 +40,7 @@ class BirthdayCardActivity : ComponentActivity() {
 }
 
 @Composable
-fun BirthdayGreetingWithText(message: String, from: String){
+fun BirthdayGreetingWithText(message: String, from: String) {
     Column {
         Text(
             text = message,
@@ -62,7 +62,7 @@ fun BirthdayGreetingWithText(message: String, from: String){
 }
 
 @Composable
-fun BirthdayGreetingWithImage(message: String, from: String){
+fun BirthdayGreetingWithImage(message: String, from: String) {
     val image = painterResource(id = R.drawable.androidparty)
     Box {
         Image(
