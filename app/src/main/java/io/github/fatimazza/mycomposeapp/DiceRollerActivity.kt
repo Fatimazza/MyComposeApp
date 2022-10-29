@@ -4,9 +4,11 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import io.github.fatimazza.mycomposeapp.ui.theme.MyComposeAppTheme
@@ -29,7 +31,7 @@ class DiceRollerActivity : ComponentActivity() {
 }
 
 @Composable
-fun DiceWithButtonAndImage(){
+fun DiceWithButtonAndImage(modifier: Modifier = Modifier){
 
 }
 
@@ -37,6 +39,9 @@ fun DiceWithButtonAndImage(){
 @Composable
 fun DiceRollerApp() {
     MyComposeAppTheme {
-        DiceWithButtonAndImage()
+        DiceWithButtonAndImage(modifier = Modifier
+            .fillMaxSize()
+            .wrapContentSize(Alignment.Center)
+        )
     }
 }
