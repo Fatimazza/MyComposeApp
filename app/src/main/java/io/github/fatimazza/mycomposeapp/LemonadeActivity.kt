@@ -47,37 +47,36 @@ fun LemonadeApp() {
     ) {
         when (currentStep) {
             1 -> {
-
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center,
+                    modifier = Modifier.fillMaxSize()
+                ) {
+                    Text(
+                        stringResource(R.string.lemon_tree),
+                        fontSize = 18.sp
+                    )
+                    Spacer(modifier = Modifier.height(16.dp))
+                    Image(
+                        painter = painterResource(R.drawable.lemon_tree),
+                        contentDescription = stringResource(
+                            R.string.lemon_content_description),
+                        modifier = Modifier
+                            .wrapContentSize()
+                            .border(
+                                BorderStroke(2.dp, Color(105, 205, 216)),
+                                shape = RoundedCornerShape(4.dp)
+                            )
+                            .padding(16.dp)
+                            .clickable(
+                                onClick = { currentStep = 2 }
+                            )
+                    )
+                }
             }
             2 -> {
 
             }
-        }
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center,
-            modifier = Modifier.fillMaxSize()
-        ) {
-            Text(
-                stringResource(R.string.lemon_tree),
-                fontSize = 18.sp
-            )
-            Spacer(modifier = Modifier.height(16.dp))
-            Image(
-                painter = painterResource(R.drawable.lemon_tree),
-                contentDescription = stringResource(
-                    R.string.lemon_content_description),
-                modifier = Modifier
-                    .wrapContentSize()
-                    .border(
-                        BorderStroke(2.dp, Color(105, 205, 216)),
-                        shape = RoundedCornerShape(4.dp)
-                    )
-                    .padding(16.dp)
-                    .clickable(
-                        onClick = { currentStep = 2 }
-                    )
-            )
         }
     }
 }
