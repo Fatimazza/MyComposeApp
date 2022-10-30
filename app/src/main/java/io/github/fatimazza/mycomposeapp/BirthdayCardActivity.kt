@@ -25,10 +25,7 @@ class BirthdayCardActivity : ComponentActivity() {
         setContent {
             MyComposeAppTheme {
                 // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
-                ) {
+                Surface(color = MaterialTheme.colors.background) {
                     BirthdayGreetingWithImage(
                         message = getString(R.string.happy_birthday_text),
                         getString(R.string.birthday_signature_text)
