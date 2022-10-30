@@ -11,7 +11,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -35,6 +35,10 @@ class LemonadeActivity : ComponentActivity() {
 
 @Composable
 fun LemonadeApp() {
+    // Current step the app is displaying (remember allows the state to be retained
+    // across recompositions).
+    var currentStep by remember { mutableStateOf(1) }
+    
     // A surface container using the 'background' color from the theme
     Surface(
         modifier = Modifier.fillMaxSize(),
