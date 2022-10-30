@@ -64,6 +64,26 @@ fun LemonadeApp() {
                     onImageClick = { currentStep = 3 }
                 )
             }
+            3 -> {
+                // Display glass of lemonade image and ask user to drink the lemonade
+                LemonTextAndImage(
+                    textLabelResourceId = R.string.lemon_drink,
+                    drawableResourceId = R.drawable.lemon_drink,
+                    contentDescriptionResourceId = R.string.lemon_drink_content_description,
+                    onImageClick = { currentStep = 4 })
+            }
+            4 -> {
+                // Display empty glass image and ask user to start again
+                LemonTextAndImage(
+                    textLabelResourceId = R.string.lemon_empty_glass,
+                    drawableResourceId = R.drawable.lemon_restart,
+                    contentDescriptionResourceId = R.string.lemon_empty_glass_content_description,
+                    onImageClick = {
+                        // Back to starting step
+                        currentStep = 1
+                    }
+                )
+            }
         }
     }
 }
