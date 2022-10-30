@@ -22,7 +22,7 @@ class LemonadeActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Greeting2("Android")
+
                 }
             }
         }
@@ -30,14 +30,13 @@ class LemonadeActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting2(name: String) {
-    Text(text = "Hello $name!")
+fun LemonadeApp() {
 }
 
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview2() {
     MyComposeAppTheme {
-        Greeting2("Android")
+
     }
 }
