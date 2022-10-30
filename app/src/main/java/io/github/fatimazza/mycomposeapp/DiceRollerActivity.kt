@@ -23,13 +23,7 @@ class DiceRollerActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MyComposeAppTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
-                ) {
-
-                }
+                DiceRollerApp()
             }
         }
     }
