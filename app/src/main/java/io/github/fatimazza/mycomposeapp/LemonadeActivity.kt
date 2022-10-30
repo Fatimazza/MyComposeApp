@@ -45,6 +45,14 @@ fun LemonadeApp() {
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colors.background
     ) {
+        when (currentStep) {
+            1 -> {
+
+            }
+            2 -> {
+
+            }
+        }
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
