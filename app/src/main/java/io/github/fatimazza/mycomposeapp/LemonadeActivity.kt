@@ -108,23 +108,35 @@ fun LemonadeApp() {
 
 /**
  * Composable that displays a text label above an image that is clickable.
+ *
+ * @param textLabelResourceId is the resource ID for the text string to display
+ * @param drawableResourceId is the resource ID for the image drawable to display below the text
+ * @param contentDescriptionResourceId is the resource ID for the string to use as the content
+ * description for the image
+ * @param onImageClick will be called when the user clicks the image
+ * @param modifier modifiers to set to this composable
  */
 @Composable
-fun LemonTextAndImage(){
+fun LemonTextAndImage(
+    textLabelResourceId: Int,
+    drawableResourceId: Int,
+    contentDescriptionResourceId: Int,
+    onImageClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
-        modifier = Modifier.fillMaxSize()
+        modifier = modifier.fillMaxSize()
     ) {
         Text(
-            stringResource(R.string.lemon_tree),
+            stringResource(textLabelResourceId),
             fontSize = 18.sp
         )
         Spacer(modifier = Modifier.height(16.dp))
         Image(
-            painter = painterResource(R.drawable.lemon_tree),
-            contentDescription = stringResource(
-                R.string.lemon_tree_content_description),
+            painter = painterResource(drawableResourceId),
+            contentDescription = stringResource(contentDescriptionResourceId),
             modifier = Modifier
                 .wrapContentSize()
                 .border(
@@ -133,7 +145,7 @@ fun LemonTextAndImage(){
                 )
                 .padding(16.dp)
                 .clickable(
-                    onClick = {  }
+                    onClick = onImageClick
                 )
         )
     }
