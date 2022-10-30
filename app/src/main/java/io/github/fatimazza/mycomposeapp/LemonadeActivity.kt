@@ -19,6 +19,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import io.github.fatimazza.mycomposeapp.ui.theme.MyComposeAppTheme
 
 class LemonadeActivity : ComponentActivity() {
@@ -44,7 +45,10 @@ fun LemonadeApp() {
             verticalArrangement = Arrangement.Center,
             modifier = Modifier.fillMaxSize()
         ) {
-            Text(stringResource(R.string.lemon_tree))
+            Text(
+                stringResource(R.string.lemon_tree),
+                fontSize = 18.sp
+            )
             Spacer(modifier = Modifier.height(16.dp))
             Image(
                 painter = painterResource(R.drawable.lemon_tree),
