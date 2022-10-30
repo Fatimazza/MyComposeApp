@@ -106,6 +106,39 @@ fun LemonadeApp() {
     }
 }
 
+/**
+ * Composable that displays a text label above an image that is clickable.
+ */
+@Composable
+fun LemonTextAndImage(){
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center,
+        modifier = Modifier.fillMaxSize()
+    ) {
+        Text(
+            stringResource(R.string.lemon_tree),
+            fontSize = 18.sp
+        )
+        Spacer(modifier = Modifier.height(16.dp))
+        Image(
+            painter = painterResource(R.drawable.lemon_tree),
+            contentDescription = stringResource(
+                R.string.lemon_tree_content_description),
+            modifier = Modifier
+                .wrapContentSize()
+                .border(
+                    BorderStroke(2.dp, Color(105, 205, 216)),
+                    shape = RoundedCornerShape(4.dp)
+                )
+                .padding(16.dp)
+                .clickable(
+                    onClick = {  }
+                )
+        )
+    }
+}
+
 @Preview(showBackground = true)
 @Composable
 fun LemonadePreview() {
