@@ -56,32 +56,13 @@ fun LemonadeApp() {
                 )
             }
             2 -> {
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Center,
-                    modifier = Modifier.fillMaxSize()
-                ) {
-                    Text(
-                        stringResource(R.string.lemon_squeeze),
-                        fontSize = 18.sp
-                    )
-                    Spacer(modifier = Modifier.height(16.dp))
-                    Image(
-                        painter = painterResource(R.drawable.lemon_squeeze),
-                        contentDescription = stringResource(
-                            R.string.lemon_content_description),
-                        modifier = Modifier
-                            .wrapContentSize()
-                            .border(
-                                BorderStroke(2.dp, Color(105, 205, 216)),
-                                shape = RoundedCornerShape(4.dp)
-                            )
-                            .padding(16.dp)
-                            .clickable(
-                                onClick = { currentStep = 3 }
-                            )
-                    )
-                }
+                // Display lemon image and ask user to squeeze the lemon
+                LemonTextAndImage(
+                    textLabelResourceId = R.string.lemon_squeeze,
+                    drawableResourceId = R.drawable.lemon_squeeze,
+                    contentDescriptionResourceId = R.string.lemon_content_description,
+                    onImageClick = { currentStep = 3 }
+                )
             }
         }
     }
