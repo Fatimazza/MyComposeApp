@@ -22,18 +22,22 @@ class TipTimeActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-
+                    TipTimeScreen()
                 }
             }
         }
     }
 }
 
+@Composable
+fun TipTimeScreen(){
+
+}
 
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview2() {
     MyComposeAppTheme {
-        
+        TipTimeScreen()
     }
 }
