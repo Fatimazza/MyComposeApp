@@ -39,6 +39,9 @@ fun LemonadeApp() {
     // Current step the app is displaying (remember allows the state to be retained
     // across recompositions).
     var currentStep by remember { mutableStateOf(1) }
+
+    // Number of times the lemon needs to be squeezed to turn into a glass of lemonade
+    var squeezeCount by remember { mutableStateOf(0) }
     
     // A surface container using the 'background' color from the theme
     Surface(
@@ -52,7 +55,13 @@ fun LemonadeApp() {
                     textLabelResourceId = R.string.lemon_tree,
                     drawableResourceId = R.drawable.lemon_tree,
                     contentDescriptionResourceId = R.string.lemon_tree_content_description,
-                    onImageClick = { currentStep = 2 }
+                    onImageClick = {
+                        currentStep = 2
+                        // Each time a lemon is picked from the tree, get a new random number
+                        // between 2 and 4 (inclusive) for the number of times the lemon needs
+                        // to be squeezed to turn into lemonade
+                        squeezeCount = (2..4).random()
+                    }
                 )
             }
             2 -> {
@@ -61,7 +70,14 @@ fun LemonadeApp() {
                     textLabelResourceId = R.string.lemon_squeeze,
                     drawableResourceId = R.drawable.lemon_squeeze,
                     contentDescriptionResourceId = R.string.lemon_content_description,
-                    onImageClick = { currentStep = 3 }
+                    onImageClick = {
+                        // Decrease the squeeze count by 1 for each click the user performs
+                        squeezeCount--
+                        // When we're done squeezing the lemon, move to the next step
+                        if (squeezeCount == 0) {
+                            currentStep = 3
+                        }
+                    }
                 )
             }
             3 -> {
