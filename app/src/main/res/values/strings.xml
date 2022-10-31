@@ -16,6 +16,8 @@
     <string name="lemon_empty_glass_content_description">Empty glass</string>
     <string name="title_activity_tip_time">TipTimeActivity</string>
     <string name="tip_calculate">Calculate Tip</string>
-    <string name="tip_cost_of_service">Cost of Service</string>
+    <string name="tip_bill_amount">Bill Amount</string>
+    <string name="tip_how_was_the_service">Tip (%)</string>
+    <string name="tip_round_up_tip">Round up tip?</string>
     <string name="tip_amount">Tip amount %s</string>
 </resources>

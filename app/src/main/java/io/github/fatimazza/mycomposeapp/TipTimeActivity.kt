@@ -76,7 +76,7 @@ fun EditNumberField(
     TextField(
         value = value,
         onValueChange = onValueChange,
-        label = { Text(stringResource(R.string.tip_cost_of_service)) },
+        label = { Text(stringResource(R.string.tip_bill_amount)) },
         modifier = Modifier.fillMaxWidth(),
         singleLine = true,
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
