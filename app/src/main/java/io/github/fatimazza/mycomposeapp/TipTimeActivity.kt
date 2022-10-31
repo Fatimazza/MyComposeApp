@@ -56,6 +56,9 @@ fun TipTimeScreen() {
 @Composable
 fun EditNumberField(){
     var amountInput by remember { mutableStateOf("0") }
+    val amount = amountInput.toDoubleOrNull() ?: 0.0
+    val tip = calculateTip(amount)
+
     TextField(
         value = amountInput,
         onValueChange = { amountInput = it },
