@@ -9,6 +9,7 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -52,10 +53,10 @@ fun TipTimeScreen() {
 
 @Composable
 fun EditNumberField(){
-    val amountInput = "0"
+    var amountInput = mutableStateOf("0")
     TextField(
-        value = amountInput,
-        onValueChange = {}
+        value = amountInput.value,
+        onValueChange = { amountInput.value = it }
     )
 }
 
