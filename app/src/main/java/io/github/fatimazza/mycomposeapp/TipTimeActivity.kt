@@ -18,6 +18,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import io.github.fatimazza.mycomposeapp.ui.theme.MyComposeAppTheme
+import java.text.NumberFormat
 
 class TipTimeActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,6 +64,19 @@ fun EditNumberField(){
         singleLine = true,
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
     )
+}
+
+/**
+ * Calculates the tip based on the user input and format the tip amount
+ * according to the local currency and display it onscreen.
+ * Example would be "$10.00".
+ */
+private fun calculateTip(
+    amount: Double,
+    tipPercent: Double = 15.0
+): String {
+    val tip = tipPercent / 100 * amount
+    return NumberFormat.getCurrencyInstance().format(tip)
 }
 
 @Preview(showBackground = true)
