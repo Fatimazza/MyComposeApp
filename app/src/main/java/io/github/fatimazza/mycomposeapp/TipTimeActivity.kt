@@ -63,10 +63,6 @@ fun TipTimeScreen() {
             fontSize = 24.sp,
             modifier = Modifier.align(Alignment.CenterHorizontally)
         )
-        RoundTheTipRow(
-            roundUp = roundUp,
-            onRoundUpChanged = { roundUp = it }
-        )
         Spacer(Modifier.height(16.dp))
         EditNumberField(
             label = R.string.tip_bill_amount,
@@ -88,6 +84,10 @@ fun TipTimeScreen() {
                 onDone = { focusManager.clearFocus() }),
             value = tipInput,
             onValueChange = { tipInput = it }
+        )
+        RoundTheTipRow(
+            roundUp = roundUp,
+            onRoundUpChanged = { roundUp = it }
         )
         Spacer(Modifier.height(24.dp))
         Text(
