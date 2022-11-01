@@ -3,6 +3,7 @@ package io.github.fatimazza.mycomposeapp
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.MaterialTheme
@@ -55,8 +56,14 @@ fun TipTimeScreen() {
         )
         Spacer(Modifier.height(16.dp))
         EditNumberField(
+            label = R.string.tip_bill_amount,
             value = amountInput,
             onValueChange = { amountInput = it }
+        )
+        EditNumberField(
+            label = R.string.tip_how_was_the_service,
+            value = "",
+            onValueChange = { }
         )
         Spacer(Modifier.height(24.dp))
         Text(
@@ -70,13 +77,15 @@ fun TipTimeScreen() {
 
 @Composable
 fun EditNumberField(
+    @StringRes label: Int,
     value: String,
-    onValueChange: (String) -> Unit
+    onValueChange: (String) -> Unit,
+    modifier: Modifier = Modifier
 ){
     TextField(
         value = value,
         onValueChange = onValueChange,
-        label = { Text(stringResource(R.string.tip_bill_amount)) },
+        label = { Text(stringResource(label)) },
         modifier = Modifier.fillMaxWidth(),
         singleLine = true,
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
