@@ -62,11 +62,17 @@ fun TipTimeScreen() {
         Spacer(Modifier.height(16.dp))
         EditNumberField(
             label = R.string.tip_bill_amount,
+            keyboardOptions = KeyboardOptions.Default.copy(
+                keyboardType = KeyboardType.Number,
+                imeAction = ImeAction.Next),
             value = amountInput,
             onValueChange = { amountInput = it }
         )
         EditNumberField(
             label = R.string.tip_how_was_the_service,
+            keyboardOptions = KeyboardOptions.Default.copy(
+                keyboardType = KeyboardType.Number,
+                imeAction = ImeAction.Done),
             value = tipInput,
             onValueChange = { tipInput = it }
         )
@@ -83,6 +89,7 @@ fun TipTimeScreen() {
 @Composable
 fun EditNumberField(
     @StringRes label: Int,
+    keyboardOptions: KeyboardOptions,
     value: String,
     onValueChange: (String) -> Unit,
     modifier: Modifier = Modifier
@@ -93,9 +100,7 @@ fun EditNumberField(
         label = { Text(stringResource(label)) },
         modifier = modifier.fillMaxWidth(),
         singleLine = true,
-        keyboardOptions = KeyboardOptions.Default.copy(
-            keyboardType = KeyboardType.Number,
-            imeAction = ImeAction.Next)
+        keyboardOptions = keyboardOptions
     )
 }
 
