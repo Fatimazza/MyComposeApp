@@ -50,6 +50,8 @@ fun TipTimeScreen() {
     var tipInput by remember { mutableStateOf("") }
     val tipPercent = tipInput.toDoubleOrNull() ?: 0.0
 
+    var roundUp by remember { mutableStateOf(false) }
+
     val tip = calculateTip(amount, tipPercent)
 
     Column(
@@ -60,6 +62,10 @@ fun TipTimeScreen() {
             text = stringResource(R.string.tip_calculate),
             fontSize = 24.sp,
             modifier = Modifier.align(Alignment.CenterHorizontally)
+        )
+        RoundTheTipRow(
+            roundUp = roundUp,
+            onRoundUpChanged = { roundUp = it }
         )
         Spacer(Modifier.height(16.dp))
         EditNumberField(
