@@ -45,6 +45,9 @@ fun TipTimeScreen() {
     val amount = amountInput.toDoubleOrNull() ?: 0.0
     val tip = calculateTip(amount)
 
+    var tipInput by remember { mutableStateOf("") }
+    val tipPercent = tipInput.toDoubleOrNull() ?: 0.0
+
     Column(
         modifier = Modifier.padding(32.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
@@ -62,8 +65,8 @@ fun TipTimeScreen() {
         )
         EditNumberField(
             label = R.string.tip_how_was_the_service,
-            value = "",
-            onValueChange = { }
+            value = tipInput,
+            onValueChange = { tipInput = it }
         )
         Spacer(Modifier.height(24.dp))
         Text(
