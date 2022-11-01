@@ -43,10 +43,11 @@ class TipTimeActivity : ComponentActivity() {
 fun TipTimeScreen() {
     var amountInput by remember { mutableStateOf("0") }
     val amount = amountInput.toDoubleOrNull() ?: 0.0
-    val tip = calculateTip(amount)
 
     var tipInput by remember { mutableStateOf("") }
     val tipPercent = tipInput.toDoubleOrNull() ?: 0.0
+
+    val tip = calculateTip(amount, tipPercent)
 
     Column(
         modifier = Modifier.padding(32.dp),
