@@ -118,7 +118,13 @@ fun EditNumberField(
 
 @Composable
 fun RoundTheTipRow(modifier: Modifier = Modifier){
-    
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .size(48.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+    }
 }
 
 /**
