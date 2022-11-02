@@ -20,4 +20,5 @@
     <string name="tip_how_was_the_service">Tip (%)</string>
     <string name="tip_round_up_tip">Round up tip?</string>
     <string name="tip_amount">Tip amount %s</string>
+    <string name="title_activity_affirmation">AffirmationActivity</string>
 </resources>
