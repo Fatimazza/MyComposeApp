@@ -24,7 +24,6 @@ import androidx.compose.ui.unit.dp
 import io.github.fatimazza.mycomposeapp.data.Datasource
 import io.github.fatimazza.mycomposeapp.model.Affirmation
 import io.github.fatimazza.mycomposeapp.ui.theme.MyComposeAppTheme
-import javax.sql.DataSource
 
 class AffirmationActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
