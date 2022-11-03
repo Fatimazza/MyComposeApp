@@ -40,6 +40,11 @@ fun AffirmationApp() {
 }
 
 @Composable
+fun AffirmationLists(affirmationList: List<Affirmation>, modifier: Modifier = Modifier) {
+
+}
+
+@Composable
 fun AffirmationCard(affirmation: Affirmation, modifier: Modifier = Modifier) {
     Card(
         modifier = modifier.padding(8.dp),
