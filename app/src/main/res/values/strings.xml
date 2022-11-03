@@ -1,11 +1,14 @@
 <resources>
     <string name="app_name">My Compose App</string>
     <string name="title_activity_birthday_card">BirthdayCardActivity</string>
+    <string name="title_birthday_card">Birthday Card App</string>
     <string name="happy_birthday_text">Happy birthday, Za!</string>
     <string name="birthday_signature_text"> - from Fatima</string>
     <string name="title_activity_dice_roller">DiceRollerActivity</string>
+    <string name="title_dice_roller">Dice Roller App</string>
     <string name="dice_roller_roll">Roll</string>
     <string name="title_activity_lemonade">LemonadeActivity</string>
+    <string name="title_lemonade">Lemonade App</string>
     <string name="lemon_tree">Tap the lemon tree to select a lemon</string>
     <string name="lemon_squeeze">Keep tapping the lemon to squeeze it</string>
     <string name="lemon_drink">Tap the lemonade to drink it</string>
@@ -15,12 +18,14 @@
     <string name="lemon_drink_content_description">Glass of lemonade</string>
     <string name="lemon_empty_glass_content_description">Empty glass</string>
     <string name="title_activity_tip_time">TipTimeActivity</string>
+    <string name="title_tip_time">Tip Time App</string>
     <string name="tip_calculate">Calculate Tip</string>
     <string name="tip_bill_amount">Bill Amount</string>
     <string name="tip_how_was_the_service">Tip (%)</string>
     <string name="tip_round_up_tip">Round up tip?</string>
     <string name="tip_amount">Tip amount %s</string>
     <string name="title_activity_affirmation">AffirmationActivity</string>
+    <string name="title_affirmation">Affirmation App</string>
     <string name="affirmation1">I am strong.</string>
     <string name="affirmation2">I believe in myself.</string>
     <string name="affirmation3">Each day is a new opportunity to grow and be a better version of myself.</string>
