@@ -39,4 +39,5 @@
     <string name="affirmation10">I will be present in all the moments that this day brings.</string>
     <string name="title_activity_my_compose_app">MyComposeAppActivity</string>
     <string name="title_activity_woof">WoofActivity</string>
+    <string name="title_woof">Woof App</string>
 </resources>
