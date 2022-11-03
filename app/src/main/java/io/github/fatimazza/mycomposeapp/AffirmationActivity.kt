@@ -5,11 +5,15 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Card
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -44,10 +48,16 @@ fun AffirmationCard(affirmation: Affirmation, modifier: Modifier = Modifier) {
         Column {
             Image(
                 painter = painterResource(affirmation.imageResourceId),
-                contentDescription = stringResource(affirmation.stringResourceId)
+                contentDescription = stringResource(affirmation.stringResourceId),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(194.dp),
+                contentScale = ContentScale.Crop
             )
             Text(
-                text = stringResource(affirmation.stringResourceId)
+                text = stringResource(affirmation.stringResourceId),
+                modifier = Modifier.padding(16.dp),
+                style = MaterialTheme.typography.h6
             )
         }
     }
