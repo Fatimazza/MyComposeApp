@@ -44,6 +44,13 @@ fun MyComposeApp() {
                 onClick = {},
                 modifier = Modifier.fillMaxWidth()
             ) {
+                Text(stringResource(R.string.title_hello_compose))
+            }
+            Spacer(modifier = Modifier.height(16.dp))
+            Button(
+                onClick = {},
+                modifier = Modifier.fillMaxWidth()
+            ) {
                 Text(stringResource(R.string.title_birthday_card))
             }
             Spacer(modifier = Modifier.height(16.dp))
