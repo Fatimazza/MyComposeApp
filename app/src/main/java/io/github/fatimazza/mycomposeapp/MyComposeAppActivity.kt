@@ -30,6 +30,6 @@ fun MyComposeApp() {
 
 @Preview(showBackground = true)
 @Composable
-fun DefaultPreview2() {
-    
+fun MyComposeAppPreview() {
+    MyComposeApp()
 }
