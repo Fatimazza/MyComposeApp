@@ -16,23 +16,20 @@ class MyComposeAppActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MyComposeAppTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
-                ) {
-
-                }
-            }
+            MyComposeApp()
         }
+    }
+}
+
+@Composable
+fun MyComposeApp() {
+    MyComposeAppTheme {
+        
     }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview2() {
-    MyComposeAppTheme {
-        
-    }
+    
 }
