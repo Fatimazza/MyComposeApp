@@ -40,4 +40,25 @@
     <string name="title_activity_my_compose_app">MyComposeAppActivity</string>
     <string name="title_activity_woof">WoofActivity</string>
     <string name="title_woof">Woof App</string>
+    <string name="woof_dog_name_1">Koda</string>
+    <string name="woof_dog_name_2">Lola</string>
+    <string name="woof_dog_name_3">Frankie</string>
+    <string name="woof_dog_name_4">Nox</string>
+    <string name="woof_dog_name_5">Faye</string>
+    <string name="woof_dog_name_6">Bella</string>
+    <string name="woof_dog_name_7">Moana</string>
+    <string name="woof_dog_name_8">Tzeitel</string>
+    <string name="woof_dog_name_9">Leroy</string>
+    <string name="woof_dog_description_1">Eating treats on the terrace</string>
+    <string name="woof_dog_description_2">Barking at Daddy</string>
+    <string name="woof_dog_description_3">Stealing socks</string>
+    <string name="woof_dog_description_4">Meeting new animals</string>
+    <string name="woof_dog_description_5">Digging in the garden</string>
+    <string name="woof_dog_description_6">Chasing sea foam</string>
+    <string name="woof_dog_description_7">Bothering her paw-rents</string>
+    <string name="woof_dog_description_8">Sunbathing</string>
+    <string name="woof_dog_description_9">Sleeping in dangerous places</string>
+    <string name="woof_about">About:</string>
+    <string name="woof_years_old">%d years old</string>
+    <string name="woof_expand_button_content_description">See more or less information about a dog.</string>
 </resources>
