@@ -6,8 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -15,6 +14,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import io.github.fatimazza.mycomposeapp.data.Dog
 import io.github.fatimazza.mycomposeapp.ui.theme.WoofTheme
 
 class WoofActivity : ComponentActivity() {
@@ -40,8 +40,18 @@ fun WoofApp() {
  * @param modifier modifiers to set to this composable
  */
 @Composable
-fun DogItem() {
-    
+fun DogItem(
+    dog: Dog,
+    modifier: Modifier = Modifier
+) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(8.dp)
+    ) {
+        DogIcon(dog.imageResourceId)
+        DogInformation(dog.name, dog.age)
+    }
 }
 
 /**
