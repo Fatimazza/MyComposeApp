@@ -77,7 +77,8 @@ fun DogIcon(
 ) {
     Image(
         modifier = modifier
-            .size(64.dp),
+            .size(64.dp)
+            .padding(8.dp),
         painter = painterResource(dogIcon),
         /*
          * Content Description is not needed here - image is decorative, and setting a null content
@@ -102,7 +103,8 @@ fun DogInformation(
 ) {
     Column {
         Text(
-            text = stringResource(dogName)
+            text = stringResource(dogName),
+            modifier = modifier.padding(top = 8.dp)
         )
         Text(
             text = stringResource(R.string.woof_years_old, dogAge)
