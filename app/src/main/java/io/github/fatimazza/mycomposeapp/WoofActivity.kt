@@ -62,6 +62,7 @@ fun DogItem(
         modifier = Modifier
             .fillMaxWidth()
             .padding(8.dp)
+            .background(MaterialTheme.colors.surface)
     ) {
         DogIcon(dog.imageResourceId)
         DogInformation(dog.name, dog.age)
@@ -108,10 +109,12 @@ fun DogInformation(
     Column {
         Text(
             text = stringResource(dogName),
+            color = MaterialTheme.colors.onSurface,
             modifier = modifier.padding(top = 8.dp)
         )
         Text(
-            text = stringResource(R.string.woof_years_old, dogAge)
+            text = stringResource(R.string.woof_years_old, dogAge),
+            color = MaterialTheme.colors.onSurface
         )
     }
 }
