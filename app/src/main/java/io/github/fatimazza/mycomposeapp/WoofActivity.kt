@@ -51,6 +51,9 @@ fun DogInformation(
     }
 }
 
+/**
+ * Composable that displays what the UI of the app looks like in light theme in the design tab.
+ */
 @Preview(showBackground = true)
 @Composable
 fun WoofPreview() {
