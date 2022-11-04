@@ -34,6 +34,17 @@ fun WoofApp() {
 }
 
 /**
+ * Composable that displays a list item containing a dog icon and their information.
+ *
+ * @param dog contains the data that populates the list item
+ * @param modifier modifiers to set to this composable
+ */
+@Composable
+fun DogItem() {
+    
+}
+
+/**
  * Composable that displays a photo of a dog.
  *
  * @param dogIcon is the resource ID for the image of the dog
