@@ -7,6 +7,8 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -29,9 +31,16 @@ class WoofActivity : ComponentActivity() {
     }
 }
 
+/**
+ * Composable that displays an app bar and a list of dogs.
+ */
 @Composable
 fun WoofApp() {
-
+    LazyColumn {
+        items(dogs) {
+            DogItem(dog = it)
+        }
+    }
 }
 
 /**
@@ -108,6 +117,6 @@ fun DogInformation(
 @Composable
 fun WoofPreview() {
     WoofTheme(darkTheme = false) {
-        DogItem(dogs.get(0))
+        WoofApp()
     }
 }
