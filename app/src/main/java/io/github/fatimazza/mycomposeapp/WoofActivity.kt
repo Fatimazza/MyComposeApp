@@ -15,6 +15,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import io.github.fatimazza.mycomposeapp.data.Dog
+import io.github.fatimazza.mycomposeapp.data.dogs
 import io.github.fatimazza.mycomposeapp.ui.theme.WoofTheme
 
 class WoofActivity : ComponentActivity() {
@@ -107,6 +108,6 @@ fun DogInformation(
 @Composable
 fun WoofPreview() {
     WoofTheme(darkTheme = false) {
-        DogInformation(R.string.woof_dog_name_1,0)
+        DogItem(dogs.get(0))
     }
 }
