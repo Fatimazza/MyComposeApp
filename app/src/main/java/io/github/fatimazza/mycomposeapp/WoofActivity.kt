@@ -29,6 +29,17 @@ fun WoofApp() {
 }
 
 /**
+ * Composable that displays a photo of a dog.
+ *
+ * @param dogIcon is the resource ID for the image of the dog
+ * @param modifier modifiers to set to this composable
+ */
+@Composable
+fun DogIcon() {
+    
+}
+
+/**
  * Composable that displays a dog's name and age.
  *
  * @param dogName is the resource ID for the string of the dog's name
