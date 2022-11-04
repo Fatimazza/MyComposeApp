@@ -36,6 +36,15 @@ private val WoofLightColorPalette = lightColors(
     secondary = Grey700
 )
 
+private val WoofDarkColorPalette = darkColors(
+    background = Cyan900,
+    surface = Cyan700,
+    onSurface = White,
+    primary = Grey900,
+    onPrimary = White,
+    secondary = Grey100
+)
+
 @Composable
 fun MyComposeAppTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
     val colors = if (darkTheme) {
@@ -55,7 +64,7 @@ fun MyComposeAppTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Comp
 @Composable
 fun WoofTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
     val colors = if (darkTheme) {
-        DarkColorPalette
+        WoofDarkColorPalette
     } else {
         WoofLightColorPalette
     }
