@@ -5,13 +5,13 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import io.github.fatimazza.mycomposeapp.ui.theme.MyComposeAppTheme
+import io.github.fatimazza.mycomposeapp.ui.theme.WoofTheme
 
 class WoofActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MyComposeAppTheme {
+            WoofTheme {
                 WoofApp()
             }
         }
@@ -26,7 +26,7 @@ fun WoofApp() {
 @Preview(showBackground = true)
 @Composable
 fun WoofPreview() {
-    MyComposeAppTheme {
+    WoofTheme(darkTheme = false) {
         WoofApp()
     }
 }
