@@ -6,9 +6,11 @@ import androidx.activity.compose.setContent
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -36,7 +38,9 @@ class WoofActivity : ComponentActivity() {
  */
 @Composable
 fun WoofApp() {
-    LazyColumn {
+    LazyColumn (
+        modifier = Modifier.background(MaterialTheme.colors.background)
+    ) {
         items(dogs) {
             DogItem(dog = it)
         }
