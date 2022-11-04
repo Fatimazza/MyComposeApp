@@ -3,13 +3,18 @@ package io.github.fatimazza.mycomposeapp
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import io.github.fatimazza.mycomposeapp.ui.theme.WoofTheme
 
 class WoofActivity : ComponentActivity() {
@@ -35,8 +40,20 @@ fun WoofApp() {
  * @param modifier modifiers to set to this composable
  */
 @Composable
-fun DogIcon() {
-    
+fun DogIcon(
+    @DrawableRes dogIcon: Int,
+    modifier: Modifier = Modifier
+) {
+    Image(
+        modifier = modifier
+            .size(64.dp),
+        painter = painterResource(dogIcon),
+        /*
+         * Content Description is not needed here - image is decorative, and setting a null content
+         * description allows accessibility services to skip this element during navigation.
+         */
+        contentDescription = null
+    )
 }
 
 /**
