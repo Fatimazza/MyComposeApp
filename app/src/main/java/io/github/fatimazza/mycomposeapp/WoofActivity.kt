@@ -52,6 +52,16 @@ fun WoofApp() {
 }
 
 /**
+ * Composable that displays a Top Bar with an icon and text.
+ *
+ * @param modifier modifiers to set to this composable
+ */
+@Composable
+fun WoofTopAppBar() {
+    
+}
+
+/**
  * Composable that displays a list item containing a dog icon and their information.
  *
  * @param dog contains the data that populates the list item
