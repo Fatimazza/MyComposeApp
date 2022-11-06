@@ -57,8 +57,16 @@ fun WoofApp() {
  * @param modifier modifiers to set to this composable
  */
 @Composable
-fun WoofTopAppBar() {
-    
+fun WoofTopAppBar(modifier: Modifier = Modifier) {
+    Row() {
+        Image(
+            painter = painterResource(R.drawable.ic_woof_logo),
+            contentDescription = null
+        )
+        Text(
+            text = stringResource(R.string.app_name)
+        )
+    }
 }
 
 /**
