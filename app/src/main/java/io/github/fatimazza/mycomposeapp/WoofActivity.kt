@@ -16,6 +16,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
@@ -63,13 +64,22 @@ fun WoofApp() {
  */
 @Composable
 fun WoofTopAppBar(modifier: Modifier = Modifier) {
-    Row() {
+    Row(
+        modifier = modifier
+            .fillMaxWidth()
+            .background(color = MaterialTheme.colors.primary),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
         Image(
+            modifier = Modifier
+                .size(64.dp)
+                .padding(8.dp),
             painter = painterResource(R.drawable.ic_woof_logo),
             contentDescription = null
         )
         Text(
-            text = stringResource(R.string.app_name)
+            text = stringResource(R.string.app_name),
+            style = MaterialTheme.typography.h5
         )
     }
 }
