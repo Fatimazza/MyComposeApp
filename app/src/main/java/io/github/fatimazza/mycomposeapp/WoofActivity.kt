@@ -14,7 +14,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ExpandMore
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -94,6 +94,7 @@ fun DogItem(
     dog: Dog,
     modifier: Modifier = Modifier
 ) {
+    var expanded by remember { mutableStateOf(false) }
     Card(
         modifier = modifier.padding(8.dp),
         elevation = 4.dp
@@ -105,6 +106,11 @@ fun DogItem(
         ) {
             DogIcon(dog.imageResourceId)
             DogInformation(dog.name, dog.age)
+            Spacer(Modifier.weight(1f))
+            DogItemButton(
+                expanded = expanded,
+                onClick = { }
+            )
         }
     }
 }
