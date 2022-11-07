@@ -199,7 +199,23 @@ fun DogHobby(
     @StringRes dogHobby: Int,
     modifier: Modifier = Modifier
 ) {
-
+    Column(
+        modifier = modifier.padding(
+            start = 16.dp,
+            top = 8.dp,
+            bottom = 16.dp,
+            end = 16.dp
+        )
+    ) {
+        Text(
+            text = stringResource(R.string.woof_about),
+            style = MaterialTheme.typography.h6
+        )
+        Text(
+            text = stringResource(dogHobby),
+            style = MaterialTheme.typography.body1
+        )
+    }
 }
 
 /**
