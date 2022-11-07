@@ -99,18 +99,21 @@ fun DogItem(
         modifier = modifier.padding(8.dp),
         elevation = 4.dp
     ) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(8.dp)
-        ) {
-            DogIcon(dog.imageResourceId)
-            DogInformation(dog.name, dog.age)
-            Spacer(Modifier.weight(1f))
-            DogItemButton(
-                expanded = expanded,
-                onClick = { }
-            )
+        Column() {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp)
+            ) {
+                DogIcon(dog.imageResourceId)
+                DogInformation(dog.name, dog.age)
+                Spacer(Modifier.weight(1f))
+                DogItemButton(
+                    expanded = expanded,
+                    onClick = { }
+                )
+            }
+            DogHobby(dog.hobbies)
         }
     }
 }
