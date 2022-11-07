@@ -111,6 +111,23 @@ fun DogItem(
 }
 
 /**
+ * Composable that displays a button that is clickable and displays an expand more or an expand less
+ * icon.
+ *
+ * @param expanded represents whether the expand more or expand less icon is visible
+ * @param onClick is the action that happens when the button is clicked
+ * @param modifier modifiers to set to this composable
+ */
+@Composable
+private fun DogItemButton(
+    expanded: Boolean,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+
+}
+
+/**
  * Composable that displays a photo of a dog.
  *
  * @param dogIcon is the resource ID for the image of the dog
