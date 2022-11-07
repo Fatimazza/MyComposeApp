@@ -50,7 +50,7 @@ fun WoofApp() {
     Scaffold(
         topBar = { WoofTopAppBar() }
     ) {
-        LazyColumn (
+        LazyColumn(
             modifier = Modifier.background(MaterialTheme.colors.background)
         ) {
             items(dogs) {
@@ -103,7 +103,7 @@ fun DogItem(
         modifier = modifier.padding(8.dp),
         elevation = 4.dp
     ) {
-        Column (
+        Column(
             modifier = Modifier
                 .animateContentSize(
                     animationSpec = spring(
@@ -149,7 +149,7 @@ private fun DogItemButton(
     IconButton(onClick = onClick) {
         Icon(
             imageVector = if (expanded) Icons.Filled.ExpandLess
-                else Icons.Filled.ExpandMore,
+            else Icons.Filled.ExpandMore,
             tint = MaterialTheme.colors.secondary,
             contentDescription = stringResource(R.string.woof_expand_button_content_description)
         )
