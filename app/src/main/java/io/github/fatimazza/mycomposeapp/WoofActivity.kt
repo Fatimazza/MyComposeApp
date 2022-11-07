@@ -189,6 +189,20 @@ fun DogInformation(
 }
 
 /**
+ * Composable that displays a dog's hobbies.
+ *
+ * @param dogHobby is the resource ID for the text string of the hobby to display
+ * @param modifier modifiers to set to this composable
+ */
+@Composable
+fun DogHobby(
+    @StringRes dogHobby: Int,
+    modifier: Modifier = Modifier
+) {
+
+}
+
+/**
  * Composable that displays what the UI of the app looks like in light theme in the design tab.
  */
 @Preview(showBackground = true)
