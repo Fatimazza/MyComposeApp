@@ -29,7 +29,9 @@ class AffirmationActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            AffirmationApp()
+            MyComposeAppTheme {
+                AffirmationApp()
+            }
         }
     }
 }
@@ -37,25 +39,24 @@ class AffirmationActivity : ComponentActivity() {
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun AffirmationApp() {
-    MyComposeAppTheme {
-        AffirmationLists(affirmationList = Datasource().loadAffirmations())
-    }
+    AffirmationLists(affirmationList = Datasource().loadAffirmations())
 }
 
 @Composable
 fun AffirmationLists(affirmationList: List<Affirmation>, modifier: Modifier = Modifier) {
-    LazyColumn {
-        items(affirmationList) {
-            affirmation -> AffirmationCard(affirmation)
+    LazyColumn(modifier = modifier) {
+        items(affirmationList) { affirmation ->
+            AffirmationCard(
+                affirmation,
+                modifier = modifier.padding(8.dp)
+            )
         }
     }
 }
 
 @Composable
 fun AffirmationCard(affirmation: Affirmation, modifier: Modifier = Modifier) {
-    Card(
-        modifier = modifier.padding(8.dp)
-    ) {
+    Card(modifier = modifier) {
         Column {
             Image(
                 painter = painterResource(affirmation.imageResourceId),
@@ -68,7 +69,7 @@ fun AffirmationCard(affirmation: Affirmation, modifier: Modifier = Modifier) {
             Text(
                 text = stringResource(affirmation.stringResourceId),
                 modifier = Modifier.padding(16.dp),
-                style = MaterialTheme.typography.displaySmall
+                style = MaterialTheme.typography.headlineSmall
             )
         }
     }
