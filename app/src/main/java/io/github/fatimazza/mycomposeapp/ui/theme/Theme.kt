@@ -1,20 +1,20 @@
 package io.github.fatimazza.mycomposeapp.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.darkColors
-import androidx.compose.material.lightColors
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.darkColorScheme
+import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 
-private val DarkColorPalette = darkColors(
+private val DarkColorPalette = darkColorScheme(
     primary = Purple200,
-    primaryVariant = Purple700,
+    inversePrimary = Purple700,
     secondary = Teal200
 )
 
-private val LightColorPalette = lightColors(
+private val LightColorPalette = lightColorScheme(
     primary = Purple500,
-    primaryVariant = Purple700,
+    inversePrimary = Purple700,
     secondary = Teal200
 
     /* Other default colors to override
@@ -27,7 +27,7 @@ private val LightColorPalette = lightColors(
     */
 )
 
-private val WoofLightColorPalette = lightColors(
+private val WoofLightColorPalette = lightColorScheme(
     background = Green100,
     surface = Green50,
     onSurface = Grey900,
@@ -36,7 +36,7 @@ private val WoofLightColorPalette = lightColors(
     secondary = Grey700
 )
 
-private val WoofDarkColorPalette = darkColors(
+private val WoofDarkColorPalette = darkColorScheme(
     background = Cyan900,
     surface = Cyan700,
     onSurface = White,
@@ -54,7 +54,7 @@ fun MyComposeAppTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Comp
     }
 
     MaterialTheme(
-        colors = colors,
+        colorScheme = colors,
         typography = Typography,
         shapes = Shapes,
         content = content
@@ -70,7 +70,7 @@ fun WoofTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable (
     }
 
     MaterialTheme(
-        colors = colors,
+        colorScheme = colors,
         typography = Typography,
         shapes = Shapes,
         content = content

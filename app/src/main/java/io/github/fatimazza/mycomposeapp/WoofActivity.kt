@@ -14,7 +14,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.*
+import androidx.compose.material3.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ExpandLess
 import androidx.compose.material.icons.filled.ExpandMore
@@ -45,13 +45,15 @@ class WoofActivity : ComponentActivity() {
 /**
  * Composable that displays an app bar and a list of dogs.
  */
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun WoofApp() {
     Scaffold(
         topBar = { WoofTopAppBar() }
-    ) {
+    ) { it ->
         LazyColumn(
-            modifier = Modifier.background(MaterialTheme.colors.background)
+            modifier = Modifier.background(MaterialTheme.colorScheme.background),
+            contentPadding = it
         ) {
             items(dogs) {
                 DogItem(dog = it)
@@ -70,7 +72,7 @@ fun WoofTopAppBar(modifier: Modifier = Modifier) {
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .background(color = MaterialTheme.colors.primary),
+            .background(color = MaterialTheme.colorScheme.primary),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Image(
@@ -82,7 +84,7 @@ fun WoofTopAppBar(modifier: Modifier = Modifier) {
         )
         Text(
             text = stringResource(R.string.app_name),
-            style = MaterialTheme.typography.h5
+            style = MaterialTheme.typography.bodySmall
         )
     }
 }
@@ -100,8 +102,7 @@ fun DogItem(
 ) {
     var expanded by remember { mutableStateOf(false) }
     Card(
-        modifier = modifier.padding(8.dp),
-        elevation = 4.dp
+        modifier = modifier.padding(8.dp)
     ) {
         Column(
             modifier = Modifier
@@ -150,7 +151,7 @@ private fun DogItemButton(
         Icon(
             imageVector = if (expanded) Icons.Filled.ExpandLess
             else Icons.Filled.ExpandMore,
-            tint = MaterialTheme.colors.secondary,
+            tint = MaterialTheme.colorScheme.secondary,
             contentDescription = stringResource(R.string.woof_expand_button_content_description)
         )
     }
@@ -227,11 +228,11 @@ fun DogHobby(
     ) {
         Text(
             text = stringResource(R.string.woof_about),
-            style = MaterialTheme.typography.h6
+            style = MaterialTheme.typography.headlineMedium
         )
         Text(
             text = stringResource(dogHobby),
-            style = MaterialTheme.typography.body1
+            style = MaterialTheme.typography.bodyMedium
         )
     }
 }
