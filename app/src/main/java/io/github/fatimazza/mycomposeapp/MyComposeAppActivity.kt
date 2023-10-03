@@ -91,6 +91,15 @@ fun MyComposeApp() {
             Spacer(modifier = Modifier.height(16.dp))
             Button(
                 onClick = {
+                    context.startActivity(Intent(context, AffirmationActivity::class.java))
+                },
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text(stringResource(R.string.title_affirmation))
+            }
+            Spacer(modifier = Modifier.height(16.dp))
+            Button(
+                onClick = {
                     context.startActivity(Intent(context, WoofActivity::class.java))
                 },
                 modifier = Modifier.fillMaxWidth()
