@@ -102,7 +102,6 @@ fun TipTimeScreen() {
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun EditNumberField(
     @StringRes label: Int,
