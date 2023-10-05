@@ -62,4 +62,5 @@
     <string name="woof_years_old">%d years old</string>
     <string name="woof_expand_button_content_description">See more or less information about a dog.</string>
     <string name="title_activity_dessert_clicker">DessertClickerActivity</string>
+    <string name="title_dessert_clicker">Dessert Clicker App</string>
 </resources>
