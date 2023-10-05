@@ -82,7 +82,7 @@ fun WoofTopAppBar(modifier: Modifier = Modifier) {
                 )
                 Text(
                     text = stringResource(R.string.title_woof),
-                    style = MaterialTheme.typography.titleLarge
+                    style = MaterialTheme.typography.displayLarge
                 )
             }
         },
@@ -202,7 +202,7 @@ fun DogInformation(
     ) {
         Text(
             text = stringResource(dogName),
-            style = MaterialTheme.typography.headlineSmall,
+            style = MaterialTheme.typography.displayMedium,
         )
         Text(
             text = stringResource(R.string.woof_years_old, dogAge),
