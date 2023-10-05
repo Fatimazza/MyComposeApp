@@ -66,26 +66,29 @@ fun WoofApp() {
  *
  * @param modifier modifiers to set to this composable
  */
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun WoofTopAppBar(modifier: Modifier = Modifier) {
-    Row(
+    CenterAlignedTopAppBar(
+        title = {
+            Row(
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Image(
+                    modifier = Modifier
+                        .size(64.dp)
+                        .padding(8.dp),
+                    painter = painterResource(R.drawable.ic_woof_logo),
+                    contentDescription = null
+                )
+                Text(
+                    text = stringResource(R.string.title_woof),
+                    style = MaterialTheme.typography.titleLarge
+                )
+            }
+        },
         modifier = modifier
-            .fillMaxWidth()
-            .background(color = MaterialTheme.colorScheme.primary),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Image(
-            modifier = Modifier
-                .size(64.dp)
-                .padding(8.dp),
-            painter = painterResource(R.drawable.ic_woof_logo),
-            contentDescription = null
-        )
-        Text(
-            text = stringResource(R.string.app_name),
-            style = MaterialTheme.typography.headlineSmall
-        )
-    }
+    )
 }
 
 /**
