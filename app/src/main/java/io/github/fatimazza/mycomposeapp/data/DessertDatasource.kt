@@ -3,7 +3,7 @@ package io.github.fatimazza.mycomposeapp.data
 import io.github.fatimazza.mycomposeapp.R
 import io.github.fatimazza.mycomposeapp.model.Dessert
 
-object DesertDatasource {
+object DessertDatasource {
     val dessertList = listOf(
         Dessert(R.drawable.dessert_cupcake, 5, 0),
         Dessert(R.drawable.dessert_donut, 10, 5),
