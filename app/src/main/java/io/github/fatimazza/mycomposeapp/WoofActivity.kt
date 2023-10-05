@@ -171,7 +171,7 @@ fun DogIcon(
         modifier = modifier
             .size(64.dp)
             .padding(8.dp)
-            .clip(RoundedCornerShape(50)),
+            .clip(MaterialTheme.shapes.small),
         contentScale = ContentScale.Crop,
         painter = painterResource(dogIcon),
         /*
