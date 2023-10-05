@@ -83,7 +83,7 @@ fun WoofTopAppBar(modifier: Modifier = Modifier) {
         )
         Text(
             text = stringResource(R.string.app_name),
-            style = MaterialTheme.typography.bodySmall
+            style = MaterialTheme.typography.headlineSmall
         )
     }
 }
@@ -198,10 +198,11 @@ fun DogInformation(
     Column {
         Text(
             text = stringResource(dogName),
-            modifier = modifier.padding(top = 8.dp)
+            style = MaterialTheme.typography.headlineSmall,
         )
         Text(
             text = stringResource(R.string.woof_years_old, dogAge),
+            style = MaterialTheme.typography.bodyLarge
         )
     }
 }
@@ -218,20 +219,15 @@ fun DogHobby(
     modifier: Modifier = Modifier
 ) {
     Column(
-        modifier = modifier.padding(
-            start = 16.dp,
-            top = 8.dp,
-            bottom = 16.dp,
-            end = 16.dp
-        )
+        modifier = modifier
     ) {
         Text(
             text = stringResource(R.string.woof_about),
-            style = MaterialTheme.typography.headlineMedium
+            style = MaterialTheme.typography.labelSmall
         )
         Text(
             text = stringResource(dogHobby),
-            style = MaterialTheme.typography.bodyMedium
+            style = MaterialTheme.typography.bodyLarge
         )
     }
 }
