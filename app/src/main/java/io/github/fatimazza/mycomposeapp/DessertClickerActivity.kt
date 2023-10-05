@@ -1,6 +1,8 @@
 package io.github.fatimazza.mycomposeapp
 
+import android.content.Context
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
@@ -21,6 +23,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -46,7 +49,9 @@ class DessertClickerActivity : ComponentActivity() {
 @Composable
 fun DesertClickerApp() {
     Scaffold(topBar = {
+        val intentContext = LocalContext.current
         DessertClickerAppBar(
+            onShareButtonClicked = { shareSoldDessertsInformation(intentContext) },
             modifier = Modifier
                 .fillMaxWidth()
                 .background(MaterialTheme.colorScheme.primary)
@@ -58,6 +63,7 @@ fun DesertClickerApp() {
 
 @Composable
 private fun DessertClickerAppBar(
+    onShareButtonClicked: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Row(
@@ -72,7 +78,7 @@ private fun DessertClickerAppBar(
             style = MaterialTheme.typography.titleLarge,
         )
         IconButton(
-            onClick = { },
+            onClick = onShareButtonClicked,
             modifier = Modifier.padding(end = 16.dp),
         ) {
             Icon(
@@ -82,6 +88,17 @@ private fun DessertClickerAppBar(
             )
         }
     }
+}
+
+/**
+ * Share desserts sold information using ACTION_SEND intent
+ */
+private fun shareSoldDessertsInformation(intentContext: Context) {
+    Toast.makeText(
+        intentContext,
+        intentContext.getString(R.string.title_dessert_clicker),
+        Toast.LENGTH_LONG
+    ).show()
 }
 
 @Preview(showBackground = true)
