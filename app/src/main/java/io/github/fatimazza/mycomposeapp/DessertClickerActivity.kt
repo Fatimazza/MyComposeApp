@@ -67,7 +67,15 @@ fun DesertClickerApp(
     desserts: List<Dessert>
 ) {
     var dessertsSold by remember { mutableStateOf(0) }
-    val currentDessertImageId by remember { mutableStateOf(desserts[0].imageId) }
+
+    val currentDessertIndex by remember { mutableStateOf(0) }
+
+    var currentDessertPrice by remember {
+        mutableStateOf(desserts[currentDessertIndex].price)
+    }
+    var currentDessertImageId by remember {
+        mutableStateOf(desserts[0].imageId)
+    }
 
     Scaffold(topBar = {
         val intentContext = LocalContext.current
@@ -81,6 +89,12 @@ fun DesertClickerApp(
         DessertClickerScreen(
             dessertSold = dessertsSold,
             dessertImageId = currentDessertImageId,
+            onDessetClicked = {
+                // Show the next dessert
+                val dessertToShow = determineDessertToShow(desserts, dessertsSold)
+                currentDessertImageId = dessertToShow.imageId
+                currentDessertPrice = dessertToShow.price
+            },
             modifier = Modifier.padding(contentPadding)
         )
     }
@@ -142,6 +156,7 @@ fun determineDessertToShow(
 fun DessertClickerScreen(
     dessertSold: Int,
     @DrawableRes dessertImageId: Int,
+    onDessetClicked: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Box(modifier = modifier) {
@@ -163,7 +178,7 @@ fun DessertClickerScreen(
                         .width(dimensionResource(R.dimen.dessert_image_size))
                         .height(dimensionResource(R.dimen.dessert_image_size))
                         .align(Alignment.Center)
-                        .clickable { },
+                        .clickable { onDessetClicked },
                     contentScale = ContentScale.Crop,
                 )
             }
