@@ -115,6 +115,15 @@ fun MyComposeApp() {
             ) {
                 Text(stringResource(R.string.title_dessert_clicker))
             }
+            Spacer(modifier = Modifier.height(16.dp))
+            Button(
+                onClick = {
+                    context.startActivity(Intent(context, UnscrambleActivity::class.java))
+                },
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text(stringResource(R.string.title_unscramble))
+            }
         }
     }
 }
