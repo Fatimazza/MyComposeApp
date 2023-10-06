@@ -1,6 +1,8 @@
 package io.github.fatimazza.mycomposeapp
 
+import android.content.ActivityNotFoundException
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
@@ -41,6 +43,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.core.content.ContextCompat
 import io.github.fatimazza.mycomposeapp.data.DessertDatasource
 import io.github.fatimazza.mycomposeapp.model.Dessert
 import io.github.fatimazza.mycomposeapp.ui.theme.MyComposeAppTheme
@@ -81,7 +84,13 @@ fun DesertClickerApp(
     Scaffold(topBar = {
         val intentContext = LocalContext.current
         DessertClickerAppBar(
-            onShareButtonClicked = { shareSoldDessertsInformation(intentContext) },
+            onShareButtonClicked = {
+                shareSoldDessertsInformation(
+                    intentContext,
+                    dessertsSold = dessertsSold,
+                    revenue = revenue
+                )
+            },
             modifier = Modifier
                 .fillMaxWidth()
                 .background(MaterialTheme.colorScheme.primary)
@@ -268,12 +277,30 @@ private fun RevenueInfo(
 /**
  * Share desserts sold information using ACTION_SEND intent
  */
-private fun shareSoldDessertsInformation(intentContext: Context) {
-    Toast.makeText(
-        intentContext,
-        intentContext.getString(R.string.title_dessert_clicker),
-        Toast.LENGTH_LONG
-    ).show()
+private fun shareSoldDessertsInformation(
+    intentContext: Context,
+    dessertsSold: Int,
+    revenue: Int
+) {
+    val sendIntent = Intent().apply {
+        action = Intent.ACTION_SEND
+        putExtra(
+            Intent.EXTRA_TEXT,
+            intentContext.getString(R.string.dessert_share_text, dessertsSold, revenue)
+        )
+        type = "text/plain"
+    }
+    val shareIntent = Intent.createChooser(sendIntent, null)
+
+    try {
+        ContextCompat.startActivity(intentContext, shareIntent, null)
+    } catch (e: ActivityNotFoundException) {
+        Toast.makeText(
+            intentContext,
+            intentContext.getString(R.string.dessert_sharing_not_available),
+            Toast.LENGTH_LONG
+        ).show()
+    }
 }
 
 @Preview(showBackground = true)
