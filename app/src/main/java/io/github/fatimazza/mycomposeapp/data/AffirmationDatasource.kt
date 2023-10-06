@@ -3,7 +3,7 @@ package io.github.fatimazza.mycomposeapp.data
 import io.github.fatimazza.mycomposeapp.R
 import io.github.fatimazza.mycomposeapp.model.Affirmation
 
-class Datasource(){
+class AffirmationDatasource(){
     fun loadAffirmations(): List<Affirmation> {
         return listOf<Affirmation>(
             Affirmation(R.string.affirmation1, R.drawable.affirmation_img1),
