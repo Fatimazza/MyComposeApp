@@ -148,7 +148,44 @@ fun DessertClickerScreen(
                     contentScale = ContentScale.Crop,
                 )
             }
+            TransactionInfo(
+                modifier = Modifier.background(MaterialTheme.colorScheme.secondaryContainer)
+            )
         }
+    }
+}
+
+@Composable
+private fun TransactionInfo(
+    modifier: Modifier = Modifier
+) {
+    Column(modifier = modifier) {
+        DessertSoldInfo(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp)
+        )
+    }
+}
+
+@Composable
+private fun DessertSoldInfo(
+    modifier: Modifier = Modifier
+) {
+    Row(
+        modifier = modifier,
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+        Text(
+            text = stringResource(id = R.string.dessert_sold),
+            style = MaterialTheme.typography.titleLarge,
+            color = MaterialTheme.colorScheme.onSecondaryContainer
+        )
+        Text(
+            text = "0",
+            style = MaterialTheme.typography.titleLarge,
+            color = MaterialTheme.colorScheme.onSecondaryContainer
+        )
     }
 }
 
