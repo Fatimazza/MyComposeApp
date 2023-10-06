@@ -91,7 +91,7 @@ fun DesertClickerApp(
             revenue = revenue,
             dessertSold = dessertsSold,
             dessertImageId = currentDessertImageId,
-            onDessetClicked = {
+            onDessertClicked = {
                 // Update the revenue
                 revenue += currentDessertPrice
                 dessertsSold++
@@ -163,7 +163,7 @@ fun DessertClickerScreen(
     revenue: Int,
     dessertSold: Int,
     @DrawableRes dessertImageId: Int,
-    onDessetClicked: () -> Unit,
+    onDessertClicked: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Box(modifier = modifier) {
@@ -185,7 +185,7 @@ fun DessertClickerScreen(
                         .width(dimensionResource(R.dimen.dessert_image_size))
                         .height(dimensionResource(R.dimen.dessert_image_size))
                         .align(Alignment.Center)
-                        .clickable { onDessetClicked },
+                        .clickable { onDessertClicked },
                     contentScale = ContentScale.Crop,
                 )
             }
