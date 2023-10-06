@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -26,6 +27,9 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -35,6 +39,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import io.github.fatimazza.mycomposeapp.data.DessertDatasource
+import io.github.fatimazza.mycomposeapp.model.Dessert
 import io.github.fatimazza.mycomposeapp.ui.theme.MyComposeAppTheme
 
 class DessertClickerActivity : ComponentActivity() {
@@ -47,7 +53,7 @@ class DessertClickerActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    DesertClickerApp()
+                    DesertClickerApp(desserts = DessertDatasource.dessertList)
                 }
             }
         }
@@ -55,7 +61,11 @@ class DessertClickerActivity : ComponentActivity() {
 }
 
 @Composable
-fun DesertClickerApp() {
+fun DesertClickerApp(
+    desserts: List<Dessert>
+) {
+    val currentDessertImageId by remember { mutableStateOf(desserts[0].imageId) }
+
     Scaffold(topBar = {
         val intentContext = LocalContext.current
         DessertClickerAppBar(
@@ -66,6 +76,7 @@ fun DesertClickerApp() {
         )
     }) { contentPadding ->
         DessertClickerScreen(
+            dessertImageId = currentDessertImageId,
             modifier = Modifier.padding(contentPadding)
         )
     }
@@ -100,8 +111,18 @@ private fun DessertClickerAppBar(
     }
 }
 
+/**
+ * Determine which dessert to show.
+ */
+fun determineDessertToShow(
+    dessert: List<Dessert>
+): Dessert {
+    return dessert.first()
+}
+
 @Composable
 fun DessertClickerScreen(
+    @DrawableRes dessertImageId: Int,
     modifier: Modifier = Modifier
 ) {
     Box(modifier = modifier) {
@@ -117,7 +138,7 @@ fun DessertClickerScreen(
                     .fillMaxWidth(),
             ) {
                 Image(
-                    painter = painterResource(R.drawable.dessert_froyo),
+                    painter = painterResource(dessertImageId),
                     contentDescription = null,
                     modifier = Modifier
                         .width(dimensionResource(R.dimen.dessert_image_size))
@@ -146,6 +167,6 @@ private fun shareSoldDessertsInformation(intentContext: Context) {
 @Composable
 fun DesertClickerAppPreview() {
     MyComposeAppTheme {
-        DesertClickerApp()
+        DesertClickerApp(listOf(Dessert(R.drawable.dessert_cupcake, 5, 0)))
     }
 }
