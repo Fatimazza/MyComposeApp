@@ -1,4 +1,4 @@
-package io.github.fatimazza.mycomposeapp.ui
+package io.github.fatimazza.mycomposeapp.ui.unscramble
 
 import android.app.Activity
 import androidx.compose.foundation.background
@@ -39,7 +39,7 @@ import io.github.fatimazza.mycomposeapp.R
 import io.github.fatimazza.mycomposeapp.ui.theme.MyComposeAppTheme
 
 @Composable
-fun UnscrambleGameScreen() {
+fun GameScreen() {
     val mediumPadding = dimensionResource(R.dimen.padding_medium)
 
     Column(
@@ -201,6 +201,6 @@ private fun FinalScoreDialog(
 @Composable
 fun GameScreenPreview() {
     MyComposeAppTheme {
-        UnscrambleGameScreen()
+        GameScreen()
     }
 }

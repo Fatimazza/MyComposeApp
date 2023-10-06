@@ -7,7 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import io.github.fatimazza.mycomposeapp.ui.UnscrambleGameScreen
+import io.github.fatimazza.mycomposeapp.ui.unscramble.GameScreen
 import io.github.fatimazza.mycomposeapp.ui.theme.MyComposeAppTheme
 
 class UnscrambleActivity : ComponentActivity() {
@@ -20,7 +20,7 @@ class UnscrambleActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    UnscrambleGameScreen()
+                    GameScreen()
                 }
             }
         }
