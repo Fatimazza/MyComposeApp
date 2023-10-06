@@ -66,6 +66,7 @@ class DessertClickerActivity : ComponentActivity() {
 fun DesertClickerApp(
     desserts: List<Dessert>
 ) {
+    var revenue by remember { mutableStateOf(0) }
     var dessertsSold by remember { mutableStateOf(0) }
 
     val currentDessertIndex by remember { mutableStateOf(0) }
@@ -87,9 +88,14 @@ fun DesertClickerApp(
         )
     }) { contentPadding ->
         DessertClickerScreen(
+            revenue = revenue,
             dessertSold = dessertsSold,
             dessertImageId = currentDessertImageId,
             onDessetClicked = {
+                // Update the revenue
+                revenue += currentDessertPrice
+                dessertsSold++
+
                 // Show the next dessert
                 val dessertToShow = determineDessertToShow(desserts, dessertsSold)
                 currentDessertImageId = dessertToShow.imageId
@@ -154,6 +160,7 @@ fun determineDessertToShow(
 
 @Composable
 fun DessertClickerScreen(
+    revenue: Int,
     dessertSold: Int,
     @DrawableRes dessertImageId: Int,
     onDessetClicked: () -> Unit,
@@ -183,6 +190,7 @@ fun DessertClickerScreen(
                 )
             }
             TransactionInfo(
+                revenue = revenue,
                 dessertSold = dessertSold,
                 modifier = Modifier.background(MaterialTheme.colorScheme.secondaryContainer)
             )
@@ -192,6 +200,7 @@ fun DessertClickerScreen(
 
 @Composable
 private fun TransactionInfo(
+    revenue: Int,
     dessertSold: Int,
     modifier: Modifier = Modifier
 ) {
@@ -203,6 +212,7 @@ private fun TransactionInfo(
                 .padding(16.dp)
         )
         RevenueInfo(
+            revenue = revenue,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(16.dp)
@@ -234,6 +244,7 @@ private fun DessertSoldInfo(
 
 @Composable
 private fun RevenueInfo(
+    revenue: Int,
     modifier: Modifier = Modifier
 ) {
     Row(
@@ -246,7 +257,7 @@ private fun RevenueInfo(
             color = MaterialTheme.colorScheme.onSecondaryContainer
         )
         Text(
-            text = "0",
+            text = "$${revenue}",
             textAlign = TextAlign.Right,
             style = MaterialTheme.typography.headlineMedium,
             color = MaterialTheme.colorScheme.onSecondaryContainer
