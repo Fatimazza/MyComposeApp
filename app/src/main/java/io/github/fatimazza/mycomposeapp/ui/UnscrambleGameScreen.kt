@@ -81,6 +81,20 @@ fun UnscrambleGameScreen() {
                 )
             }
         }
+        GameStatus(score = 0, modifier = Modifier.padding(20.dp))
+    }
+}
+
+@Composable
+fun GameStatus(score: Int, modifier: Modifier = Modifier) {
+    Card(
+        modifier = modifier
+    ) {
+        Text(
+            text = stringResource(R.string.unscramble_score, score),
+            style = typography.headlineMedium,
+            modifier = Modifier.padding(8.dp)
+        )
     }
 }
 
