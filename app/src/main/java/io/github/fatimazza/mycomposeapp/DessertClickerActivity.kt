@@ -30,6 +30,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -65,6 +66,7 @@ class DessertClickerActivity : ComponentActivity() {
 fun DesertClickerApp(
     desserts: List<Dessert>
 ) {
+    var dessertsSold by remember { mutableStateOf(0) }
     val currentDessertImageId by remember { mutableStateOf(desserts[0].imageId) }
 
     Scaffold(topBar = {
@@ -77,6 +79,7 @@ fun DesertClickerApp(
         )
     }) { contentPadding ->
         DessertClickerScreen(
+            dessertSold = dessertsSold,
             dessertImageId = currentDessertImageId,
             modifier = Modifier.padding(contentPadding)
         )
@@ -123,6 +126,7 @@ fun determineDessertToShow(
 
 @Composable
 fun DessertClickerScreen(
+    dessertSold: Int,
     @DrawableRes dessertImageId: Int,
     modifier: Modifier = Modifier
 ) {
@@ -150,6 +154,7 @@ fun DessertClickerScreen(
                 )
             }
             TransactionInfo(
+                dessertSold = dessertSold,
                 modifier = Modifier.background(MaterialTheme.colorScheme.secondaryContainer)
             )
         }
@@ -158,10 +163,12 @@ fun DessertClickerScreen(
 
 @Composable
 private fun TransactionInfo(
+    dessertSold: Int,
     modifier: Modifier = Modifier
 ) {
     Column(modifier = modifier) {
         DessertSoldInfo(
+            dessertSold = dessertSold,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(16.dp)
@@ -176,6 +183,7 @@ private fun TransactionInfo(
 
 @Composable
 private fun DessertSoldInfo(
+    dessertSold: Int,
     modifier: Modifier = Modifier
 ) {
     Row(
@@ -188,7 +196,7 @@ private fun DessertSoldInfo(
             color = MaterialTheme.colorScheme.onSecondaryContainer
         )
         Text(
-            text = "0",
+            text = dessertSold.toString(),
             style = MaterialTheme.typography.titleLarge,
             color = MaterialTheme.colorScheme.onSecondaryContainer
         )
