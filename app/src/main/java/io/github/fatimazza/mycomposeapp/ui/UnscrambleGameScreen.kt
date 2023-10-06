@@ -10,6 +10,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -154,6 +155,32 @@ fun GameLayout(
             )
         }
     }
+}
+
+/*
+ * Creates and shows an AlertDialog with final score.
+ */
+@Composable
+private fun FinalScoreDialog(
+    score: Int,
+    modifier: Modifier = Modifier
+) {
+    AlertDialog(
+        onDismissRequest = {
+            // Dismiss the dialog when the user clicks outside the dialog or on the back
+            // button. If you want to disable that functionality, simply use an empty
+            // onCloseRequest.
+        },
+        title = { Text(text = stringResource(R.string.unscramble_congratulations)) },
+        text = { Text(text = stringResource(R.string.unscramble_you_scored, score)) },
+        modifier = modifier,
+        dismissButton = {
+
+        },
+        confirmButton = {
+
+        }
+    )
 }
 
 @Preview(showBackground = true)
