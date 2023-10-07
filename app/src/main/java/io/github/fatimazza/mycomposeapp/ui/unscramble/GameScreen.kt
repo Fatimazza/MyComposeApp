@@ -89,7 +89,7 @@ fun GameScreen(
             }
             OutlinedButton(
                 modifier = Modifier.fillMaxWidth(),
-                onClick = {}
+                onClick = { gameViewModel.skipWord() }
             ) {
                 Text(
                     text = stringResource(R.string.unscramble_skip),
