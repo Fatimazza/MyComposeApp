@@ -13,14 +13,19 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
 import io.github.fatimazza.mycomposeapp.R
 import io.github.fatimazza.mycomposeapp.ui.theme.MyComposeAppTheme
 
 @Composable
-fun CupcakeApp() {
+fun CupcakeApp(
+    viewModel: OrderViewModel = viewModel()
+) {
     Scaffold(
         topBar = {
             CupcakeAppBar(
@@ -29,6 +34,7 @@ fun CupcakeApp() {
             )
         }
     ) {
+        val uiState by viewModel.uiState.collectAsState()
         Column(modifier = Modifier.padding(it)) {
         }
     }
