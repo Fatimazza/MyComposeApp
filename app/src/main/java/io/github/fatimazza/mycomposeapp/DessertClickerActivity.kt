@@ -47,7 +47,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.viewmodel.compose.viewModel
-import io.github.fatimazza.mycomposeapp.data.DessertDatasource
+import io.github.fatimazza.mycomposeapp.data.DessertDatasource.dessertList
 import io.github.fatimazza.mycomposeapp.model.Dessert
 import io.github.fatimazza.mycomposeapp.ui.dessert.DessertViewModel
 import io.github.fatimazza.mycomposeapp.ui.theme.MyComposeAppTheme
@@ -112,12 +112,14 @@ fun DesertClickerApp(
     val uiState by dessertViewModel.dessertUiState.collectAsState()
 
     DesertClickerApp(
-        desserts = DessertDatasource.dessertList
+        viewModel = dessertViewModel,
+        desserts = dessertList
     )
 }
 
 @Composable
 fun DesertClickerApp(
+    viewModel: DessertViewModel,
     desserts: List<Dessert>
 ) {
     var revenue by remember { mutableStateOf(0) }
@@ -156,10 +158,11 @@ fun DesertClickerApp(
                 revenue += currentDessertPrice
                 dessertsSold++
 
+                val nextDessertIndex = viewModel.determineDessertIndex(dessertsSold)
+
                 // Show the next dessert
-                val dessertToShow = determineDessertToShow(desserts, dessertsSold)
-                currentDessertImageId = dessertToShow.imageId
-                currentDessertPrice = dessertToShow.price
+                currentDessertImageId = dessertList[nextDessertIndex].imageId
+                currentDessertPrice = dessertList[nextDessertIndex].price
             },
             modifier = Modifier.padding(contentPadding)
         )
@@ -193,29 +196,6 @@ private fun DessertClickerAppBar(
             )
         }
     }
-}
-
-/**
- * Determine which dessert to show.
- */
-fun determineDessertToShow(
-    desserts: List<Dessert>,
-    dessertsSold: Int
-): Dessert {
-    var dessertToShow = desserts.first()
-    for (dessert in desserts) {
-        if (dessertsSold >= dessert.startProductionAmount) {
-            dessertToShow = dessert
-        } else {
-            // The list of desserts is sorted by startProductionAmount. As you sell more desserts,
-            // you'll start producing more expensive desserts as determined by startProductionAmount
-            // We know to break as soon as we see a dessert who's "startProductionAmount" is greater
-            // than the amount sold.
-            break
-        }
-    }
-
-    return dessertToShow
 }
 
 @Composable
@@ -358,6 +338,6 @@ private fun shareSoldDessertsInformation(
 @Composable
 fun DesertClickerAppPreview() {
     MyComposeAppTheme {
-        DesertClickerApp(listOf(Dessert(R.drawable.dessert_cupcake, 5, 0)))
+        DesertClickerApp()
     }
 }
