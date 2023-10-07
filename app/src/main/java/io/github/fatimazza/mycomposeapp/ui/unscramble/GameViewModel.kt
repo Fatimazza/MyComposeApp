@@ -16,6 +16,18 @@ class GameViewModel : ViewModel() {
     private var usedWords: MutableSet<String> = mutableSetOf()
     private lateinit var currentWord: String
 
+    init {
+        resetGame()
+    }
+
+    /*
+     * Re-initializes the game data to restart the game.
+     */
+    fun resetGame() {
+        usedWords.clear()
+        _uiState.value = GameUiState(currentScrambledWord = pickRandomWordAndShuffle())
+    }
+
     private fun pickRandomWordAndShuffle(): String {
         // Continue picking up a new random word until you get one that hasn't been used before
         currentWord = allWords.random()
