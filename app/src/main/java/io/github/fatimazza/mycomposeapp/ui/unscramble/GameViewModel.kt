@@ -27,18 +27,18 @@ class GameViewModel : ViewModel() {
     }
 
     /*
-     * Update the user's guess
-     */
-    fun updateUserGuess(guessedWord: String){
-        userGuess = guessedWord
-    }
-
-    /*
      * Re-initializes the game data to restart the game.
      */
     fun resetGame() {
         usedWords.clear()
         _uiState.value = GameUiState(currentScrambledWord = pickRandomWordAndShuffle())
+    }
+
+    /*
+     * Update the user's guess
+     */
+    fun updateUserGuess(guessedWord: String){
+        userGuess = guessedWord
     }
 
     private fun pickRandomWordAndShuffle(): String {
