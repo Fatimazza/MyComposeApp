@@ -1,5 +1,8 @@
 package io.github.fatimazza.mycomposeapp.ui.unscramble
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import io.github.fatimazza.mycomposeapp.data.unscramble.allWords
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -12,12 +15,22 @@ class GameViewModel : ViewModel() {
     private val _uiState = MutableStateFlow(GameUiState())
     val uiState: StateFlow<GameUiState> = _uiState.asStateFlow()
 
+    var userGuess by mutableStateOf("")
+        private set
+
     // Set of words used in the game
     private var usedWords: MutableSet<String> = mutableSetOf()
     private lateinit var currentWord: String
 
     init {
         resetGame()
+    }
+
+    /*
+     * Update the user's guess
+     */
+    fun updateUserGuess(guessedWord: String){
+        userGuess = guessedWord
     }
 
     /*
