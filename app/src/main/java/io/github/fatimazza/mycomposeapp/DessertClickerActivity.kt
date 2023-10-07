@@ -45,8 +45,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.viewmodel.compose.viewModel
 import io.github.fatimazza.mycomposeapp.data.DessertDatasource
 import io.github.fatimazza.mycomposeapp.model.Dessert
+import io.github.fatimazza.mycomposeapp.ui.dessert.DessertViewModel
 import io.github.fatimazza.mycomposeapp.ui.theme.MyComposeAppTheme
 
 // Tag for logging
@@ -64,7 +66,7 @@ class DessertClickerActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    DesertClickerApp(desserts = DessertDatasource.dessertList)
+                    DesertClickerApp()
                 }
             }
         }
@@ -99,6 +101,16 @@ class DessertClickerActivity : ComponentActivity() {
         super.onDestroy()
         Log.d(TAG, "onDestroy Called")
     }
+}
+
+
+@Composable
+fun DesertClickerApp(
+    dessertViewModel: DessertViewModel = viewModel()
+) {
+    DesertClickerApp(
+        desserts = DessertDatasource.dessertList
+    )
 }
 
 @Composable
