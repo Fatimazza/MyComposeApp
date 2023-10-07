@@ -9,6 +9,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
+import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -51,7 +53,27 @@ fun StartOrderScreen(
                 style = MaterialTheme.typography.headlineSmall
             )
             Spacer(modifier = Modifier.height(dimensionResource(R.dimen.padding_small)))
+            SelectQuantityButton(
+                onClick = {}
+            )
         }
+    }
+}
+
+/**
+ * Customizable button composable that displays the [labelResourceId]
+ * and triggers [onClick] lambda when this composable is clicked
+ */
+@Composable
+fun SelectQuantityButton(
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
+){
+    Button(
+        onClick = onClick,
+        modifier = modifier.widthIn(min = 250.dp)
+    ) {
+        Text(stringResource(R.string.cupcake_one))
     }
 }
 
