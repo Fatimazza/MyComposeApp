@@ -83,4 +83,32 @@
     <string name="unscramble_wrong_guess">Wrong Guess!</string>
     <string name="title_cupcake">Cupcake</string>
     <string name="title_activity_cupcake">CupcakeActivity</string>
+    <string name="cupcake_order">Order Cupcakes</string>
+    <string name="cupcake_one">One Cupcake</string>
+    <string name="cupcake_six">Six Cupcakes</string>
+    <string name="cupcake_twelve">Twelve Cupcakes</string>
+    <string name="cupcake_choose_flavor">Choose Flavor</string>
+    <string name="cupcake_vanilla">Vanilla</string>
+    <string name="cupcake_chocolate">Chocolate</string>
+    <string name="cupcake_red_velvet">Red Velvet</string>
+    <string name="cupcake_salted_caramel">Salted Caramel</string>
+    <string name="cupcake_coffee">Coffee</string>
+    <string name="cupcake_special_flavor">Special Flavor</string>
+    <string name="cupcake_cancel">Cancel</string>
+    <string name="cupcake_next">Next</string>
+    <string name="cupcake_choose_pickup_date">Choose Pickup Date</string>
+    <string name="cupcake_order_summary">Order Summary</string>
+    <string name="cupcake_send">Send Order to Another App</string>
+    <string name="cupcake_quantity">Quantity</string>
+    <string name="cupcake_flavor">Flavor</string>
+    <string name="cupcake_pickup_date">Pickup date</string>
+    <string name="cupcake_subtotal_price">Subtotal %s</string>
+    <string name="cupcake_total_price">Total %s</string>
+    <string name="cupcake_new_order">New Cupcake Order</string>
+    <string name="cupcake_order_details">Quantity: %1$s \nFlavor: %2$s \nPickup date: %3$s \nTotal: %4$s \n\nThank you!</string>
+    <string name="cupcake_back_button">Back</string>
+    <plurals name="cupcakes">
+        <item quantity="one">%d cupcake</item>
+        <item quantity="other">%d cupcakes</item>
+    </plurals>
 </resources>
