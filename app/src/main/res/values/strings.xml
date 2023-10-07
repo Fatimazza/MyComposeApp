@@ -81,5 +81,6 @@
     <string name="unscramble_exit">Exit</string>
     <string name="unscramble_play_again">Play Again</string>
     <string name="unscramble_wrong_guess">Wrong Guess!</string>
+    <string name="title_cupcake">Cupcake</string>
     <string name="title_activity_cupcake">CupcakeActivity</string>
 </resources>
