@@ -2,7 +2,11 @@ package io.github.fatimazza.mycomposeapp.ui.cupcake
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -19,7 +23,10 @@ import io.github.fatimazza.mycomposeapp.ui.theme.MyComposeAppTheme
 fun CupcakeApp() {
     Scaffold(
         topBar = {
-            CupcakeAppBar()
+            CupcakeAppBar(
+                canNavigateBack = false,
+                navigateUp = { /* TODO: implement back navigation */ }
+            )
         }
     ) {
         Column(modifier = Modifier.padding(it)) {
@@ -33,6 +40,8 @@ fun CupcakeApp() {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CupcakeAppBar(
+    canNavigateBack: Boolean,
+    navigateUp: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     TopAppBar(
@@ -41,6 +50,16 @@ fun CupcakeAppBar(
             containerColor = MaterialTheme.colorScheme.primaryContainer
         ),
         modifier = modifier,
+        navigationIcon = {
+            if (canNavigateBack) {
+                IconButton(onClick = navigateUp) {
+                    Icon(
+                        imageVector = Icons.Filled.ArrowBack,
+                        contentDescription = stringResource(R.string.cupcake_back_button)
+                    )
+                }
+            }
+        }
     )
 }
 
