@@ -4,6 +4,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import io.github.fatimazza.mycomposeapp.data.unscramble.SCORE_INCREASE
 import io.github.fatimazza.mycomposeapp.data.unscramble.allWords
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -48,6 +49,10 @@ class GameViewModel : ViewModel() {
     */
     fun checkUserGuess() {
         if (userGuess.equals(currentWord, ignoreCase = true)) {
+            // User's guess is correct, increase the score
+            // and call updateGameState() to prepare the game for next round
+            val updatedScore = _uiState.value.score.plus(SCORE_INCREASE)
+            updateGameState(updatedScore)
         }
         else {
             // User's guess is wrong, show an error
@@ -57,6 +62,21 @@ class GameViewModel : ViewModel() {
         }
         // Reset user guess
         updateUserGuess("")
+    }
+
+    /*
+     * Picks a new currentWord and currentScrambledWord and updates UiState according to
+     * current game state.
+     */
+    private fun updateGameState(updatedScore: Int) {
+        _uiState.update { currentState ->
+            currentState.copy(
+                isGuessedWordWrong = false,
+                currentScrambledWord = pickRandomWordAndShuffle(),
+                currentWordCount = currentState.currentWordCount.inc(),
+                score = updatedScore
+            )
+        }
     }
 
     private fun pickRandomWordAndShuffle(): String {

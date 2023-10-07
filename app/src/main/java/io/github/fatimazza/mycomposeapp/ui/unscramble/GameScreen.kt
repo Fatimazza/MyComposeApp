@@ -60,6 +60,7 @@ fun GameScreen(
             style = typography.titleLarge,
         )
         GameLayout(
+            wordCount = gameUiState.currentWordCount,
             userGuess = gameViewModel.userGuess,
             isGuessWrong = gameUiState.isGuessedWordWrong,
             onUserGuessChanged = { gameViewModel.updateUserGuess(it) },
@@ -96,7 +97,7 @@ fun GameScreen(
                 )
             }
         }
-        GameStatus(score = 0, modifier = Modifier.padding(20.dp))
+        GameStatus(score = gameUiState.score, modifier = Modifier.padding(20.dp))
     }
 }
 
@@ -115,6 +116,7 @@ fun GameStatus(score: Int, modifier: Modifier = Modifier) {
 
 @Composable
 fun GameLayout(
+    wordCount: Int,
     userGuess: String,
     isGuessWrong: Boolean,
     onUserGuessChanged: (String) -> Unit,
@@ -139,7 +141,7 @@ fun GameLayout(
                     .background(colorScheme.surfaceTint)
                     .padding(horizontal = 10.dp, vertical = 4.dp)
                     .align(alignment = Alignment.End),
-                text = stringResource(id = R.string.unscramble_word_count, 0),
+                text = stringResource(id = R.string.unscramble_word_count, wordCount),
                 style = typography.titleMedium,
                 color = colorScheme.onPrimary
             )
