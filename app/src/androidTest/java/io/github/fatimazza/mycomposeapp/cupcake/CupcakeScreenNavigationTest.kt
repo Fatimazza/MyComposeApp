@@ -4,6 +4,7 @@ import androidx.activity.ComponentActivity
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
+import androidx.compose.ui.test.performClick
 import androidx.navigation.compose.ComposeNavigator
 import androidx.navigation.testing.TestNavHostController
 import io.github.fatimazza.mycomposeapp.R
@@ -42,5 +43,12 @@ class CupcakeScreenNavigationTest {
     fun cupcakeNavHost_verifyBackNavigationNotShownOnStartOrderScreen() {
         val backText = composeTestRule.activity.getString(R.string.cupcake_back_button)
         composeTestRule.onNodeWithContentDescription(backText).assertDoesNotExist()
+    }
+
+    private fun navigateToFlavorScreen() {
+        composeTestRule.onNodeWithStringId(R.string.cupcake_one)
+            .performClick()
+        composeTestRule.onNodeWithStringId(R.string.cupcake_chocolate)
+            .performClick()
     }
 }
