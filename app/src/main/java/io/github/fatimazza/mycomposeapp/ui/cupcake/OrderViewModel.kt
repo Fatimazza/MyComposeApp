@@ -31,6 +31,13 @@ class OrderViewModel : ViewModel() {
     val uiState: StateFlow<OrderUiState> = _uiState.asStateFlow()
 
     /**
+     * Reset the order state
+     */
+    fun resetOrder() {
+        _uiState.value = OrderUiState(pickupOptions = pickupOptions())
+    }
+
+    /**
      * Set the quantity [numberCupcakes] of cupcakes for this order's state and update the price
      */
     fun setQuantity(numberCupcakes: Int) {
