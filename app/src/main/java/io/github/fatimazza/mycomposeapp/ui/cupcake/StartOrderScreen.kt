@@ -24,7 +24,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import io.github.fatimazza.mycomposeapp.R
-import io.github.fatimazza.mycomposeapp.data.cupcake.CupcakeDataSource.quantityOptions
+import io.github.fatimazza.mycomposeapp.data.cupcake.CupcakeDataSource
 
 /**
  * Composable that allows the user to select the desired cupcake quantity and expects
@@ -33,6 +33,7 @@ import io.github.fatimazza.mycomposeapp.data.cupcake.CupcakeDataSource.quantityO
  */
 @Composable
 fun StartOrderScreen(
+    quantityOptions: List<Pair<Int, Int>>,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -99,6 +100,7 @@ fun SelectQuantityButton(
 @Composable
 fun StartOrderPreview() {
     StartOrderScreen(
+        quantityOptions = CupcakeDataSource.quantityOptions,
         modifier = Modifier
             .fillMaxSize()
             .padding(dimensionResource(R.dimen.padding_medium))
