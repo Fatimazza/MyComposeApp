@@ -31,6 +31,18 @@ class OrderViewModel : ViewModel() {
     val uiState: StateFlow<OrderUiState> = _uiState.asStateFlow()
 
     /**
+     * Set the quantity [numberCupcakes] of cupcakes for this order's state and update the price
+     */
+    fun setQuantity(numberCupcakes: Int) {
+        _uiState.update { currentState ->
+            currentState.copy(
+                quantity = numberCupcakes,
+                price = calculatePrice(quantity = numberCupcakes)
+            )
+        }
+    }
+
+    /**
      * Set the [desiredFlavor] of cupcakes for this order's state.
      * Only 1 flavor can be selected for the whole order.
      */
