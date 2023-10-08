@@ -7,7 +7,6 @@ import androidx.navigation.compose.ComposeNavigator
 import androidx.navigation.testing.TestNavHostController
 import io.github.fatimazza.mycomposeapp.ui.cupcake.CupcakeApp
 import io.github.fatimazza.mycomposeapp.ui.cupcake.CupcakeScreen
-import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -34,6 +33,6 @@ class CupcakeScreenNavigationTest {
 
     @Test
     fun cupcakeNavHost_verifyStartDestination() {
-        assertEquals(CupcakeScreen.Start.name, navController.currentBackStackEntry?.destination?.route)
+        navController.assertCurrentRouteName(CupcakeScreen.Start.name)
     }
 }
