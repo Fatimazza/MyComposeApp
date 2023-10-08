@@ -2,11 +2,15 @@ package io.github.fatimazza.mycomposeapp.ui.cupcake
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
 import androidx.compose.material3.Divider
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -55,6 +59,28 @@ fun OrderSummaryScreen(
                 subtotal = "0",
                 modifier = Modifier.align(Alignment.End)
             )
+        }
+        Row(
+            modifier = Modifier
+                .weight(1f, false)
+                .padding(dimensionResource(R.dimen.padding_medium))
+        ) {
+            Column(
+                verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_small))
+            ) {
+                Button(
+                    modifier = Modifier.fillMaxWidth(),
+                    onClick = {}
+                ) {
+                    Text(stringResource(R.string.cupcake_send))
+                }
+                OutlinedButton(
+                    modifier = Modifier.fillMaxWidth(),
+                    onClick = {}
+                ) {
+                    Text(stringResource(R.string.cupcake_cancel))
+                }
+            }
         }
     }
 }
