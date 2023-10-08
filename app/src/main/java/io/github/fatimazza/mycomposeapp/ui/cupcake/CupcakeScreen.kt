@@ -20,8 +20,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import io.github.fatimazza.mycomposeapp.R
+import io.github.fatimazza.mycomposeapp.data.cupcake.CupcakeDataSource
 import io.github.fatimazza.mycomposeapp.ui.theme.MyComposeAppTheme
 
 /**
@@ -56,7 +58,11 @@ fun CupcakeApp(
             startDestination = CupcakeScreen.Start.name,
             modifier = Modifier.padding(innerPadding)
         ) {
-            
+            composable(route = CupcakeScreen.Start.name) {
+                StartOrderScreen(
+                    quantityOptions = CupcakeDataSource.quantityOptions
+                )
+            }
         }
     }
 }
@@ -92,7 +98,7 @@ fun CupcakeAppBar(
 
 @Preview(showBackground = true)
 @Composable
-fun GameScreenPreview() {
+fun CupcakeScreenPreview() {
     MyComposeAppTheme {
         CupcakeApp()
     }
