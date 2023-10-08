@@ -19,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
 import io.github.fatimazza.mycomposeapp.R
+import io.github.fatimazza.mycomposeapp.ui.components.CupcakeFormattedPriceLabel
 
 /**
  * Composable that displays the list of items as [RadioButton] options,
@@ -28,6 +29,7 @@ import io.github.fatimazza.mycomposeapp.R
  */
 @Composable
 fun SelectOptionScreen(
+    subtotal: String,
     options: List<String>,
     onSelectionChanged: (String) -> Unit = {},
     modifier: Modifier
@@ -68,6 +70,15 @@ fun SelectOptionScreen(
                 thickness = dimensionResource(R.dimen.thickness_divider),
                 modifier = Modifier.padding(bottom = dimensionResource(R.dimen.padding_medium))
             )
+            CupcakeFormattedPriceLabel(
+                subtotal = subtotal,
+                modifier = Modifier
+                    .align(Alignment.End)
+                    .padding(
+                        top = dimensionResource(R.dimen.padding_medium),
+                        bottom = dimensionResource(R.dimen.padding_medium)
+                    )
+            )
         }
     }
 }
@@ -76,6 +87,7 @@ fun SelectOptionScreen(
 @Composable
 fun SelectOptionPreview() {
     SelectOptionScreen(
+        subtotal = "299.99",
         options = listOf("Option 1", "Option 2", "Option 3", "Option 4"),
         modifier = Modifier.fillMaxHeight()
     )
