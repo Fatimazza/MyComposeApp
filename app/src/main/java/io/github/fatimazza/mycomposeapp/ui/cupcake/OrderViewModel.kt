@@ -5,6 +5,7 @@ import io.github.fatimazza.mycomposeapp.data.cupcake.OrderUiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -20,6 +21,16 @@ class OrderViewModel : ViewModel() {
      */
     private val _uiState = MutableStateFlow(OrderUiState(pickupOptions = pickupOptions()))
     val uiState: StateFlow<OrderUiState> = _uiState.asStateFlow()
+
+    /**
+     * Set the [desiredFlavor] of cupcakes for this order's state.
+     * Only 1 flavor can be selected for the whole order.
+     */
+    fun setFlavor(desiredFlavor: String) {
+        _uiState.update { currentState ->
+            currentState.copy(flavor = desiredFlavor)
+        }
+    }
 
     /**
      * Returns a list of date options starting with the current date and the following 3 dates.
