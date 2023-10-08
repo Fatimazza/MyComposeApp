@@ -22,6 +22,19 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import io.github.fatimazza.mycomposeapp.R
 import io.github.fatimazza.mycomposeapp.ui.theme.MyComposeAppTheme
 
+/**
+ * enum values that represent the screens in the app
+ */
+enum class CupcakeScreen() {
+    Start,
+    Flavor,
+    Pickup,
+    Summary
+}
+
+/**
+ * Composable that displays the topBar and displays back button if back navigation is possible.
+ */
 @Composable
 fun CupcakeApp(
     viewModel: OrderViewModel = viewModel()
