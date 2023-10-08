@@ -32,6 +32,7 @@ import io.github.fatimazza.mycomposeapp.ui.components.CupcakeFormattedPriceLabel
 @Composable
 fun OrderSummaryScreen(
     orderUiState: OrderUiState,
+    onSendButtonClicked: (String, String) -> Unit,
     onCancelButtonClicked: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -50,6 +51,16 @@ fun OrderSummaryScreen(
         Pair(stringResource(R.string.cupcake_flavor), orderUiState.flavor),
         // Summary line 3: display selected pickup date
         Pair(stringResource(R.string.cupcake_pickup_date), orderUiState.date)
+    )
+
+    val newOrder = stringResource(R.string.cupcake_new_order)
+    //Load and format a string resource with the parameters.
+    val orderSummary = stringResource(
+        R.string.cupcake_order_details,
+        numberOfCupcakes,
+        orderUiState.flavor,
+        orderUiState.date,
+        orderUiState.quantity
     )
 
     Column(
@@ -81,7 +92,7 @@ fun OrderSummaryScreen(
             ) {
                 Button(
                     modifier = Modifier.fillMaxWidth(),
-                    onClick = {}
+                    onClick = { onSendButtonClicked(newOrder, orderSummary) }
                 ) {
                     Text(stringResource(R.string.cupcake_send))
                 }
@@ -96,11 +107,13 @@ fun OrderSummaryScreen(
     }
 }
 
+
 @Preview
 @Composable
 fun OrderSummaryPreview() {
     OrderSummaryScreen(
         orderUiState = OrderUiState(0, "Test", "Test", "$300.00"),
+        onSendButtonClicked = { subject: String, summary: String -> },
         onCancelButtonClicked = {},
         modifier = Modifier.fillMaxHeight()
     )
