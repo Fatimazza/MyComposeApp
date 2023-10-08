@@ -48,7 +48,7 @@ class CupcakeScreenNavigationTest {
 
     @Test
     fun cupcakeNavHost_clickOneCupcake_navigatesToSelectFlavorScreen() {
-        composeTestRule.onNodeWithText(composeTestRule.activity.getString(R.string.cupcake_one))
+        composeTestRule.onNodeWithStringId(R.string.cupcake_one)
             .performClick()
         navController.assertCurrentRouteName(CupcakeScreen.Flavor.name)
     }
@@ -56,7 +56,7 @@ class CupcakeScreenNavigationTest {
     @Test
     fun cupcakeNavHost_clickNextOnFlavorScreen_navigatesToPickupScreen() {
         navigateToFlavorScreen()
-        composeTestRule.onNodeWithText(composeTestRule.activity.getString(R.string.cupcake_next))
+        composeTestRule.onNodeWithStringId(R.string.cupcake_next)
             .performClick()
         navController.assertCurrentRouteName(CupcakeScreen.Pickup.name)
     }
