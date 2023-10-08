@@ -1,6 +1,5 @@
 package io.github.fatimazza.mycomposeapp.ui.cupcake
 
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -19,6 +18,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.rememberNavController
 import io.github.fatimazza.mycomposeapp.R
 import io.github.fatimazza.mycomposeapp.ui.theme.MyComposeAppTheme
 
@@ -37,7 +39,8 @@ enum class CupcakeScreen() {
  */
 @Composable
 fun CupcakeApp(
-    viewModel: OrderViewModel = viewModel()
+    viewModel: OrderViewModel = viewModel(),
+    navController: NavHostController = rememberNavController()
 ) {
     Scaffold(
         topBar = {
@@ -46,9 +49,14 @@ fun CupcakeApp(
                 navigateUp = { /* TODO: implement back navigation */ }
             )
         }
-    ) {
+    ) { innerPadding ->
         val uiState by viewModel.uiState.collectAsState()
-        Column(modifier = Modifier.padding(it)) {
+        NavHost(
+            navController = navController,
+            startDestination = CupcakeScreen.Start.name,
+            modifier = Modifier.padding(innerPadding)
+        ) {
+            
         }
     }
 }
