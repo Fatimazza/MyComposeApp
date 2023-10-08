@@ -15,11 +15,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import io.github.fatimazza.mycomposeapp.R
+import io.github.fatimazza.mycomposeapp.data.cupcake.OrderUiState
 import io.github.fatimazza.mycomposeapp.ui.components.CupcakeFormattedPriceLabel
 
 /**
@@ -29,16 +31,24 @@ import io.github.fatimazza.mycomposeapp.ui.components.CupcakeFormattedPriceLabel
  */
 @Composable
 fun OrderSummaryScreen(
+    orderUiState: OrderUiState,
     modifier: Modifier = Modifier
 ) {
+    val resources = LocalContext.current.resources
+    val numberOfCupcakes = resources.getQuantityString(
+        R.plurals.cupcakes,
+        orderUiState.quantity,
+        orderUiState.quantity
+    )
+
     //Create a list of order summary to display
     val items = listOf(
         // Summary line 1: display selected quantity
-        Pair(stringResource(R.string.cupcake_quantity), "0"),
+        Pair(stringResource(R.string.cupcake_quantity), numberOfCupcakes),
         // Summary line 2: display selected flavor
-        Pair(stringResource(R.string.cupcake_flavor), "chocolate"),
+        Pair(stringResource(R.string.cupcake_flavor), orderUiState.flavor),
         // Summary line 3: display selected pickup date
-        Pair(stringResource(R.string.cupcake_pickup_date), "01-02-2023")
+        Pair(stringResource(R.string.cupcake_pickup_date), orderUiState.date)
     )
 
     Column(
@@ -56,7 +66,7 @@ fun OrderSummaryScreen(
             }
             Spacer(modifier = Modifier.height(dimensionResource(R.dimen.padding_small)))
             CupcakeFormattedPriceLabel(
-                subtotal = "0",
+                subtotal = orderUiState.price,
                 modifier = Modifier.align(Alignment.End)
             )
         }
@@ -89,6 +99,7 @@ fun OrderSummaryScreen(
 @Composable
 fun OrderSummaryPreview() {
     OrderSummaryScreen(
+        orderUiState = OrderUiState(0, "Test", "Test", "$300.00"),
         modifier = Modifier.fillMaxHeight()
     )
 }
