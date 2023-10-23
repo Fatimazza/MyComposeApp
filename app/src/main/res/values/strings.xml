@@ -1,13 +1,17 @@
 <resources>
     <string name="app_name">My Compose App</string>
     <string name="title_hello_compose">Hello Compose App</string>
+    <string name="title_activity_my_compose_app">MyComposeAppActivity</string>
+
     <string name="title_activity_birthday_card">BirthdayCardActivity</string>
     <string name="title_birthday_card">Birthday Card App</string>
     <string name="happy_birthday_text">Happy birthday, Za!</string>
     <string name="birthday_signature_text"> - from Fatima</string>
+
     <string name="title_activity_dice_roller">DiceRollerActivity</string>
     <string name="title_dice_roller">Dice Roller App</string>
     <string name="dice_roller_roll">Roll</string>
+
     <string name="title_activity_lemonade">LemonadeActivity</string>
     <string name="title_lemonade">Lemonade App</string>
     <string name="lemon_tree">Tap the lemon tree to select a lemon</string>
@@ -18,6 +22,7 @@
     <string name="lemon_content_description">Lemon</string>
     <string name="lemon_drink_content_description">Glass of lemonade</string>
     <string name="lemon_empty_glass_content_description">Empty glass</string>
+
     <string name="title_activity_tip_time">TipTimeActivity</string>
     <string name="title_tip_time">Tip Time App</string>
     <string name="tip_calculate">Calculate Tip</string>
@@ -25,6 +30,7 @@
     <string name="tip_how_was_the_service">Tip (%)</string>
     <string name="tip_round_up_tip">Round up tip?</string>
     <string name="tip_amount">Tip amount %s</string>
+
     <string name="title_activity_affirmation">AffirmationActivity</string>
     <string name="title_affirmation">Affirmation App</string>
     <string name="affirmation1">I am strong.</string>
@@ -37,7 +43,7 @@
     <string name="affirmation8">I have the courage to follow my heart.</string>
     <string name="affirmation9">Things will unfold at precisely the right time.</string>
     <string name="affirmation10">I will be present in all the moments that this day brings.</string>
-    <string name="title_activity_my_compose_app">MyComposeAppActivity</string>
+
     <string name="title_activity_woof">WoofActivity</string>
     <string name="title_woof">Woof App</string>
     <string name="woof_dog_name_1">Koda</string>
@@ -61,6 +67,7 @@
     <string name="woof_about">About:</string>
     <string name="woof_years_old">%d years old</string>
     <string name="woof_expand_button_content_description">See more or less information about a dog.</string>
+
     <string name="title_activity_dessert_clicker">DessertClickerActivity</string>
     <string name="title_dessert_clicker">Dessert Clicker App</string>
     <string name="dessert_sold">Desserts sold</string>
@@ -68,6 +75,7 @@
     <string name="dessert_share">Share</string>
     <string name="dessert_share_text">I\'ve clicked %1$d Desserts for a total of $%2$d #AndroidDessertClicker</string>
     <string name="dessert_sharing_not_available">Sharing Not Available</string>
+
     <string name="title_activity_unscramble">UnscrambleActivity</string>
     <string name="title_unscramble">Unscramble App</string>
     <string name="unscramble_instructions">Unscramble the word using all the letters.</string>
@@ -81,6 +89,7 @@
     <string name="unscramble_exit">Exit</string>
     <string name="unscramble_play_again">Play Again</string>
     <string name="unscramble_wrong_guess">Wrong Guess!</string>
+    
     <string name="title_cupcake">Cupcake App</string>
     <string name="title_activity_cupcake">CupcakeActivity</string>
     <string name="cupcake_order">Order Cupcakes</string>
