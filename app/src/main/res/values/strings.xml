@@ -112,4 +112,5 @@
         <item quantity="other">%d cupcakes</item>
     </plurals>
     <string name="title_activity_reply">ReplyActivity</string>
+    <string name="title_reply">Reply App</string>
 </resources>
