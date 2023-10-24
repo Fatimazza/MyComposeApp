@@ -18,11 +18,15 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationDrawerItem
+import androidx.compose.material3.NavigationDrawerItemDefaults
 import androidx.compose.material3.NavigationRail
 import androidx.compose.material3.NavigationRailItem
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
@@ -83,7 +87,9 @@ private fun ReplyAppContent(
                 modifier = Modifier
                     .fillMaxWidth()
             )
-            NavigationDrawerContent()
+            NavigationDrawerContent(
+                navigationItemContentList = navigationItemContentList
+            )
         }
     }
 }
@@ -132,6 +138,7 @@ private fun ReplyBottomNavigationBar(
 
 @Composable
 private fun NavigationDrawerContent(
+    navigationItemContentList: List<NavigationItemContent>,
     modifier: Modifier = Modifier
 ) {
     Column(modifier = modifier) {
@@ -140,6 +147,27 @@ private fun NavigationDrawerContent(
                 .fillMaxWidth()
                 .padding(dimensionResource(R.dimen.profile_image_padding)),
         )
+        for (navItem in navigationItemContentList) {
+            NavigationDrawerItem(
+                selected = true,
+                label = {
+                    Text(
+                        text = navItem.text,
+                        modifier = Modifier.padding(horizontal = dimensionResource(R.dimen.drawer_padding_header))
+                    )
+                },
+                icon = {
+                    Icon(
+                        imageVector = navItem.icon,
+                        contentDescription = navItem.text
+                    )
+                },
+                colors = NavigationDrawerItemDefaults.colors(
+                    unselectedContainerColor = Color.Transparent
+                ),
+                onClick = { }
+            )
+        }
     }
 }
 
@@ -165,7 +193,9 @@ private fun NavigationDrawerHeader(
 @Preview
 @Composable
 private fun NavigationDrawerPreview() {
-    NavigationDrawerContent()
+    NavigationDrawerContent(
+        listOf()
+    )
 }
 
 private data class NavigationItemContent(
