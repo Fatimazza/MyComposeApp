@@ -1,9 +1,13 @@
 package io.github.fatimazza.mycomposeapp.ui.reply
 
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
@@ -21,4 +25,19 @@ fun ReplyLogo(
         colorFilter = ColorFilter.tint(color),
         modifier = modifier
     )
+}
+
+@Composable
+fun ReplyProfileImage(
+    @DrawableRes drawableResource: Int,
+    description: String,
+    modifier: Modifier = Modifier,
+) {
+    Box(modifier = modifier) {
+        Image(
+            modifier = Modifier.clip(CircleShape),
+            painter = painterResource(drawableResource),
+            contentDescription = description,
+        )
+    }
 }
