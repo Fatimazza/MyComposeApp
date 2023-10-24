@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
@@ -98,6 +99,9 @@ private fun ReplyEmailDetailsCard(
                 .fillMaxWidth()
                 .padding(dimensionResource(R.dimen.detail_card_inner_padding))
         ) {
+            DetailsScreenHeader(
+                Modifier.fillMaxWidth()
+            )
             Text(
                 text = stringResource(R.string.email_0_subject),
                 style = MaterialTheme.typography.bodyMedium,
@@ -111,6 +115,41 @@ private fun ReplyEmailDetailsCard(
                 text = stringResource(R.string.email_0_body),
                 style = MaterialTheme.typography.bodyLarge,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+        }
+    }
+}
+
+@Composable
+private fun DetailsScreenHeader(
+    modifier: Modifier = Modifier
+) {
+    Row(modifier = modifier) {
+        ReplyProfileImage(
+            drawableResource = R.drawable.reply_avatar_1,
+            description = stringResource(R.string.account_1_first_name) + " "
+                    + stringResource(R.string.account_1_last_name),
+            modifier = Modifier.size(
+                dimensionResource(R.dimen.email_header_profile_size)
+            )
+        )
+        Column(
+            modifier = Modifier
+                .weight(1f)
+                .padding(
+                    horizontal = dimensionResource(R.dimen.email_header_content_padding_horizontal),
+                    vertical = dimensionResource(R.dimen.email_header_content_padding_vertical)
+                ),
+            verticalArrangement = Arrangement.Center
+        ) {
+            Text(
+                text = stringResource(R.string.account_1_first_name),
+                style = MaterialTheme.typography.labelMedium
+            )
+            Text(
+                text = stringResource(R.string.email_1_time),
+                style = MaterialTheme.typography.labelMedium,
+                color = MaterialTheme.colorScheme.outline
             )
         }
     }
