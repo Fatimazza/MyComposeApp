@@ -1,6 +1,9 @@
 package io.github.fatimazza.mycomposeapp.ui.reply
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Drafts
@@ -8,6 +11,7 @@ import androidx.compose.material.icons.filled.Inbox
 import androidx.compose.material.icons.filled.Report
 import androidx.compose.material.icons.filled.Send
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationRail
@@ -60,11 +64,18 @@ private fun ReplyAppContent(
         ReplyNavigationRail(
             navigationItemContentList = navigationItemContentList
         )
-        ReplyBottomNavigationBar(
-            navigationItemContentList = navigationItemContentList,
+        Column(
             modifier = Modifier
-                .fillMaxWidth()
-        )
+                .fillMaxSize()
+                .background(MaterialTheme.colorScheme.inverseOnSurface)
+        ) {
+            val bottomNavigationContentDescription = stringResource(R.string.navigation_bottom)
+            ReplyBottomNavigationBar(
+                navigationItemContentList = navigationItemContentList,
+                modifier = Modifier
+                    .fillMaxWidth()
+            )
+        }
     }
 }
 
