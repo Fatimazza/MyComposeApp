@@ -12,8 +12,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -27,7 +25,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import io.github.fatimazza.mycomposeapp.R
-import io.github.fatimazza.mycomposeapp.data.reply.MailboxType
 
 @Composable
 fun ReplyListOnlyContent(
@@ -49,6 +46,17 @@ fun ReplyListOnlyContent(
         items(3) {
             ReplyEmailListItem()
         }
+    }
+}
+
+@Composable
+fun ReplyListAndDetailContent(
+    modifier: Modifier = Modifier
+) {
+    Row(modifier = modifier) {
+        ReplyDetailsScreen(
+            modifier = Modifier.weight(1f)
+        )
     }
 }
 
