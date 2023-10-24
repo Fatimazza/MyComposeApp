@@ -1,10 +1,13 @@
 package io.github.fatimazza.mycomposeapp.ui.reply
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Drafts
 import androidx.compose.material.icons.filled.Inbox
@@ -17,9 +20,13 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationRail
 import androidx.compose.material3.NavigationRailItem
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import io.github.fatimazza.mycomposeapp.R
 import io.github.fatimazza.mycomposeapp.data.reply.MailboxType
 
@@ -120,6 +127,31 @@ private fun ReplyBottomNavigationBar(
             )
         }
     }
+}
+
+@Composable
+private fun NavigationDrawerHeader(
+    modifier: Modifier = Modifier
+) {
+    Row(
+        modifier = modifier,
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        ReplyLogo(modifier = Modifier.size(dimensionResource(R.dimen.reply_logo_size)))
+        ReplyProfileImage(
+            drawableResource = R.drawable.reply_avatar_1,
+            description = stringResource(id = R.string.email_profile),
+            modifier = Modifier
+                .size(dimensionResource(R.dimen.profile_image_size))
+        )
+    }
+}
+
+@Preview
+@Composable
+private fun NavigationDrawerHeaderPreview() {
+    NavigationDrawerHeader()
 }
 
 private data class NavigationItemContent(
