@@ -64,6 +64,9 @@ fun ReplyEmailListItem(
                 .fillMaxWidth()
                 .padding(dimensionResource(R.dimen.email_list_item_inner_padding))
         ) {
+            ReplyEmailItemHeader(
+                Modifier.fillMaxWidth()
+            )
             Text(
                 text = stringResource(R.string.email_0_subject),
                 style = MaterialTheme.typography.bodyLarge,
@@ -81,6 +84,20 @@ fun ReplyEmailListItem(
                 overflow = TextOverflow.Ellipsis
             )
         }
+    }
+}
+
+@Composable
+private fun ReplyEmailItemHeader(
+    modifier: Modifier = Modifier
+) {
+    Row(modifier = modifier) {
+        ReplyProfileImage(
+            drawableResource = R.drawable.reply_avatar_1,
+            description = stringResource(R.string.account_1_first_name) + " "
+                    + stringResource(R.string.account_1_last_name),
+            modifier = Modifier.size(dimensionResource(R.dimen.email_header_profile_size))
+        )
     }
 }
 
