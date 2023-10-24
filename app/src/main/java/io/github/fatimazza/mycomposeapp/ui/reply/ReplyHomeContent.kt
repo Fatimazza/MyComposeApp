@@ -15,6 +15,13 @@ import androidx.compose.ui.res.stringResource
 import io.github.fatimazza.mycomposeapp.R
 
 @Composable
+fun ReplyListOnlyContent(
+    modifier: Modifier = Modifier
+) {
+
+}
+
+@Composable
 fun ReplyLogo(
     modifier: Modifier = Modifier,
     color: Color = MaterialTheme.colorScheme.primary
