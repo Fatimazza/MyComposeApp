@@ -87,6 +87,12 @@ private fun ReplyAppContent(
                         horizontal = dimensionResource(R.dimen.email_list_only_horizontal_padding)
                     )
             )
+            ReplyListAndDetailContent(
+                modifier = Modifier.weight(1f)
+                    .padding(
+                        horizontal = dimensionResource(R.dimen.email_list_only_horizontal_padding)
+                    )
+            )
             val bottomNavigationContentDescription = stringResource(R.string.navigation_bottom)
             ReplyBottomNavigationBar(
                 navigationItemContentList = navigationItemContentList,

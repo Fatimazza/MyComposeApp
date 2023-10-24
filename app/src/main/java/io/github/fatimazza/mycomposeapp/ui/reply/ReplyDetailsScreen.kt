@@ -4,8 +4,10 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -26,7 +28,20 @@ fun ReplyDetailsScreen(
     modifier: Modifier = Modifier
 ) {
     Box(modifier = modifier) {
-
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(color = MaterialTheme.colorScheme.inverseOnSurface)
+                .padding(top = dimensionResource(R.dimen.detail_card_list_padding_top))
+        ) {
+            item {
+                ReplyDetailsScreenTopBar(
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(bottom = dimensionResource(R.dimen.detail_topbar_padding_bottom))
+                )
+            }
+        }
     }
 }
 
@@ -66,6 +81,6 @@ private fun ReplyDetailsScreenTopBar(
 
 @Preview
 @Composable
-fun ReplyDetailsScreenTopBarPreview() {
-    ReplyDetailsScreenTopBar()
+fun ReplyDetailsScreenPreview() {
+    ReplyDetailsScreen()
 }
