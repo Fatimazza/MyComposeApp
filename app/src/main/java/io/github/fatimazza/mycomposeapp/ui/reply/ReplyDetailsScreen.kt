@@ -3,6 +3,7 @@ package io.github.fatimazza.mycomposeapp.ui.reply
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -11,6 +12,8 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -39,6 +42,9 @@ fun ReplyDetailsScreen(
                     Modifier
                         .fillMaxWidth()
                         .padding(bottom = dimensionResource(R.dimen.detail_topbar_padding_bottom))
+                )
+                ReplyEmailDetailsCard(
+                    modifier = Modifier.padding(horizontal = dimensionResource(R.dimen.detail_card_outer_padding_horizontal))
                 )
             }
         }
@@ -71,9 +77,40 @@ private fun ReplyDetailsScreenTopBar(
                 .padding(end = dimensionResource(R.dimen.detail_subject_padding_end))
         ) {
             Text(
-                text = stringResource(R.string.email_1_subject),
+                text = stringResource(R.string.email_0_subject),
                 style = MaterialTheme.typography.titleMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+        }
+    }
+}
+
+@Composable
+private fun ReplyEmailDetailsCard(
+    modifier: Modifier = Modifier,
+) {
+    Card(
+        modifier = modifier,
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(dimensionResource(R.dimen.detail_card_inner_padding))
+        ) {
+            Text(
+                text = stringResource(R.string.email_0_subject),
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.outline,
+                modifier = Modifier.padding(
+                    top = dimensionResource(R.dimen.detail_content_padding_top),
+                    bottom = dimensionResource(R.dimen.detail_expanded_subject_body_spacing)
+                ),
+            )
+            Text(
+                text = stringResource(R.string.email_0_body),
+                style = MaterialTheme.typography.bodyLarge,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
         }
     }
