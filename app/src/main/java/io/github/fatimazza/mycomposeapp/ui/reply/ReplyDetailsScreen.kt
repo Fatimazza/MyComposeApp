@@ -13,6 +13,8 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
@@ -116,7 +118,19 @@ private fun ReplyEmailDetailsCard(
                 style = MaterialTheme.typography.bodyLarge,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
+            DetailsScreenButtonBar()
         }
+    }
+}
+
+@Composable
+private fun DetailsScreenButtonBar(
+    modifier: Modifier = Modifier
+) {
+    Box(modifier = modifier) {
+        ActionButton(
+            text = stringResource(id = R.string.email_continue_composing),
+        )
     }
 }
 
@@ -154,6 +168,26 @@ private fun DetailsScreenHeader(
         }
     }
 }
+
+@Composable
+private fun ActionButton(
+    text: String,
+    modifier: Modifier = Modifier
+) {
+    Box(modifier = modifier) {
+        Button(
+            onClick = { },
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = dimensionResource(R.dimen.detail_action_button_padding_vertical))
+        ) {
+            Text(
+                text = text
+            )
+        }
+    }
+}
+
 
 @Preview
 @Composable
