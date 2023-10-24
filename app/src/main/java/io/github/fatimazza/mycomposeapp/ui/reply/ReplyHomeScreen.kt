@@ -1,12 +1,15 @@
 package io.github.fatimazza.mycomposeapp.ui.reply
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Drafts
 import androidx.compose.material.icons.filled.Inbox
 import androidx.compose.material.icons.filled.Report
 import androidx.compose.material.icons.filled.Send
 import androidx.compose.material3.Icon
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationRail
 import androidx.compose.material3.NavigationRailItem
 import androidx.compose.runtime.Composable
@@ -57,6 +60,11 @@ private fun ReplyAppContent(
         ReplyNavigationRail(
             navigationItemContentList = navigationItemContentList
         )
+        ReplyBottomNavigationBar(
+            navigationItemContentList = navigationItemContentList,
+            modifier = Modifier
+                .fillMaxWidth()
+        )
     }
 }
 
@@ -68,6 +76,27 @@ private fun ReplyNavigationRail(
     NavigationRail(modifier = modifier) {
         for (navItem in navigationItemContentList) {
             NavigationRailItem(
+                selected = true,
+                onClick = { },
+                icon = {
+                    Icon(
+                        imageVector = navItem.icon,
+                        contentDescription = navItem.text
+                    )
+                }
+            )
+        }
+    }
+}
+
+@Composable
+private fun ReplyBottomNavigationBar(
+    navigationItemContentList: List<NavigationItemContent>,
+    modifier: Modifier = Modifier
+) {
+    NavigationBar(modifier = modifier) {
+        for (navItem in navigationItemContentList) {
+            NavigationBarItem(
                 selected = true,
                 onClick = { },
                 icon = {
