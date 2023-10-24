@@ -6,6 +6,9 @@ import androidx.compose.material.icons.filled.Drafts
 import androidx.compose.material.icons.filled.Inbox
 import androidx.compose.material.icons.filled.Report
 import androidx.compose.material.icons.filled.Send
+import androidx.compose.material3.Icon
+import androidx.compose.material3.NavigationRail
+import androidx.compose.material3.NavigationRailItem
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -39,15 +42,42 @@ fun ReplyHomeScreen(
             text = stringResource(id = R.string.email_tab_spam)
         )
     )
-    ReplyAppContent(modifier)
+    ReplyAppContent(
+        navigationItemContentList = navigationItemContentList,
+        modifier = modifier
+    )
 }
 
 @Composable
-fun ReplyAppContent(
+private fun ReplyAppContent(
+    navigationItemContentList: List<NavigationItemContent>,
     modifier: Modifier = Modifier
 ) {
     Box(modifier = modifier) {
+        ReplyNavigationRail(
+            navigationItemContentList = navigationItemContentList
+        )
+    }
+}
 
+@Composable
+private fun ReplyNavigationRail(
+    navigationItemContentList: List<NavigationItemContent>,
+    modifier: Modifier = Modifier
+) {
+    NavigationRail(modifier = modifier) {
+        for (navItem in navigationItemContentList) {
+            NavigationRailItem(
+                selected = true,
+                onClick = { },
+                icon = {
+                    Icon(
+                        imageVector = navItem.icon,
+                        contentDescription = navItem.text
+                    )
+                }
+            )
+        }
     }
 }
 
