@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Drafts
@@ -24,7 +25,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import io.github.fatimazza.mycomposeapp.R
@@ -83,6 +83,7 @@ private fun ReplyAppContent(
                 modifier = Modifier
                     .fillMaxWidth()
             )
+            NavigationDrawerContent()
         }
     }
 }
@@ -130,6 +131,19 @@ private fun ReplyBottomNavigationBar(
 }
 
 @Composable
+private fun NavigationDrawerContent(
+    modifier: Modifier = Modifier
+) {
+    Column(modifier = modifier) {
+        NavigationDrawerHeader(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(dimensionResource(R.dimen.profile_image_padding)),
+        )
+    }
+}
+
+@Composable
 private fun NavigationDrawerHeader(
     modifier: Modifier = Modifier
 ) {
@@ -150,8 +164,8 @@ private fun NavigationDrawerHeader(
 
 @Preview
 @Composable
-private fun NavigationDrawerHeaderPreview() {
-    NavigationDrawerHeader()
+private fun NavigationDrawerPreview() {
+    NavigationDrawerContent()
 }
 
 private data class NavigationItemContent(
