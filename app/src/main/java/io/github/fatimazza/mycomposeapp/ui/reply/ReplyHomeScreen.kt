@@ -36,6 +36,7 @@ import io.github.fatimazza.mycomposeapp.data.reply.MailboxType
 
 @Composable
 fun ReplyHomeScreen(
+    onTabPressed: (MailboxType) -> Unit,
     onEmailCardPressed: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -62,6 +63,7 @@ fun ReplyHomeScreen(
         )
     )
     ReplyAppContent(
+        onTabPressed = onTabPressed,
         onEmailCardPressed = onEmailCardPressed,
         navigationItemContentList = navigationItemContentList,
         modifier = modifier
@@ -70,6 +72,7 @@ fun ReplyHomeScreen(
 
 @Composable
 private fun ReplyAppContent(
+    onTabPressed: ((MailboxType) -> Unit),
     onEmailCardPressed: () -> Unit,
     navigationItemContentList: List<NavigationItemContent>,
     modifier: Modifier = Modifier
@@ -100,6 +103,8 @@ private fun ReplyAppContent(
             )
             val bottomNavigationContentDescription = stringResource(R.string.navigation_bottom)
             ReplyBottomNavigationBar(
+                currentTab = MailboxType.Inbox,
+                onTabPressed = onTabPressed,
                 navigationItemContentList = navigationItemContentList,
                 modifier = Modifier
                     .fillMaxWidth()
@@ -136,14 +141,16 @@ private fun ReplyNavigationRail(
 
 @Composable
 private fun ReplyBottomNavigationBar(
+    currentTab: MailboxType,
+    onTabPressed: ((MailboxType) -> Unit),
     navigationItemContentList: List<NavigationItemContent>,
     modifier: Modifier = Modifier
 ) {
     NavigationBar(modifier = modifier) {
         for (navItem in navigationItemContentList) {
             NavigationBarItem(
-                selected = true,
-                onClick = { },
+                selected = currentTab == navItem.mailboxType,
+                onClick = { onTabPressed(navItem.mailboxType) },
                 icon = {
                     Icon(
                         imageVector = navItem.icon,
