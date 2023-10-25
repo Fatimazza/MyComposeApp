@@ -55,6 +55,7 @@ fun ReplyListAndDetailContent(
 ) {
     Row(modifier = modifier) {
         ReplyDetailsScreen(
+            onBackPressed = {},
             modifier = Modifier.weight(1f)
         )
     }

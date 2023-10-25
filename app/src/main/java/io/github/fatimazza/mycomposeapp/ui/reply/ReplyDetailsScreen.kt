@@ -34,6 +34,7 @@ import io.github.fatimazza.mycomposeapp.data.reply.MailboxType
 
 @Composable
 fun ReplyDetailsScreen(
+    onBackPressed: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Box(modifier = modifier) {
@@ -45,6 +46,7 @@ fun ReplyDetailsScreen(
         ) {
             item {
                 ReplyDetailsScreenTopBar(
+                    onBackPressed,
                     Modifier
                         .fillMaxWidth()
                         .padding(bottom = dimensionResource(R.dimen.detail_topbar_padding_bottom))
@@ -59,6 +61,7 @@ fun ReplyDetailsScreen(
 
 @Composable
 private fun ReplyDetailsScreenTopBar(
+    onBackButtonClicked: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Row(
@@ -66,7 +69,7 @@ private fun ReplyDetailsScreenTopBar(
         verticalAlignment = Alignment.CenterVertically,
     ) {
         IconButton(
-            onClick = { },
+            onClick = onBackButtonClicked,
             modifier = Modifier
                 .padding(horizontal = dimensionResource(R.dimen.detail_topbar_back_button_padding_horizontal))
                 .background(MaterialTheme.colorScheme.surface, shape = CircleShape),
@@ -270,5 +273,7 @@ private fun ActionButton(
 @Preview
 @Composable
 fun ReplyDetailsScreenPreview() {
-    ReplyDetailsScreen()
+    ReplyDetailsScreen(
+        onBackPressed = {}
+    )
 }
