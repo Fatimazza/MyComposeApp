@@ -14,6 +14,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
@@ -126,7 +127,7 @@ private fun ReplyEmailDetailsCard(
 @Composable
 private fun DetailsScreenButtonBar(
     modifier: Modifier = Modifier,
-    mailboxType: MailboxType = MailboxType.Inbox
+    mailboxType: MailboxType = MailboxType.Spam
 ) {
     Box(modifier = modifier) {
         when (mailboxType) {
@@ -152,6 +153,7 @@ private fun DetailsScreenButtonBar(
                     )
                     ActionButton(
                         text = stringResource(id = R.string.email_delete),
+                        containIrreversibleAction = true,
                         modifier = Modifier.weight(1f)
                     )
                 }
@@ -219,17 +221,32 @@ private fun DetailsScreenHeader(
 @Composable
 private fun ActionButton(
     text: String,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    containIrreversibleAction: Boolean = false,
 ) {
     Box(modifier = modifier) {
         Button(
             onClick = { },
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(vertical = dimensionResource(R.dimen.detail_action_button_padding_vertical))
+                .padding(vertical = dimensionResource(R.dimen.detail_action_button_padding_vertical)),
+            colors = ButtonDefaults.buttonColors(
+                containerColor =
+                if (containIrreversibleAction) {
+                    MaterialTheme.colorScheme.onErrorContainer
+                } else {
+                    MaterialTheme.colorScheme.primaryContainer
+                }
+            )
         ) {
             Text(
-                text = text
+                text = text,
+                color =
+                if (containIrreversibleAction) {
+                    MaterialTheme.colorScheme.onError
+                } else {
+                    MaterialTheme.colorScheme.onSurfaceVariant
+                }
             )
         }
     }
