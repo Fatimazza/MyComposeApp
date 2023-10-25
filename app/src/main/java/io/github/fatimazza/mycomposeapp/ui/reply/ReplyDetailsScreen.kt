@@ -14,7 +14,6 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
@@ -28,6 +27,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import io.github.fatimazza.mycomposeapp.R
+import io.github.fatimazza.mycomposeapp.data.reply.MailboxType
 
 @Composable
 fun ReplyDetailsScreen(
@@ -125,12 +125,59 @@ private fun ReplyEmailDetailsCard(
 
 @Composable
 private fun DetailsScreenButtonBar(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    mailboxType: MailboxType = MailboxType.Inbox
 ) {
     Box(modifier = modifier) {
-        ActionButton(
-            text = stringResource(id = R.string.email_continue_composing),
-        )
+        when (mailboxType) {
+            MailboxType.Drafts ->
+                ActionButton(
+                    text = stringResource(id = R.string.email_continue_composing),
+                )
+
+            MailboxType.Spam ->
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(
+                            vertical = dimensionResource(R.dimen.detail_button_bar_padding_vertical)
+                        ),
+                    horizontalArrangement = Arrangement.spacedBy(
+                        dimensionResource(R.dimen.detail_button_bar_item_spacing)
+                    ),
+                ) {
+                    ActionButton(
+                        text = stringResource(id = R.string.email_move_to_inbox),
+                        modifier = Modifier.weight(1f)
+                    )
+                    ActionButton(
+                        text = stringResource(id = R.string.email_delete),
+                        modifier = Modifier.weight(1f)
+                    )
+                }
+
+            MailboxType.Sent, MailboxType.Inbox ->
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(
+                            vertical = dimensionResource(R.dimen.detail_button_bar_padding_vertical)
+                        ),
+                    horizontalArrangement = Arrangement.spacedBy(
+                        dimensionResource(R.dimen.detail_button_bar_item_spacing)
+                    ),
+                ) {
+                    ActionButton(
+                        text = stringResource(id = R.string.reply),
+                        modifier = Modifier.weight(1f)
+                    )
+                    ActionButton(
+                        text = stringResource(id = R.string.reply_all),
+                        modifier = Modifier.weight(1f)
+                    )
+                }
+
+        }
     }
 }
 
