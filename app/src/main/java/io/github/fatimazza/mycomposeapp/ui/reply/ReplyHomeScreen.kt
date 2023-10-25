@@ -36,6 +36,7 @@ import io.github.fatimazza.mycomposeapp.data.reply.MailboxType
 
 @Composable
 fun ReplyHomeScreen(
+    onEmailCardPressed: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     val navigationItemContentList = listOf(
@@ -61,6 +62,7 @@ fun ReplyHomeScreen(
         )
     )
     ReplyAppContent(
+        onEmailCardPressed = onEmailCardPressed,
         navigationItemContentList = navigationItemContentList,
         modifier = modifier
     )
@@ -68,6 +70,7 @@ fun ReplyHomeScreen(
 
 @Composable
 private fun ReplyAppContent(
+    onEmailCardPressed: () -> Unit,
     navigationItemContentList: List<NavigationItemContent>,
     modifier: Modifier = Modifier
 ) {
@@ -82,6 +85,7 @@ private fun ReplyAppContent(
                 .background(MaterialTheme.colorScheme.inverseOnSurface)
         ) {
             ReplyListOnlyContent(
+                onEmailCardPressed = onEmailCardPressed,
                 modifier = Modifier.weight(1f)
                     .padding(
                         horizontal = dimensionResource(R.dimen.email_list_only_horizontal_padding)

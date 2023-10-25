@@ -8,6 +8,7 @@ fun ReplyApp(
     modifier : Modifier = Modifier
 ) {
     ReplyHomeScreen(
+        onEmailCardPressed = {},
         modifier = modifier
     )
 }
