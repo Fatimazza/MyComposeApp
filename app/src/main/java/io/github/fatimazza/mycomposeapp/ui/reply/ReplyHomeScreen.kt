@@ -105,6 +105,8 @@ private fun ReplyAppContent(
                     .fillMaxWidth()
             )
             NavigationDrawerContent(
+                selectedDestination = MailboxType.Inbox,
+                onTabPressed = {},
                 navigationItemContentList = navigationItemContentList
             )
         }
@@ -155,6 +157,8 @@ private fun ReplyBottomNavigationBar(
 
 @Composable
 private fun NavigationDrawerContent(
+    selectedDestination: MailboxType,
+    onTabPressed: ((MailboxType) -> Unit),
     navigationItemContentList: List<NavigationItemContent>,
     modifier: Modifier = Modifier
 ) {
@@ -166,7 +170,7 @@ private fun NavigationDrawerContent(
         )
         for (navItem in navigationItemContentList) {
             NavigationDrawerItem(
-                selected = true,
+                selected = selectedDestination == navItem.mailboxType,
                 label = {
                     Text(
                         text = navItem.text,
@@ -182,7 +186,7 @@ private fun NavigationDrawerContent(
                 colors = NavigationDrawerItemDefaults.colors(
                     unselectedContainerColor = Color.Transparent
                 ),
-                onClick = { }
+                onClick = { onTabPressed(navItem.mailboxType) }
             )
         }
     }
@@ -211,6 +215,8 @@ private fun NavigationDrawerHeader(
 @Composable
 private fun NavigationDrawerPreview() {
     NavigationDrawerContent(
+        selectedDestination = MailboxType.Inbox,
+        onTabPressed = {},
         listOf()
     )
 }
