@@ -1,5 +1,6 @@
 package io.github.fatimazza.mycomposeapp.ui.reply
 
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -24,6 +25,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -91,8 +93,13 @@ private fun ReplyDetailsScreenTopBar(
 
 @Composable
 private fun ReplyEmailDetailsCard(
-    modifier: Modifier = Modifier,
+    mailboxType: MailboxType = MailboxType.Spam,
+    modifier: Modifier = Modifier
 ) {
+    val context = LocalContext.current
+    val displayToast = { text: String ->
+        Toast.makeText(context, text, Toast.LENGTH_SHORT).show()
+    }
     Card(
         modifier = modifier,
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
@@ -119,21 +126,23 @@ private fun ReplyEmailDetailsCard(
                 style = MaterialTheme.typography.bodyLarge,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
-            DetailsScreenButtonBar()
+            DetailsScreenButtonBar(mailboxType, displayToast)
         }
     }
 }
 
 @Composable
 private fun DetailsScreenButtonBar(
-    modifier: Modifier = Modifier,
-    mailboxType: MailboxType = MailboxType.Spam
+    mailboxType: MailboxType,
+    displayToast: (String) -> Unit,
+    modifier: Modifier = Modifier
 ) {
     Box(modifier = modifier) {
         when (mailboxType) {
             MailboxType.Drafts ->
                 ActionButton(
                     text = stringResource(id = R.string.email_continue_composing),
+                    onButtonClicked = displayToast
                 )
 
             MailboxType.Spam ->
@@ -149,11 +158,13 @@ private fun DetailsScreenButtonBar(
                 ) {
                     ActionButton(
                         text = stringResource(id = R.string.email_move_to_inbox),
+                        onButtonClicked = displayToast,
                         modifier = Modifier.weight(1f)
                     )
                     ActionButton(
                         text = stringResource(id = R.string.email_delete),
                         containIrreversibleAction = true,
+                        onButtonClicked = displayToast,
                         modifier = Modifier.weight(1f)
                     )
                 }
@@ -171,10 +182,12 @@ private fun DetailsScreenButtonBar(
                 ) {
                     ActionButton(
                         text = stringResource(id = R.string.reply),
+                        onButtonClicked = displayToast,
                         modifier = Modifier.weight(1f)
                     )
                     ActionButton(
                         text = stringResource(id = R.string.reply_all),
+                        onButtonClicked = displayToast,
                         modifier = Modifier.weight(1f)
                     )
                 }
@@ -221,12 +234,13 @@ private fun DetailsScreenHeader(
 @Composable
 private fun ActionButton(
     text: String,
+    onButtonClicked: (String) -> Unit,
     modifier: Modifier = Modifier,
     containIrreversibleAction: Boolean = false,
 ) {
     Box(modifier = modifier) {
         Button(
-            onClick = { },
+            onClick = { onButtonClicked(text) },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(vertical = dimensionResource(R.dimen.detail_action_button_padding_vertical)),
