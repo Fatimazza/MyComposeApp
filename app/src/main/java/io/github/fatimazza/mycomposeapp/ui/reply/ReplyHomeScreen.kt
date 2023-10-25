@@ -80,6 +80,8 @@ private fun ReplyAppContent(
     Box(modifier = modifier) {
         val navigationRailContentDescription = stringResource(R.string.navigation_rail)
         ReplyNavigationRail(
+            currentTab = MailboxType.Inbox,
+            onTabPressed = onTabPressed,
             navigationItemContentList = navigationItemContentList
         )
         Column(
@@ -120,14 +122,16 @@ private fun ReplyAppContent(
 
 @Composable
 private fun ReplyNavigationRail(
+    currentTab: MailboxType,
+    onTabPressed: ((MailboxType) -> Unit),
     navigationItemContentList: List<NavigationItemContent>,
     modifier: Modifier = Modifier
 ) {
     NavigationRail(modifier = modifier) {
         for (navItem in navigationItemContentList) {
             NavigationRailItem(
-                selected = true,
-                onClick = { },
+                selected = currentTab == navItem.mailboxType,
+                onClick = { onTabPressed(navItem.mailboxType) },
                 icon = {
                     Icon(
                         imageVector = navItem.icon,
