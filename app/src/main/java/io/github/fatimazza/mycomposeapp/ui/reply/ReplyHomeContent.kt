@@ -1,5 +1,6 @@
 package io.github.fatimazza.mycomposeapp.ui.reply
 
+import android.app.Activity
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -22,6 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -59,9 +61,31 @@ fun ReplyListOnlyContent(
 
 @Composable
 fun ReplyListAndDetailContent(
+    onEmailCardPressed: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Row(modifier = modifier) {
+        LazyColumn(
+            modifier = Modifier
+                .weight(1f)
+                .padding(
+                    end = dimensionResource(R.dimen.list_and_detail_list_padding_end),
+                    top = dimensionResource(R.dimen.list_and_detail_list_padding_top)
+                ),
+            verticalArrangement = Arrangement.spacedBy(
+                dimensionResource(R.dimen.email_list_item_vertical_spacing)
+            )
+        ) {
+            items(3) {
+                ReplyEmailListItem(
+                    selected = false,
+                    onCardClick = {
+                        onEmailCardPressed()
+                    },
+                )
+            }
+        }
+        val activity = LocalContext.current as Activity
         ReplyDetailsScreen(
             onBackPressed = {},
             modifier = Modifier.weight(1f)

@@ -92,6 +92,7 @@ private fun ReplyAppContent(
                     )
             )
             ReplyListAndDetailContent(
+                onEmailCardPressed = onEmailCardPressed,
                 modifier = Modifier.weight(1f)
                     .padding(
                         horizontal = dimensionResource(R.dimen.email_list_only_horizontal_padding)
