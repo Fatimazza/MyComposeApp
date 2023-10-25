@@ -12,6 +12,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -28,6 +30,7 @@ import io.github.fatimazza.mycomposeapp.R
 
 @Composable
 fun ReplyListOnlyContent(
+    onEmailCardPressed: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     LazyColumn(
@@ -44,7 +47,12 @@ fun ReplyListOnlyContent(
             )
         }
         items(3) {
-            ReplyEmailListItem()
+            ReplyEmailListItem(
+                selected = false,
+                onCardClick = {
+                    onEmailCardPressed()
+                }
+            )
         }
     }
 }
@@ -61,12 +69,22 @@ fun ReplyListAndDetailContent(
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ReplyEmailListItem(
+    selected: Boolean,
+    onCardClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Card(
-        modifier = modifier
+        modifier = modifier,
+        colors = CardDefaults.cardColors(
+            containerColor = if (selected)
+                MaterialTheme.colorScheme.primaryContainer
+            else
+                MaterialTheme.colorScheme.secondaryContainer
+        ),
+        onClick = onCardClick
     ) {
         Column(
             modifier = Modifier
