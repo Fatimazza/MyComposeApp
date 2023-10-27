@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
+import io.github.fatimazza.mycomposeapp.data.reply.Email
 import io.github.fatimazza.mycomposeapp.data.reply.MailboxType
 
 @Composable
@@ -19,7 +20,11 @@ fun ReplyApp(
             viewModel.updateCurrentMailbox(mailboxType = mailboxType)
             viewModel.resetHomeScreenStates()
         },
-        onEmailCardPressed = {},
+        onEmailCardPressed = { email: Email ->
+            viewModel.updateDetailsScreenStates(
+                email = email
+            )
+        },
         onDetailScreenBackPressed = {
             viewModel.resetHomeScreenStates()
         },

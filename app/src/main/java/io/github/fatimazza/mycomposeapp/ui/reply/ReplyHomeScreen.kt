@@ -32,6 +32,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import io.github.fatimazza.mycomposeapp.R
+import io.github.fatimazza.mycomposeapp.data.reply.Email
 import io.github.fatimazza.mycomposeapp.data.reply.MailboxType
 import io.github.fatimazza.mycomposeapp.data.reply.local.LocalAccountsDataProvider
 
@@ -39,7 +40,7 @@ import io.github.fatimazza.mycomposeapp.data.reply.local.LocalAccountsDataProvid
 fun ReplyHomeScreen(
     replyUiState: ReplyUiState,
     onTabPressed: (MailboxType) -> Unit,
-    onEmailCardPressed: () -> Unit,
+    onEmailCardPressed: (Email) -> Unit,
     onDetailScreenBackPressed: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -78,7 +79,7 @@ fun ReplyHomeScreen(
 private fun ReplyAppContent(
     replyUiState: ReplyUiState,
     onTabPressed: ((MailboxType) -> Unit),
-    onEmailCardPressed: () -> Unit,
+    onEmailCardPressed: (Email) -> Unit,
     navigationItemContentList: List<NavigationItemContent>,
     modifier: Modifier = Modifier
 ) {

@@ -30,12 +30,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import io.github.fatimazza.mycomposeapp.R
+import io.github.fatimazza.mycomposeapp.data.reply.Email
 import io.github.fatimazza.mycomposeapp.data.reply.local.LocalAccountsDataProvider
 
 @Composable
 fun ReplyListOnlyContent(
     replyUiState: ReplyUiState,
-    onEmailCardPressed: () -> Unit,
+    onEmailCardPressed: (Email) -> Unit,
     modifier: Modifier = Modifier
 ) {
     val emails = replyUiState.currentMailboxEmails
@@ -55,9 +56,10 @@ fun ReplyListOnlyContent(
         }
         items(emails, key = { email -> email.id }) { email ->
             ReplyEmailListItem(
+                email = email,
                 selected = false,
                 onCardClick = {
-                    onEmailCardPressed()
+                    onEmailCardPressed(email)
                 }
             )
         }
@@ -67,7 +69,7 @@ fun ReplyListOnlyContent(
 @Composable
 fun ReplyListAndDetailContent(
     replyUiState: ReplyUiState,
-    onEmailCardPressed: () -> Unit,
+    onEmailCardPressed: (Email) -> Unit,
     modifier: Modifier = Modifier
 ) {
     val emails = replyUiState.currentMailboxEmails
@@ -86,10 +88,11 @@ fun ReplyListAndDetailContent(
         ) {
             items(emails, key = { email -> email.id }) { email ->
                 ReplyEmailListItem(
+                    email = email,
                     selected = replyUiState.currentSelectedEmail.id == email.id,
                     onCardClick = {
-                        onEmailCardPressed()
-                    },
+                        onEmailCardPressed(email)
+                    }
                 )
             }
         }
@@ -105,6 +108,7 @@ fun ReplyListAndDetailContent(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ReplyEmailListItem(
+    email: Email,
     selected: Boolean,
     onCardClick: () -> Unit,
     modifier: Modifier = Modifier
@@ -125,10 +129,11 @@ fun ReplyEmailListItem(
                 .padding(dimensionResource(R.dimen.email_list_item_inner_padding))
         ) {
             ReplyEmailItemHeader(
+                email,
                 Modifier.fillMaxWidth()
             )
             Text(
-                text = stringResource(R.string.email_0_subject),
+                text = stringResource(email.subject),
                 style = MaterialTheme.typography.bodyLarge,
                 color = MaterialTheme.colorScheme.onSurface,
                 modifier = Modifier.padding(
@@ -137,7 +142,7 @@ fun ReplyEmailListItem(
                 ),
             )
             Text(
-                text = stringResource(R.string.email_0_body),
+                text = stringResource(email.body),
                 style = MaterialTheme.typography.bodyMedium,
                 maxLines = 2,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
@@ -149,13 +154,14 @@ fun ReplyEmailListItem(
 
 @Composable
 private fun ReplyEmailItemHeader(
+    email: Email,
     modifier: Modifier = Modifier
 ) {
     Row(modifier = modifier) {
         ReplyProfileImage(
-            drawableResource = LocalAccountsDataProvider.defaultAccount.avatar,
-            description = stringResource(R.string.account_1_first_name) + " "
-                    + stringResource(R.string.account_1_last_name),
+            drawableResource = email.sender.avatar,
+            description = stringResource(email.sender.firstName) + " "
+                    + stringResource(email.sender.lastName),
             modifier = Modifier.size(dimensionResource(R.dimen.email_header_profile_size))
         )
         Column(
@@ -168,11 +174,11 @@ private fun ReplyEmailItemHeader(
             verticalArrangement = Arrangement.Center
         ) {
             Text(
-                text = stringResource(R.string.account_1_first_name),
+                text = stringResource(email.sender.firstName),
                 style = MaterialTheme.typography.labelMedium
             )
             Text(
-                text = stringResource(R.string.email_1_time),
+                text = stringResource(email.createdAt),
                 style = MaterialTheme.typography.labelMedium,
                 color = MaterialTheme.colorScheme.outline
             )

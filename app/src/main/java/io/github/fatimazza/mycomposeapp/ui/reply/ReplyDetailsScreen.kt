@@ -30,6 +30,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import io.github.fatimazza.mycomposeapp.R
+import io.github.fatimazza.mycomposeapp.data.reply.Email
 import io.github.fatimazza.mycomposeapp.data.reply.MailboxType
 
 @Composable
@@ -54,6 +55,7 @@ fun ReplyDetailsScreen(
                         .padding(bottom = dimensionResource(R.dimen.detail_topbar_padding_bottom))
                 )
                 ReplyEmailDetailsCard(
+                    email = replyUiState.currentSelectedEmail,
                     mailboxType = replyUiState.currentMailbox,
                     modifier = Modifier.padding(horizontal = dimensionResource(R.dimen.detail_card_outer_padding_horizontal))
                 )
@@ -100,6 +102,7 @@ private fun ReplyDetailsScreenTopBar(
 
 @Composable
 private fun ReplyEmailDetailsCard(
+    email: Email,
     mailboxType: MailboxType,
     modifier: Modifier = Modifier
 ) {
@@ -117,10 +120,11 @@ private fun ReplyEmailDetailsCard(
                 .padding(dimensionResource(R.dimen.detail_card_inner_padding))
         ) {
             DetailsScreenHeader(
+                email,
                 Modifier.fillMaxWidth()
             )
             Text(
-                text = stringResource(R.string.email_0_subject),
+                text = stringResource(email.subject),
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.outline,
                 modifier = Modifier.padding(
@@ -129,7 +133,7 @@ private fun ReplyEmailDetailsCard(
                 ),
             )
             Text(
-                text = stringResource(R.string.email_0_body),
+                text = stringResource(email.body),
                 style = MaterialTheme.typography.bodyLarge,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
@@ -205,13 +209,14 @@ private fun DetailsScreenButtonBar(
 
 @Composable
 private fun DetailsScreenHeader(
+    email: Email,
     modifier: Modifier = Modifier
 ) {
     Row(modifier = modifier) {
         ReplyProfileImage(
-            drawableResource = R.drawable.reply_avatar_1,
-            description = stringResource(R.string.account_1_first_name) + " "
-                    + stringResource(R.string.account_1_last_name),
+            drawableResource = email.sender.avatar,
+            description = stringResource(email.sender.firstName) + " "
+                    + stringResource(email.sender.lastName),
             modifier = Modifier.size(
                 dimensionResource(R.dimen.email_header_profile_size)
             )
@@ -226,11 +231,11 @@ private fun DetailsScreenHeader(
             verticalArrangement = Arrangement.Center
         ) {
             Text(
-                text = stringResource(R.string.account_1_first_name),
+                text = stringResource(email.sender.firstName),
                 style = MaterialTheme.typography.labelMedium
             )
             Text(
-                text = stringResource(R.string.email_1_time),
+                text = stringResource(email.createdAt),
                 style = MaterialTheme.typography.labelMedium,
                 color = MaterialTheme.colorScheme.outline
             )
