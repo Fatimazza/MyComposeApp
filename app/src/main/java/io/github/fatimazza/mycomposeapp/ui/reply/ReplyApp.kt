@@ -20,6 +20,9 @@ fun ReplyApp(
             viewModel.resetHomeScreenStates()
         },
         onEmailCardPressed = {},
+        onDetailScreenBackPressed = {
+            viewModel.resetHomeScreenStates()
+        },
         modifier = modifier
     )
 }

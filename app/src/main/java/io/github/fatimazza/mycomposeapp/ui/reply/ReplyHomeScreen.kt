@@ -40,6 +40,7 @@ fun ReplyHomeScreen(
     replyUiState: ReplyUiState,
     onTabPressed: (MailboxType) -> Unit,
     onEmailCardPressed: () -> Unit,
+    onDetailScreenBackPressed: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     val navigationItemContentList = listOf(
