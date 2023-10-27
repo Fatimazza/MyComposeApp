@@ -32,6 +32,7 @@ import io.github.fatimazza.mycomposeapp.R
 
 @Composable
 fun ReplyListOnlyContent(
+    replyUiState: ReplyUiState,
     onEmailCardPressed: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -61,6 +62,7 @@ fun ReplyListOnlyContent(
 
 @Composable
 fun ReplyListAndDetailContent(
+    replyUiState: ReplyUiState,
     onEmailCardPressed: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -87,6 +89,7 @@ fun ReplyListAndDetailContent(
         }
         val activity = LocalContext.current as Activity
         ReplyDetailsScreen(
+            replyUiState = replyUiState,
             onBackPressed = {},
             modifier = Modifier.weight(1f)
         )

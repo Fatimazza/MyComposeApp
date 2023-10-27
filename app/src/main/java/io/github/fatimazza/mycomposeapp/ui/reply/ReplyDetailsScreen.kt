@@ -34,6 +34,7 @@ import io.github.fatimazza.mycomposeapp.data.reply.MailboxType
 
 @Composable
 fun ReplyDetailsScreen(
+    replyUiState: ReplyUiState,
     onBackPressed: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -274,6 +275,7 @@ private fun ActionButton(
 @Composable
 fun ReplyDetailsScreenPreview() {
     ReplyDetailsScreen(
+        replyUiState = ReplyUiState(),
         onBackPressed = {}
     )
 }

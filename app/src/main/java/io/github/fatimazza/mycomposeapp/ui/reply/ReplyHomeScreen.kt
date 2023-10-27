@@ -36,6 +36,7 @@ import io.github.fatimazza.mycomposeapp.data.reply.MailboxType
 
 @Composable
 fun ReplyHomeScreen(
+    replyUiState: ReplyUiState,
     onTabPressed: (MailboxType) -> Unit,
     onEmailCardPressed: () -> Unit,
     modifier: Modifier = Modifier
@@ -63,6 +64,7 @@ fun ReplyHomeScreen(
         )
     )
     ReplyAppContent(
+        replyUiState = replyUiState,
         onTabPressed = onTabPressed,
         onEmailCardPressed = onEmailCardPressed,
         navigationItemContentList = navigationItemContentList,
@@ -72,6 +74,7 @@ fun ReplyHomeScreen(
 
 @Composable
 private fun ReplyAppContent(
+    replyUiState: ReplyUiState,
     onTabPressed: ((MailboxType) -> Unit),
     onEmailCardPressed: () -> Unit,
     navigationItemContentList: List<NavigationItemContent>,
@@ -80,7 +83,7 @@ private fun ReplyAppContent(
     Box(modifier = modifier) {
         val navigationRailContentDescription = stringResource(R.string.navigation_rail)
         ReplyNavigationRail(
-            currentTab = MailboxType.Inbox,
+            currentTab = replyUiState.currentMailbox,
             onTabPressed = onTabPressed,
             navigationItemContentList = navigationItemContentList
         )
@@ -90,6 +93,7 @@ private fun ReplyAppContent(
                 .background(MaterialTheme.colorScheme.inverseOnSurface)
         ) {
             ReplyListOnlyContent(
+                replyUiState = replyUiState,
                 onEmailCardPressed = onEmailCardPressed,
                 modifier = Modifier.weight(1f)
                     .padding(
@@ -98,7 +102,7 @@ private fun ReplyAppContent(
             )
             val bottomNavigationContentDescription = stringResource(R.string.navigation_bottom)
             ReplyBottomNavigationBar(
-                currentTab = MailboxType.Inbox,
+                currentTab = replyUiState.currentMailbox,
                 onTabPressed = onTabPressed,
                 navigationItemContentList = navigationItemContentList,
                 modifier = Modifier
