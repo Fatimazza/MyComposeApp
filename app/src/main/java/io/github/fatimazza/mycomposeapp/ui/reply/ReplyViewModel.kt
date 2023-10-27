@@ -6,6 +6,7 @@ import io.github.fatimazza.mycomposeapp.data.reply.MailboxType
 import io.github.fatimazza.mycomposeapp.data.reply.local.LocalEmailsDataProvider
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.update
 
 class ReplyViewModel : ViewModel() {
 
@@ -26,4 +27,32 @@ class ReplyViewModel : ViewModel() {
                     ?: LocalEmailsDataProvider.defaultEmail
             )
     }
+
+    fun updateCurrentMailbox(mailboxType: MailboxType) {
+        _uiState.update {
+            it.copy(
+                currentMailbox = mailboxType
+            )
+        }
+    }
+
+    fun updateDetailsScreenStates(email: Email) {
+        _uiState.update {
+            it.copy(
+                currentSelectedEmail = email,
+                isShowingHomepage = false
+            )
+        }
+    }
+
+    fun resetHomeScreenStates() {
+        _uiState.update {
+            it.copy(
+                currentSelectedEmail = it.mailboxes[it.currentMailbox]?.get(0)
+                    ?: LocalEmailsDataProvider.defaultEmail,
+                isShowingHomepage = true
+            )
+        }
+    }
+
 }
