@@ -54,7 +54,7 @@ object LocalAccountsDataProvider {
             firstName = R.string.account_8_first_name,
             lastName = R.string.account_8_last_name,
             email = R.string.account_8_email,
-            avatar = R.drawable.reply_avatar_8
+            avatar = R.drawable.reply_avatar_3
         ),
         Account(
             id = 9L,
@@ -68,7 +68,7 @@ object LocalAccountsDataProvider {
             firstName = R.string.account_10_first_name,
             lastName = R.string.account_10_last_name,
             email = R.string.account_10_email,
-            avatar = R.drawable.reply_avatar_3
+            avatar = R.drawable.reply_avatar_9
         ),
         Account(
             id = 11L,
