@@ -50,6 +50,7 @@ fun ReplyApp(
         onDetailScreenBackPressed = {
             viewModel.resetHomeScreenStates()
         },
+        navigationType = navigationType,
         modifier = modifier
     )
 }

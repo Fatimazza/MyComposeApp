@@ -35,6 +35,7 @@ import io.github.fatimazza.mycomposeapp.R
 import io.github.fatimazza.mycomposeapp.data.reply.Email
 import io.github.fatimazza.mycomposeapp.data.reply.MailboxType
 import io.github.fatimazza.mycomposeapp.data.reply.local.LocalAccountsDataProvider
+import io.github.fatimazza.mycomposeapp.ui.reply.utils.ReplyNavigationType
 
 @Composable
 fun ReplyHomeScreen(
@@ -42,6 +43,7 @@ fun ReplyHomeScreen(
     onTabPressed: (MailboxType) -> Unit,
     onEmailCardPressed: (Email) -> Unit,
     onDetailScreenBackPressed: () -> Unit,
+    navigationType: ReplyNavigationType,
     modifier: Modifier = Modifier
 ) {
     val navigationItemContentList = listOf(
@@ -66,20 +68,26 @@ fun ReplyHomeScreen(
             text = stringResource(id = R.string.email_tab_spam)
         )
     )
-    if (replyUiState.isShowingHomepage) {
-        ReplyAppContent(
-            replyUiState = replyUiState,
-            onTabPressed = onTabPressed,
-            onEmailCardPressed = onEmailCardPressed,
-            navigationItemContentList = navigationItemContentList,
-            modifier = modifier
-        )
+    if (navigationType == ReplyNavigationType.PERMANENT_NAVIGATION_DRAWER
+        && replyUiState.isShowingHomepage
+    ) {
+        // Navigation Drawer
     } else {
-        ReplyDetailsScreen(
-            replyUiState = replyUiState,
-            onBackPressed = onDetailScreenBackPressed,
-            modifier = modifier
-        )
+        if (replyUiState.isShowingHomepage) {
+            ReplyAppContent(
+                replyUiState = replyUiState,
+                onTabPressed = onTabPressed,
+                onEmailCardPressed = onEmailCardPressed,
+                navigationItemContentList = navigationItemContentList,
+                modifier = modifier
+            )
+        } else {
+            ReplyDetailsScreen(
+                replyUiState = replyUiState,
+                onBackPressed = onDetailScreenBackPressed,
+                modifier = modifier
+            )
+        }
     }
 }
 
@@ -106,7 +114,8 @@ private fun ReplyAppContent(
             ReplyListOnlyContent(
                 replyUiState = replyUiState,
                 onEmailCardPressed = onEmailCardPressed,
-                modifier = Modifier.weight(1f)
+                modifier = Modifier
+                    .weight(1f)
                     .padding(
                         horizontal = dimensionResource(R.dimen.email_list_only_horizontal_padding)
                     )
