@@ -221,7 +221,7 @@ private fun ReplyHomeTopBar(modifier: Modifier = Modifier) {
                 .padding(start = dimensionResource(R.dimen.topbar_logo_padding_start))
         )
         ReplyProfileImage(
-            drawableResource = R.drawable.reply_avatar_1,
+            drawableResource = LocalAccountsDataProvider.defaultAccount.avatar,
             description = stringResource(R.string.email_profile),
             modifier = Modifier
                 .padding(end = dimensionResource(R.dimen.topbar_profile_image_padding_end))
