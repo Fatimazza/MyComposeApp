@@ -30,6 +30,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import io.github.fatimazza.mycomposeapp.R
+import io.github.fatimazza.mycomposeapp.data.reply.local.LocalAccountsDataProvider
 
 @Composable
 fun ReplyListOnlyContent(
@@ -152,7 +153,7 @@ private fun ReplyEmailItemHeader(
 ) {
     Row(modifier = modifier) {
         ReplyProfileImage(
-            drawableResource = R.drawable.reply_avatar_1,
+            drawableResource = LocalAccountsDataProvider.defaultAccount.avatar,
             description = stringResource(R.string.account_1_first_name) + " "
                     + stringResource(R.string.account_1_last_name),
             modifier = Modifier.size(dimensionResource(R.dimen.email_header_profile_size))

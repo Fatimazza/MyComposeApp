@@ -33,6 +33,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import io.github.fatimazza.mycomposeapp.R
 import io.github.fatimazza.mycomposeapp.data.reply.MailboxType
+import io.github.fatimazza.mycomposeapp.data.reply.local.LocalAccountsDataProvider
 
 @Composable
 fun ReplyHomeScreen(
@@ -206,7 +207,7 @@ private fun NavigationDrawerHeader(
     ) {
         ReplyLogo(modifier = Modifier.size(dimensionResource(R.dimen.reply_logo_size)))
         ReplyProfileImage(
-            drawableResource = R.drawable.reply_avatar_1,
+            drawableResource = LocalAccountsDataProvider.defaultAccount.avatar,
             description = stringResource(id = R.string.email_profile),
             modifier = Modifier
                 .size(dimensionResource(R.dimen.profile_image_size))
