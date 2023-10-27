@@ -48,11 +48,13 @@ fun ReplyDetailsScreen(
             item {
                 ReplyDetailsScreenTopBar(
                     onBackPressed,
+                    replyUiState,
                     Modifier
                         .fillMaxWidth()
                         .padding(bottom = dimensionResource(R.dimen.detail_topbar_padding_bottom))
                 )
                 ReplyEmailDetailsCard(
+                    mailboxType = replyUiState.currentMailbox,
                     modifier = Modifier.padding(horizontal = dimensionResource(R.dimen.detail_card_outer_padding_horizontal))
                 )
             }
@@ -63,6 +65,7 @@ fun ReplyDetailsScreen(
 @Composable
 private fun ReplyDetailsScreenTopBar(
     onBackButtonClicked: () -> Unit,
+    replyUiState: ReplyUiState,
     modifier: Modifier = Modifier
 ) {
     Row(
@@ -87,7 +90,7 @@ private fun ReplyDetailsScreenTopBar(
                 .padding(end = dimensionResource(R.dimen.detail_subject_padding_end))
         ) {
             Text(
-                text = stringResource(R.string.email_0_subject),
+                text = stringResource(replyUiState.currentSelectedEmail.subject),
                 style = MaterialTheme.typography.titleMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
@@ -97,7 +100,7 @@ private fun ReplyDetailsScreenTopBar(
 
 @Composable
 private fun ReplyEmailDetailsCard(
-    mailboxType: MailboxType = MailboxType.Spam,
+    mailboxType: MailboxType,
     modifier: Modifier = Modifier
 ) {
     val context = LocalContext.current
