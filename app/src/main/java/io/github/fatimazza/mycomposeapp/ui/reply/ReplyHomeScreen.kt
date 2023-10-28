@@ -1,5 +1,6 @@
 package io.github.fatimazza.mycomposeapp.ui.reply
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -97,6 +98,7 @@ fun ReplyHomeScreen(
                 onTabPressed = onTabPressed,
                 onEmailCardPressed = onEmailCardPressed,
                 navigationItemContentList = navigationItemContentList,
+                navigationType = navigationType,
                 modifier = modifier
             )
         }
@@ -107,6 +109,7 @@ fun ReplyHomeScreen(
                 onTabPressed = onTabPressed,
                 onEmailCardPressed = onEmailCardPressed,
                 navigationItemContentList = navigationItemContentList,
+                navigationType = navigationType,
                 modifier = modifier
             )
         } else {
@@ -125,15 +128,18 @@ private fun ReplyAppContent(
     onTabPressed: ((MailboxType) -> Unit),
     onEmailCardPressed: (Email) -> Unit,
     navigationItemContentList: List<NavigationItemContent>,
+    navigationType: ReplyNavigationType,
     modifier: Modifier = Modifier
 ) {
     Box(modifier = modifier) {
-        val navigationRailContentDescription = stringResource(R.string.navigation_rail)
-        ReplyNavigationRail(
-            currentTab = replyUiState.currentMailbox,
-            onTabPressed = onTabPressed,
-            navigationItemContentList = navigationItemContentList
-        )
+        AnimatedVisibility(visible = navigationType == ReplyNavigationType.NAVIGATION_RAIL) {
+            val navigationRailContentDescription = stringResource(R.string.navigation_rail)
+            ReplyNavigationRail(
+                currentTab = replyUiState.currentMailbox,
+                onTabPressed = onTabPressed,
+                navigationItemContentList = navigationItemContentList
+            )
+        }
         Column(
             modifier = Modifier
                 .fillMaxSize()
