@@ -29,6 +29,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -49,6 +50,7 @@ fun ReplyDetailsScreen(
     Box(modifier = modifier) {
         LazyColumn(
             modifier = Modifier
+                .testTag(stringResource(R.string.reply_details_screen))
                 .fillMaxSize()
                 .background(color = MaterialTheme.colorScheme.inverseOnSurface)
                 .padding(top = dimensionResource(R.dimen.detail_card_list_padding_top))

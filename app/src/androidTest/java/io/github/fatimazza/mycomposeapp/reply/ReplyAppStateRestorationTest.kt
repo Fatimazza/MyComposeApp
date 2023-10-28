@@ -2,14 +2,19 @@ package io.github.fatimazza.mycomposeapp.reply
 
 import androidx.activity.ComponentActivity
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
+import androidx.compose.ui.test.assertAny
 import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.hasAnyDescendant
+import androidx.compose.ui.test.hasText
 import androidx.compose.ui.test.junit4.StateRestorationTester
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import androidx.compose.ui.test.onChildren
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import io.github.fatimazza.mycomposeapp.R
 import io.github.fatimazza.mycomposeapp.data.reply.local.LocalEmailsDataProvider
 import io.github.fatimazza.mycomposeapp.onNodeWithContentDescriptionForStringId
+import io.github.fatimazza.mycomposeapp.onNodeWithTagForStringId
 import io.github.fatimazza.mycomposeapp.ui.reply.ReplyApp
 import org.junit.Rule
 import org.junit.Test
@@ -57,5 +62,28 @@ class ReplyAppStateRestorationTest {
         composeTestRule.onNodeWithText(
             composeTestRule.activity.getString(LocalEmailsDataProvider.allEmails[2].body)
         ).assertExists()
+    }
+
+    @Test
+    fun expandedDevice_selectedEmailEmailRetained_afterConfigChange() {
+        // Setup expanded window
+        val stateRestorationTester = StateRestorationTester(composeTestRule)
+        stateRestorationTester.setContent { ReplyApp(windowSize = WindowWidthSizeClass.Expanded) }
+
+        // Given third email is displayed
+        composeTestRule.onNodeWithText(
+            composeTestRule.activity.getString(LocalEmailsDataProvider.allEmails[2].body)
+        ).assertIsDisplayed()
+
+        // Select third email
+        composeTestRule.onNodeWithText(
+            composeTestRule.activity.getString(LocalEmailsDataProvider.allEmails[2].subject)
+        ).performClick()
+
+        // Verify that third email is displayed on the details screen
+        composeTestRule.onNodeWithTagForStringId(R.string.reply_details_screen).onChildren()
+            .assertAny(hasAnyDescendant(hasText(
+                composeTestRule.activity.getString(LocalEmailsDataProvider.allEmails[2].body)))
+            )
     }
 }
