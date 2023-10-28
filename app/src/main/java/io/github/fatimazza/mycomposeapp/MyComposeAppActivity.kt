@@ -145,6 +145,15 @@ fun MyComposeApp() {
             ) {
                 Text(stringResource(R.string.title_reply))
             }
+            Spacer(modifier = Modifier.height(16.dp))
+            Button(
+                onClick = {
+                    context.startActivity(Intent(context, RaceTrackerActivity::class.java))
+                },
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text(stringResource(R.string.title_race_tracker))
+            }
         }
     }
 }

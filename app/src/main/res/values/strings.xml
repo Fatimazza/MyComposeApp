@@ -262,4 +262,5 @@
     <string name="email_11_time">3 hours ago</string>
     
     <string name="title_activity_race_tracker">RaceTrackerActivity</string>
+    <string name="title_race_tracker">Race Tracker App</string>
 </resources>
