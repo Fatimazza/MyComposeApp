@@ -56,4 +56,14 @@ class RaceParticipantTest {
         }
         assertEquals(expectedProgress * 2, raceParticipant.currentProgress)
     }
+
+    @Test(expected = IllegalArgumentException::class)
+    fun raceParticipant_ProgressIncrementZero_ExceptionThrown() = runTest {
+        RaceParticipant(name = "Progress Test", progressIncrement = 0)
+    }
+
+    @Test(expected = IllegalArgumentException::class)
+    fun raceParticipant_MaxProgressZero_ExceptionThrown() {
+        RaceParticipant(name = "Progress Test", maxProgress = 0)
+    }
 }
