@@ -16,6 +16,7 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import io.github.fatimazza.mycomposeapp.R
+import io.github.fatimazza.mycomposeapp.ui.theme.MyComposeAppTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -52,7 +53,8 @@ fun MarsTopAppBar(scrollBehavior: TopAppBarScrollBehavior, modifier: Modifier = 
 
 @Preview(showBackground = true)
 @Composable
-fun ResultScreenPreview() {
-    fun MarsPhotosApp() {
+fun MarsPhotosAppPreview() {
+    MyComposeAppTheme {
+        MarsPhotosApp()
     }
 }
