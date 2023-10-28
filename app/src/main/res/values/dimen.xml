@@ -1,4 +1,5 @@
 <resources>
+    <dimen name="padding_large">24dp</dimen>
     <dimen name="padding_medium">16dp</dimen>
     <dimen name="padding_small">8dp</dimen>
     <dimen name="thickness_divider">1dp</dimen>
@@ -40,4 +41,7 @@
     <dimen name="detail_action_button_padding_vertical">20dp</dimen>
     <dimen name="detail_topbar_padding_bottom">24dp</dimen>
     <dimen name="detail_topbar_back_button_padding_horizontal">24dp</dimen>
+
+    <dimen name="race_progress_indicator_height">16dp</dimen>
+    <dimen name="race_progress_indicator_corner_radius">4dp</dimen>
 </resources>
