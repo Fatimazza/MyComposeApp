@@ -273,4 +273,9 @@
     
     <string name="title_activity_mars_photos">MarsPhotosActivity</string>
     <string name="title_mars_photos">Mars Photos App</string>
+    <string name="mars_loading_failed">Failed to load</string>
+    <string name="mars_placeholder_result">Placeholder result text</string>
+    <string name="mars_retry">Retry</string>
+    <string name="mars_loading">Loading</string>
+    <string name="mars_photo">Mars photo</string>
 </resources>
