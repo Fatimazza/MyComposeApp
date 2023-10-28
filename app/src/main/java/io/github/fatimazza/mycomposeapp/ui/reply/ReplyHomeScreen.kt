@@ -41,6 +41,7 @@ import io.github.fatimazza.mycomposeapp.R
 import io.github.fatimazza.mycomposeapp.data.reply.Email
 import io.github.fatimazza.mycomposeapp.data.reply.MailboxType
 import io.github.fatimazza.mycomposeapp.data.reply.local.LocalAccountsDataProvider
+import io.github.fatimazza.mycomposeapp.ui.reply.utils.ReplyContentType
 import io.github.fatimazza.mycomposeapp.ui.reply.utils.ReplyNavigationType
 
 @Composable
@@ -50,6 +51,7 @@ fun ReplyHomeScreen(
     onEmailCardPressed: (Email) -> Unit,
     onDetailScreenBackPressed: () -> Unit,
     navigationType: ReplyNavigationType,
+    contentType: ReplyContentType,
     modifier: Modifier = Modifier
 ) {
     val navigationItemContentList = listOf(
@@ -74,8 +76,8 @@ fun ReplyHomeScreen(
             text = stringResource(id = R.string.email_tab_spam)
         )
     )
-    if (navigationType == ReplyNavigationType.PERMANENT_NAVIGATION_DRAWER
-        && replyUiState.isShowingHomepage
+    if (
+        navigationType == ReplyNavigationType.PERMANENT_NAVIGATION_DRAWER
     ) {
         PermanentNavigationDrawer(
             drawerContent = {
@@ -99,6 +101,7 @@ fun ReplyHomeScreen(
                 onEmailCardPressed = onEmailCardPressed,
                 navigationItemContentList = navigationItemContentList,
                 navigationType = navigationType,
+                contentType = contentType,
                 modifier = modifier
             )
         }
@@ -110,6 +113,7 @@ fun ReplyHomeScreen(
                 onEmailCardPressed = onEmailCardPressed,
                 navigationItemContentList = navigationItemContentList,
                 navigationType = navigationType,
+                contentType = contentType,
                 modifier = modifier
             )
         } else {
@@ -129,6 +133,7 @@ private fun ReplyAppContent(
     onEmailCardPressed: (Email) -> Unit,
     navigationItemContentList: List<NavigationItemContent>,
     navigationType: ReplyNavigationType,
+    contentType: ReplyContentType,
     modifier: Modifier = Modifier
 ) {
     Box(modifier = modifier) {
@@ -148,15 +153,23 @@ private fun ReplyAppContent(
                     .fillMaxSize()
                     .background(MaterialTheme.colorScheme.inverseOnSurface)
             ) {
-                ReplyListOnlyContent(
-                    replyUiState = replyUiState,
-                    onEmailCardPressed = onEmailCardPressed,
-                    modifier = Modifier
-                        .weight(1f)
-                        .padding(
-                            horizontal = dimensionResource(R.dimen.email_list_only_horizontal_padding)
-                        )
-                )
+                if (contentType == ReplyContentType.LIST_AND_DETAIL) {
+                    ReplyListAndDetailContent(
+                        replyUiState = replyUiState,
+                        onEmailCardPressed = onEmailCardPressed,
+                        modifier = Modifier.weight(1f)
+                    )
+                } else {
+                    ReplyListOnlyContent(
+                        replyUiState = replyUiState,
+                        onEmailCardPressed = onEmailCardPressed,
+                        modifier = Modifier
+                            .weight(1f)
+                            .padding(
+                                horizontal = dimensionResource(R.dimen.email_list_only_horizontal_padding)
+                            )
+                    )
+                }
                 AnimatedVisibility(
                     visible = navigationType == ReplyNavigationType.BOTTOM_NAVIGATION
                 ) {

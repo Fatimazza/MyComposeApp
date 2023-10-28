@@ -58,6 +58,7 @@ fun ReplyApp(
             viewModel.resetHomeScreenStates()
         },
         navigationType = navigationType,
+        contentType = contentType,
         modifier = modifier
     )
 }
