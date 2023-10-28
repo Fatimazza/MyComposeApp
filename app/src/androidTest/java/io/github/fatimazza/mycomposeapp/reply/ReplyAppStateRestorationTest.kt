@@ -82,8 +82,23 @@ class ReplyAppStateRestorationTest {
 
         // Verify that third email is displayed on the details screen
         composeTestRule.onNodeWithTagForStringId(R.string.reply_details_screen).onChildren()
-            .assertAny(hasAnyDescendant(hasText(
-                composeTestRule.activity.getString(LocalEmailsDataProvider.allEmails[2].body)))
+            .assertAny(
+                hasAnyDescendant(
+                    hasText(
+                        composeTestRule.activity.getString(LocalEmailsDataProvider.allEmails[2].body)
+                    )
+                )
             )
+
+        // Simulate a config change
+        stateRestorationTester.emulateSavedInstanceStateRestore()
+
+        // Verify that it still shows the detailed screen for the same email
+        composeTestRule.onNodeWithContentDescriptionForStringId(
+            R.string.navigation_back
+        ).assertExists()
+        composeTestRule.onNodeWithText(
+            composeTestRule.activity.getString(LocalEmailsDataProvider.allEmails[2].body)
+        ).assertExists()
     }
 }
