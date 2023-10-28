@@ -263,4 +263,11 @@
     
     <string name="title_activity_race_tracker">RaceTrackerActivity</string>
     <string name="title_race_tracker">Race Tracker App</string>
+    <string name="race_run">Run a race</string>
+    <string name="race_pause">Pause</string>
+    <string name="race_start">Start</string>
+    <string name="race_reset">Reset</string>
+    <string name="race_progress_percentage">%1$d%%</string>
+    <string name="race_player_one_name">Player 1</string>
+    <string name="race_player_two_name">Player 2</string>
 </resources>
