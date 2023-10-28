@@ -18,7 +18,10 @@ import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -43,9 +46,12 @@ fun RaceTrackerApp() {
     val playerTwo = remember {
         RaceParticipant(name = "Player 2", progressIncrement = 2)
     }
+    var raceInProgress by remember { mutableStateOf(false) }
+
     RaceTrackerScreen(
         playerOne = playerOne,
         playerTwo = playerTwo,
+        isRunning = raceInProgress,
     )
 }
 
@@ -53,6 +59,7 @@ fun RaceTrackerApp() {
 private fun RaceTrackerScreen(
     playerOne: RaceParticipant,
     playerTwo: RaceParticipant,
+    isRunning: Boolean,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -84,6 +91,7 @@ private fun RaceTrackerScreen(
             )
             Spacer(modifier = Modifier.size(dimensionResource(R.dimen.padding_large)))
             RaceControls(
+                isRunning = isRunning
             )
         }
     }
@@ -131,13 +139,14 @@ private fun StatusIndicator(
 @Composable
 private fun RaceControls(
     modifier: Modifier = Modifier,
+    isRunning: Boolean = true,
 ) {
     Row(
         modifier = modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
         Button(onClick = { }) {
-            Text(if (true) stringResource(R.string.race_pause) else stringResource(R.string.race_start))
+            Text(if (isRunning) stringResource(R.string.race_pause) else stringResource(R.string.race_start))
         }
 
         Button(onClick = { }) {
