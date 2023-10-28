@@ -52,6 +52,7 @@ fun RaceTrackerApp() {
         playerOne = playerOne,
         playerTwo = playerTwo,
         isRunning = raceInProgress,
+        onRunStateChange = { raceInProgress = it }
     )
 }
 
@@ -60,6 +61,7 @@ private fun RaceTrackerScreen(
     playerOne: RaceParticipant,
     playerTwo: RaceParticipant,
     isRunning: Boolean,
+    onRunStateChange: (Boolean) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -103,7 +105,8 @@ private fun RaceTrackerScreen(
             )
             Spacer(modifier = Modifier.size(dimensionResource(R.dimen.padding_large)))
             RaceControls(
-                isRunning = isRunning
+                isRunning = isRunning,
+                onRunStateChange = onRunStateChange,
             )
         }
     }
@@ -153,6 +156,7 @@ private fun StatusIndicator(
 
 @Composable
 private fun RaceControls(
+    onRunStateChange: (Boolean) -> Unit,
     modifier: Modifier = Modifier,
     isRunning: Boolean = true,
 ) {
@@ -160,7 +164,7 @@ private fun RaceControls(
         modifier = modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
-        Button(onClick = { }) {
+        Button(onClick = { onRunStateChange(!isRunning) }) {
             Text(if (isRunning) stringResource(R.string.race_pause) else stringResource(R.string.race_start))
         }
 
