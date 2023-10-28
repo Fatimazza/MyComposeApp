@@ -133,7 +133,9 @@ private fun ReplyAppContent(
 ) {
     Box(modifier = modifier) {
         Row(modifier = Modifier.fillMaxSize()) {
-            AnimatedVisibility(visible = navigationType == ReplyNavigationType.NAVIGATION_RAIL) {
+            AnimatedVisibility(
+                visible = navigationType == ReplyNavigationType.NAVIGATION_RAIL
+            ) {
                 val navigationRailContentDescription = stringResource(R.string.navigation_rail)
                 ReplyNavigationRail(
                     currentTab = replyUiState.currentMailbox,
@@ -155,14 +157,19 @@ private fun ReplyAppContent(
                             horizontal = dimensionResource(R.dimen.email_list_only_horizontal_padding)
                         )
                 )
-                val bottomNavigationContentDescription = stringResource(R.string.navigation_bottom)
-                ReplyBottomNavigationBar(
-                    currentTab = replyUiState.currentMailbox,
-                    onTabPressed = onTabPressed,
-                    navigationItemContentList = navigationItemContentList,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                )
+                AnimatedVisibility(
+                    visible = navigationType == ReplyNavigationType.BOTTOM_NAVIGATION
+                ) {
+                    val bottomNavigationContentDescription =
+                        stringResource(R.string.navigation_bottom)
+                    ReplyBottomNavigationBar(
+                        currentTab = replyUiState.currentMailbox,
+                        onTabPressed = onTabPressed,
+                        navigationItemContentList = navigationItemContentList,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                    )
+                }
             }
         }
     }

@@ -35,7 +35,7 @@ fun ReplyAppCompatPreview() {
     MyComposeAppTheme {
         Surface {
             ReplyApp(
-                windowSize = WindowWidthSizeClass.Expanded,
+                windowSize = WindowWidthSizeClass.Medium,
             )
         }
     }
