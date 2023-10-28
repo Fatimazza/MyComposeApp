@@ -84,10 +84,22 @@ private fun RaceTrackerScreen(
             )
             StatusIndicator(
                 participantName = playerOne.name,
+                currentProgress = playerOne.currentProgress,
+                maxProgress = stringResource(
+                    R.string.race_progress_percentage,
+                    playerOne.maxProgress
+                ),
+                progressFactor = playerOne.progressFactor
             )
             Spacer(modifier = Modifier.size(dimensionResource(R.dimen.padding_large)))
             StatusIndicator(
                 participantName = playerTwo.name,
+                currentProgress = playerTwo.currentProgress,
+                maxProgress = stringResource(
+                    R.string.race_progress_percentage,
+                    playerTwo.maxProgress
+                ),
+                progressFactor = playerTwo.progressFactor
             )
             Spacer(modifier = Modifier.size(dimensionResource(R.dimen.padding_large)))
             RaceControls(
@@ -100,6 +112,9 @@ private fun RaceTrackerScreen(
 @Composable
 private fun StatusIndicator(
     participantName: String,
+    currentProgress: Int,
+    maxProgress: String,
+    progressFactor: Float,
     modifier: Modifier = Modifier
 ) {
     Row {
@@ -111,7 +126,7 @@ private fun StatusIndicator(
             verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_small))
         ) {
             LinearProgressIndicator(
-                progress = 0.3f,
+                progress = progressFactor,
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(dimensionResource(R.dimen.race_progress_indicator_height))
@@ -122,12 +137,12 @@ private fun StatusIndicator(
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Text(
-                    text = stringResource(R.string.race_progress_percentage, 0),
+                    text = stringResource(R.string.race_progress_percentage, currentProgress),
                     textAlign = TextAlign.Start,
                     modifier = Modifier.weight(1f)
                 )
                 Text(
-                    text = "100",
+                    text = maxProgress,
                     textAlign = TextAlign.End,
                     modifier = Modifier.weight(1f)
                 )
