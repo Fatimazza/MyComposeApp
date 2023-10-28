@@ -149,7 +149,9 @@ private fun ReplyAppContent(
                 ReplyNavigationRail(
                     currentTab = replyUiState.currentMailbox,
                     onTabPressed = onTabPressed,
-                    navigationItemContentList = navigationItemContentList
+                    navigationItemContentList = navigationItemContentList,
+                    modifier = Modifier
+                        .testTag(navigationRailContentDescription)
                 )
             }
             Column(
