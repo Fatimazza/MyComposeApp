@@ -46,5 +46,16 @@ class ReplyAppStateRestorationTest {
         composeTestRule.onNodeWithText(
             composeTestRule.activity.getString(LocalEmailsDataProvider.allEmails[2].body)
         ).assertExists()
+
+        // Simulate a config change
+        stateRestorationTester.emulateSavedInstanceStateRestore()
+
+        // Verify that it still shows the detailed screen for the same email
+        composeTestRule.onNodeWithContentDescriptionForStringId(
+            R.string.navigation_back
+        ).assertExists()
+        composeTestRule.onNodeWithText(
+            composeTestRule.activity.getString(LocalEmailsDataProvider.allEmails[2].body)
+        ).assertExists()
     }
 }
