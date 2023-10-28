@@ -270,4 +270,6 @@
     <string name="race_progress_percentage">%1$d%%</string>
     <string name="race_player_one_name">Player 1</string>
     <string name="race_player_two_name">Player 2</string>
+    
+    <string name="title_activity_mars_photos">MarsPhotosActivity</string>
 </resources>
