@@ -107,6 +107,11 @@ private fun RaceTrackerScreen(
             RaceControls(
                 isRunning = isRunning,
                 onRunStateChange = onRunStateChange,
+                onReset = {
+                    playerOne.reset()
+                    playerTwo.reset()
+                    onRunStateChange(false)
+                }
             )
         }
     }
@@ -156,6 +161,7 @@ private fun StatusIndicator(
 
 @Composable
 private fun RaceControls(
+    onReset: () -> Unit,
     onRunStateChange: (Boolean) -> Unit,
     modifier: Modifier = Modifier,
     isRunning: Boolean = true,
@@ -167,8 +173,7 @@ private fun RaceControls(
         Button(onClick = { onRunStateChange(!isRunning) }) {
             Text(if (isRunning) stringResource(R.string.race_pause) else stringResource(R.string.race_start))
         }
-
-        Button(onClick = { }) {
+        Button(onClick = onReset) {
             Text(stringResource(R.string.race_reset))
         }
     }
