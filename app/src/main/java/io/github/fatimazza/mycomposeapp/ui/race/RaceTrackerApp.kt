@@ -33,6 +33,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import io.github.fatimazza.mycomposeapp.R
 import io.github.fatimazza.mycomposeapp.ui.theme.MyComposeAppTheme
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 
 @Composable
@@ -52,8 +53,10 @@ fun RaceTrackerApp() {
 
     if (raceInProgress) {
         LaunchedEffect(playerOne, playerTwo) {
-            launch { playerOne.run() }
-            launch { playerTwo.run() }
+            coroutineScope {
+                launch { playerOne.run() }
+                launch { playerTwo.run() }
+            }
             raceInProgress = false
         }
     }
