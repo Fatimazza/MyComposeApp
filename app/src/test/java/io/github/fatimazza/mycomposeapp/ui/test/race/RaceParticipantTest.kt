@@ -44,4 +44,16 @@ class RaceParticipantTest {
         racerJob.cancelAndJoin()
         assertEquals(expectedProgress, raceParticipant.currentProgress)
     }
+
+    @Test
+    fun raceParticipant_RacePausedAndResumed_ProgressUpdated() = runTest {
+        val expectedProgress = 5
+        repeat(2) {
+            val racerJob = launch { raceParticipant.run() }
+            advanceTimeBy(expectedProgress * raceParticipant.progressDelayMillis)
+            runCurrent()
+            racerJob.cancelAndJoin()
+        }
+        assertEquals(expectedProgress * 2, raceParticipant.currentProgress)
+    }
 }
