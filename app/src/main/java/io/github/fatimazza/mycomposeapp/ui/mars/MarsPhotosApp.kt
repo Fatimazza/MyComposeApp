@@ -31,7 +31,7 @@ fun MarsPhotosApp() {
                 .fillMaxSize()
                 .padding(it)
         ) {
-
+            MarsHomeScreen()
         }
     }
 }
