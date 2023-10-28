@@ -1,6 +1,7 @@
 package io.github.fatimazza.mycomposeapp.ui.test.race
 
 import io.github.fatimazza.mycomposeapp.ui.race.RaceParticipant
+import kotlinx.coroutines.cancelAndJoin
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.advanceTimeBy
 import kotlinx.coroutines.test.runCurrent
@@ -32,5 +33,15 @@ class RaceParticipantTest {
         advanceTimeBy(raceParticipant.maxProgress * raceParticipant.progressDelayMillis)
         runCurrent()
         assertEquals(100, raceParticipant.currentProgress)
+    }
+
+    @Test
+    fun raceParticipant_RacePaused_ProgressUpdated() = runTest {
+        val expectedProgress = 5
+        val racerJob = launch { raceParticipant.run() }
+        advanceTimeBy(expectedProgress * raceParticipant.progressDelayMillis)
+        runCurrent()
+        racerJob.cancelAndJoin()
+        assertEquals(expectedProgress, raceParticipant.currentProgress)
     }
 }
