@@ -32,4 +32,18 @@ class ReplyAppTest {
             R.string.navigation_bottom
         ).assertExists()
     }
+
+    @Test
+    fun expandedDevice_verifyUsingNavigationDrawer() {
+        // Set up expanded window
+        composeTestRule.setContent {
+            ReplyApp(
+                windowSize = WindowWidthSizeClass.Expanded
+            )
+        }
+        // Navigation drawer is displayed
+        composeTestRule.onNodeWithTagForStringId(
+            R.string.navigation_drawer
+        ).assertExists()
+    }
 }
