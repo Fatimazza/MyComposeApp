@@ -18,6 +18,7 @@ import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -31,11 +32,27 @@ import io.github.fatimazza.mycomposeapp.ui.theme.MyComposeAppTheme
 
 @Composable
 fun RaceTrackerApp() {
-    RaceTrackerScreen()
+    /**
+     * Note: To survive the configuration changes such as screen rotation, [rememberSaveable] should
+     * be used with custom Saver object. But to keep the example simple, and keep focus on
+     * Coroutines that implementation detail is stripped out.
+     */
+    val playerOne = remember {
+        RaceParticipant(name = "Player 1", progressIncrement = 1)
+    }
+    val playerTwo = remember {
+        RaceParticipant(name = "Player 2", progressIncrement = 2)
+    }
+    RaceTrackerScreen(
+        playerOne = playerOne,
+        playerTwo = playerTwo,
+    )
 }
 
 @Composable
 private fun RaceTrackerScreen(
+    playerOne: RaceParticipant,
+    playerTwo: RaceParticipant,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -58,9 +75,13 @@ private fun RaceTrackerScreen(
                 contentDescription = null,
                 modifier = Modifier.padding(bottom = dimensionResource(R.dimen.padding_medium)),
             )
-            StatusIndicator()
+            StatusIndicator(
+                participantName = playerOne.name,
+            )
             Spacer(modifier = Modifier.size(dimensionResource(R.dimen.padding_large)))
-            StatusIndicator()
+            StatusIndicator(
+                participantName = playerTwo.name,
+            )
             Spacer(modifier = Modifier.size(dimensionResource(R.dimen.padding_large)))
             RaceControls(
             )
@@ -70,10 +91,11 @@ private fun RaceTrackerScreen(
 
 @Composable
 private fun StatusIndicator(
+    participantName: String,
     modifier: Modifier = Modifier
 ) {
     Row {
-        Text("participant", Modifier.padding(end = dimensionResource(R.dimen.padding_small)))
+        Text(participantName, Modifier.padding(end = dimensionResource(R.dimen.padding_small)))
         Column(
             modifier = modifier
                 .fillMaxWidth()
