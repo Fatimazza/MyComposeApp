@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
@@ -61,6 +62,8 @@ private fun RaceTrackerScreen(
             Spacer(modifier = Modifier.size(dimensionResource(R.dimen.padding_large)))
             StatusIndicator()
             Spacer(modifier = Modifier.size(dimensionResource(R.dimen.padding_large)))
+            RaceControls(
+            )
         }
     }
 }
@@ -99,6 +102,24 @@ private fun StatusIndicator(
                     modifier = Modifier.weight(1f)
                 )
             }
+        }
+    }
+}
+
+@Composable
+private fun RaceControls(
+    modifier: Modifier = Modifier,
+) {
+    Row(
+        modifier = modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceEvenly
+    ) {
+        Button(onClick = { }) {
+            Text(if (true) stringResource(R.string.race_pause) else stringResource(R.string.race_start))
+        }
+
+        Button(onClick = { }) {
+            Text(stringResource(R.string.race_reset))
         }
     }
 }
