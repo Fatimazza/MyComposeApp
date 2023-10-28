@@ -1,4 +1,4 @@
-package io.github.fatimazza.mycomposeapp.cupcake
+package io.github.fatimazza.mycomposeapp
 
 import androidx.activity.ComponentActivity
 import androidx.annotation.StringRes

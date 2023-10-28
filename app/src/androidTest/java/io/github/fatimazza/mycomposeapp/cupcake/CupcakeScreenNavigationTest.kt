@@ -4,11 +4,11 @@ import androidx.activity.ComponentActivity
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
-import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.navigation.compose.ComposeNavigator
 import androidx.navigation.testing.TestNavHostController
 import io.github.fatimazza.mycomposeapp.R
+import io.github.fatimazza.mycomposeapp.onNodeWithStringId
 import io.github.fatimazza.mycomposeapp.ui.cupcake.CupcakeApp
 import io.github.fatimazza.mycomposeapp.ui.cupcake.CupcakeScreen
 import org.junit.Before
