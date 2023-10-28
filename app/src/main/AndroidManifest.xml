@@ -13,6 +13,11 @@
         android:theme="@style/Theme.MyComposeApp"
         tools:targetApi="31">
         <activity
+            android:name=".RaceTrackerActivity"
+            android:exported="false"
+            android:label="@string/title_activity_race_tracker"
+            android:theme="@style/Theme.MyComposeApp" />
+        <activity
             android:name=".ReplyActivity"
             android:exported="false"
             android:label="@string/title_activity_reply"
