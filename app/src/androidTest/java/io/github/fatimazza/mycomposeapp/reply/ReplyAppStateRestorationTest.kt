@@ -1,8 +1,18 @@
 package io.github.fatimazza.mycomposeapp.reply
 
 import androidx.activity.ComponentActivity
+import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
+import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.junit4.StateRestorationTester
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import androidx.compose.ui.test.onNodeWithText
+import androidx.compose.ui.test.performClick
+import io.github.fatimazza.mycomposeapp.R
+import io.github.fatimazza.mycomposeapp.data.reply.local.LocalEmailsDataProvider
+import io.github.fatimazza.mycomposeapp.onNodeWithContentDescriptionForStringId
+import io.github.fatimazza.mycomposeapp.ui.reply.ReplyApp
 import org.junit.Rule
+import org.junit.Test
 
 class ReplyAppStateRestorationTest {
 
@@ -12,4 +22,29 @@ class ReplyAppStateRestorationTest {
      */
     @get:Rule
     val composeTestRule = createAndroidComposeRule<ComponentActivity>()
+
+    @Test
+    fun compactDevice_selectedEmailEmailRetained_afterConfigChange() {
+        // Setup compact window
+        val stateRestorationTester = StateRestorationTester(composeTestRule)
+        stateRestorationTester.setContent { ReplyApp(windowSize = WindowWidthSizeClass.Compact) }
+
+        // Given third email is displayed
+        composeTestRule.onNodeWithText(
+            composeTestRule.activity.getString(LocalEmailsDataProvider.allEmails[2].body)
+        ).assertIsDisplayed()
+
+        // Open detailed page
+        composeTestRule.onNodeWithText(
+            composeTestRule.activity.getString(LocalEmailsDataProvider.allEmails[2].subject)
+        ).performClick()
+
+        // Verify that it shows the detailed screen for the correct email
+        composeTestRule.onNodeWithContentDescriptionForStringId(
+            R.string.navigation_back
+        ).assertExists()
+        composeTestRule.onNodeWithText(
+            composeTestRule.activity.getString(LocalEmailsDataProvider.allEmails[2].body)
+        ).assertExists()
+    }
 }
