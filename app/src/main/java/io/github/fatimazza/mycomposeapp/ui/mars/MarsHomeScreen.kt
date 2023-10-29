@@ -12,10 +12,15 @@ import io.github.fatimazza.mycomposeapp.ui.theme.MyComposeAppTheme
 
 @Composable
 fun MarsHomeScreen(
-    marsUiState: String,
+    marsUiState: MarsUiState,
     modifier: Modifier = Modifier
 ) {
-    ResultScreen(marsUiState, modifier)
+    when (marsUiState) {
+        is MarsUiState.Success -> ResultScreen(
+            marsUiState.photos, modifier
+        )
+        else -> {}
+    }
 }
 
 /**
