@@ -3,6 +3,7 @@ package io.github.fatimazza.mycomposeapp.ui.mars
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -26,7 +27,8 @@ fun MarsHomeScreen(
         )
 
         is MarsUiState.Success -> ResultScreen(
-            marsUiState.photos, modifier
+            marsUiState.photos,
+            modifier = modifier.fillMaxWidth()
         )
 
         else -> {}
