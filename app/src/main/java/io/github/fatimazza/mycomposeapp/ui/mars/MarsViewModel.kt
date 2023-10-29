@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import io.github.fatimazza.mycomposeapp.network.MarsApi
 import kotlinx.coroutines.launch
+import java.io.IOException
 
 class MarsViewModel : ViewModel() {
 
@@ -27,8 +28,12 @@ class MarsViewModel : ViewModel() {
      */
     private fun getMarsPhotos() {
         viewModelScope.launch {
-            val listResult = MarsApi.retrofitService.getPhotos()
-            marsUiState = listResult
+            try {
+                val listResult = MarsApi.retrofitService.getPhotos()
+                marsUiState = listResult
+            } catch (e: IOException) {
+
+            }
         }
     }
 }
