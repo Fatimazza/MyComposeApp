@@ -35,9 +35,12 @@ class DefaultAppContainer : MarsAppContainer {
     private val retrofitService: MarsApiService by lazy {
         retrofit.create(MarsApiService::class.java)
     }
-    
-    override val marsPhotosRepository: MarsPhotosRepository
-        get() = TODO("Not yet implemented")
 
+    /**
+     * DI implementation for Mars photos repository
+     */
+    override val marsPhotosRepository: MarsPhotosRepository by lazy {
+        NetworkMarsPhotosRepository(retrofitService)
+    }
 }
 
