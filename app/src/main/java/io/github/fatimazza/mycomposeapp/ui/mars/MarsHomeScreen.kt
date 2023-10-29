@@ -12,9 +12,10 @@ import io.github.fatimazza.mycomposeapp.ui.theme.MyComposeAppTheme
 
 @Composable
 fun MarsHomeScreen(
+    marsUiState: String,
     modifier: Modifier = Modifier
 ) {
-    ResultScreen(stringResource(R.string.mars_placeholder_result))
+    ResultScreen(marsUiState, modifier)
 }
 
 /**
