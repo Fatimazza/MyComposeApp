@@ -65,6 +65,8 @@ fun MarsPhotoCard(photo: MarsPhoto, modifier: Modifier = Modifier) {
             .build(),
         contentDescription = stringResource(R.string.mars_photo),
         contentScale = ContentScale.Crop,
+        error = painterResource(R.drawable.ic_mars_broken_image),
+        placeholder = painterResource(R.drawable.mars_loading_image),
         modifier = Modifier.fillMaxWidth()
     )
 }
