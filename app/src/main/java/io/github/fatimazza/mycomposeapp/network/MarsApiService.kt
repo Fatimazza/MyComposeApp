@@ -1,27 +1,17 @@
 package io.github.fatimazza.mycomposeapp.network
 
-import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import io.github.fatimazza.mycomposeapp.model.MarsPhoto
-import kotlinx.serialization.json.Json
-import okhttp3.MediaType.Companion.toMediaType
-import retrofit2.Retrofit
 import retrofit2.http.GET
 
-private const val BASE_URL =
-    "https://android-kotlin-fun-mars-server.appspot.com"
-
 /**
- * Use the Retrofit builder to build a retrofit object
- */
-private val retrofit = Retrofit.Builder()
-    .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
-    .baseUrl(BASE_URL)
-    .build()
-
-/**
- * Retrofit service object for creating api calls
+ * A public interface that exposes the [getPhotos] method
  */
 interface MarsApiService {
+    /**
+     * Returns a [List] of [MarsPhoto] and this method can be called from a Coroutine.
+     * The @GET annotation indicates that the "photos" endpoint will be requested with the GET
+     * HTTP method
+     */
     @GET("photos")
     suspend fun getPhotos(): List<MarsPhoto>
 }
