@@ -156,6 +156,14 @@ fun ErrorScreen(
 
 @Preview(showBackground = true)
 @Composable
+fun ErrorScreenPreview() {
+    MyComposeAppTheme {
+        ErrorScreen(retryAction = {})
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
 fun PhotosGridScreenPreview() {
     MyComposeAppTheme {
         val mockData = List(10) { MarsPhoto("$it", "") }
