@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
@@ -34,6 +35,7 @@ import io.github.fatimazza.mycomposeapp.ui.theme.MyComposeAppTheme
 @Composable
 fun MarsHomeScreen(
     marsUiState: MarsUiState,
+    retryAction: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     when (marsUiState) {
@@ -47,6 +49,7 @@ fun MarsHomeScreen(
         )
 
         is MarsUiState.Error -> ErrorScreen(
+            retryAction,
             modifier = modifier.fillMaxSize()
         )
     }
@@ -129,6 +132,7 @@ fun ResultScreen(
 
 @Composable
 fun ErrorScreen(
+    retryAction: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -144,6 +148,9 @@ fun ErrorScreen(
         Text(
             text = stringResource(R.string.mars_loading_failed), modifier = Modifier.padding(16.dp)
         )
+        Button(onClick = retryAction) {
+            Text(stringResource(R.string.mars_retry))
+        }
     }
 }
 
