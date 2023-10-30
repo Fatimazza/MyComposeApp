@@ -149,8 +149,9 @@ fun ErrorScreen(
 
 @Preview(showBackground = true)
 @Composable
-fun MarsHomeScreenPreview() {
+fun PhotosGridScreenPreview() {
     MyComposeAppTheme {
-        ResultScreen(stringResource(R.string.mars_placeholder_result))
+        val mockData = List(10) { MarsPhoto("$it", "") }
+        PhotosGridScreen(mockData)
     }
 }
