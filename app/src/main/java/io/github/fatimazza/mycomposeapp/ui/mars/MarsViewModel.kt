@@ -12,6 +12,7 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import io.github.fatimazza.mycomposeapp.MarsPhotosApplication
 import io.github.fatimazza.mycomposeapp.data.mars.MarsPhotosRepository
 import io.github.fatimazza.mycomposeapp.data.mars.NetworkMarsPhotosRepository
+import io.github.fatimazza.mycomposeapp.model.MarsPhoto
 import kotlinx.coroutines.launch
 import java.io.IOException
 
@@ -19,7 +20,7 @@ import java.io.IOException
  * UI state for the Home screen
  */
 sealed interface MarsUiState {
-    data class Success(val photos: String) : MarsUiState
+    data class Success(val photos: MarsPhoto) : MarsUiState
     object Error : MarsUiState
     object Loading : MarsUiState
 }
@@ -44,10 +45,7 @@ class MarsViewModel(private val marsPhotosRepository: MarsPhotosRepository) : Vi
     private fun getMarsPhotos() {
         viewModelScope.launch {
             marsUiState = try {
-                val result = marsPhotosRepository.getMarsPhotos()[0]
-                MarsUiState.Success(
-                    "Success: ${result.imgSrc} Mars photos retrieved"
-                )
+                MarsUiState.Success(marsPhotosRepository.getMarsPhotos()[0])
             } catch (e: IOException) {
                 MarsUiState.Error
             }
