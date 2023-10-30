@@ -1,4 +1,4 @@
-package io.github.fatimazza.mycomposeapp.ui.test.mars
+package io.github.fatimazza.mycomposeapp.ui.test.mars.fake
 
 import io.github.fatimazza.mycomposeapp.model.MarsPhoto
 import io.github.fatimazza.mycomposeapp.network.MarsApiService
