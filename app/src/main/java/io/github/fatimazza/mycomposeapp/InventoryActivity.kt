@@ -10,6 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import io.github.fatimazza.mycomposeapp.ui.inventory.InventoryTopAppBar
 import io.github.fatimazza.mycomposeapp.ui.theme.MyComposeAppTheme
 
 class InventoryActivity : ComponentActivity() {
@@ -17,30 +18,8 @@ class InventoryActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MyComposeAppTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    Greeting2("Android")
-                }
+                InventoryTopAppBar()
             }
         }
-    }
-}
-
-@Composable
-fun Greeting2(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    MyComposeAppTheme {
-        Greeting2("Android")
     }
 }
