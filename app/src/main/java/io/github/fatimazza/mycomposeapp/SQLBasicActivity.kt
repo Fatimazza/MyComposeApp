@@ -10,11 +10,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import io.github.fatimazza.mycomposeapp.database.SQLBasicAppDatabase
 import io.github.fatimazza.mycomposeapp.ui.theme.MyComposeAppTheme
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class SQLBasicActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        GlobalScope.launch {
+            SQLBasicAppDatabase
+                .getDatabase(applicationContext).emailDao().getAll()
+        }
         setContent {
             MyComposeAppTheme {
                 SQLBasic()
