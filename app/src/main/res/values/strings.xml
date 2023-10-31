@@ -281,4 +281,6 @@
 
     <string name="title_activity_sql_basic">SQLBasicActivity</string>
     <string name="title_sql_basic">SQL Database App</string>
+
+    <string name="title_activity_inventory">InventoryActivity</string>
 </resources>
