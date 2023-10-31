@@ -16,7 +16,7 @@
         <activity
             android:name=".SQLBasicActivity"
             android:exported="false"
-            android:label="@string/title_activity_sqlbasic"
+            android:label="@string/title_activity_sql_basic"
             android:theme="@style/Theme.MyComposeApp" />
         <activity
             android:name=".MarsPhotosActivity"

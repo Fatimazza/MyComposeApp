@@ -163,6 +163,15 @@ fun MyComposeApp() {
             ) {
                 Text(stringResource(R.string.title_mars_photos))
             }
+            Spacer(modifier = Modifier.height(16.dp))
+            Button(
+                onClick = {
+                    context.startActivity(Intent(context, SQLBasicActivity::class.java))
+                },
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text(stringResource(R.string.title_sql_basic))
+            }
         }
     }
 }
