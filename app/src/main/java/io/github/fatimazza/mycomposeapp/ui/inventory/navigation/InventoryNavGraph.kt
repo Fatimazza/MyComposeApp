@@ -11,6 +11,8 @@ import io.github.fatimazza.mycomposeapp.ui.inventory.home.HomeDestination
 import io.github.fatimazza.mycomposeapp.ui.inventory.home.InventoryHomeScreen
 import io.github.fatimazza.mycomposeapp.ui.inventory.item.InventoryItemDetailsScreen
 import io.github.fatimazza.mycomposeapp.ui.inventory.item.InventoryItemDetailsDestination
+import io.github.fatimazza.mycomposeapp.ui.inventory.item.InventoryItemEntryDestination
+import io.github.fatimazza.mycomposeapp.ui.inventory.item.InventoryItemEntryScreen
 
 /**
  * Provides Navigation graph for the application.
@@ -30,6 +32,12 @@ fun InventoryNavHost(
                 navigateToItemUpdate = {
                     navController.navigate("${InventoryItemDetailsDestination.route}/${it}")
                 }
+            )
+        }
+        composable(route = InventoryItemEntryDestination.route) {
+            InventoryItemEntryScreen(
+                navigateBack = { navController.popBackStack() },
+                onNavigateUp = { navController.navigateUp() }
             )
         }
         composable(
