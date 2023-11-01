@@ -4,7 +4,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import io.github.fatimazza.mycomposeapp.ui.inventory.home.HomeDestination
+import io.github.fatimazza.mycomposeapp.ui.inventory.home.InventoryHomeScreen
 
 /**
  * Provides Navigation graph for the application.
@@ -19,6 +21,8 @@ fun InventoryNavHost(
         startDestination = HomeDestination.route,
         modifier = modifier
     ) {
-
+        composable(route = HomeDestination.route) {
+            InventoryHomeScreen()
+        }
     }
 }
