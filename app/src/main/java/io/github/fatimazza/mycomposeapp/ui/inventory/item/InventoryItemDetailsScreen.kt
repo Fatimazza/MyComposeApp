@@ -1,8 +1,11 @@
 package io.github.fatimazza.mycomposeapp.ui.inventory.item
 
 import android.annotation.SuppressLint
+import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
@@ -21,6 +24,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import io.github.fatimazza.mycomposeapp.R
 import io.github.fatimazza.mycomposeapp.ui.inventory.InventoryTopAppBar
@@ -79,6 +83,13 @@ private fun InventoryItemDetailsBody(
         modifier = modifier.padding(dimensionResource(id = R.dimen.padding_medium)),
         verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.padding_medium))
     ) {
+        InventoryItemDetailsRow(
+            labelResID = R.string.inventory_item,
+            itemDetail = "Item",
+            modifier = Modifier.padding(
+                horizontal = dimensionResource(id = R.dimen.padding_medium)
+            )
+        )
         Button(
             onClick = {  },
             modifier = Modifier.fillMaxWidth(),
@@ -94,6 +105,17 @@ private fun InventoryItemDetailsBody(
         ) {
             Text(stringResource(R.string.inventory_delete))
         }
+    }
+}
+
+@Composable
+private fun InventoryItemDetailsRow(
+    @StringRes labelResID: Int, itemDetail: String, modifier: Modifier = Modifier
+) {
+    Row(modifier = modifier) {
+        Text(stringResource(labelResID))
+        Spacer(modifier = Modifier.weight(1f))
+        Text(text = itemDetail, fontWeight = FontWeight.Bold)
     }
 }
 
