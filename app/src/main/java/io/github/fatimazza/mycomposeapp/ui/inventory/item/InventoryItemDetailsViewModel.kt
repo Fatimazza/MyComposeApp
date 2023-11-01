@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 /**
  * ViewModel to retrieve, update and delete an item from the [ItemsRepository]'s data source.
  */
-class ItemDetailsViewModel(
+class InventoryItemDetailsViewModel(
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
