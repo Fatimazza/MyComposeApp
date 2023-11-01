@@ -1,12 +1,15 @@
 package io.github.fatimazza.mycomposeapp.ui.inventory.item
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
 import io.github.fatimazza.mycomposeapp.R
+import io.github.fatimazza.mycomposeapp.ui.inventory.InventoryAppViewModelProvider
 import io.github.fatimazza.mycomposeapp.ui.inventory.InventoryTopAppBar
 import io.github.fatimazza.mycomposeapp.ui.inventory.navigation.InventoryNavDestination
 import io.github.fatimazza.mycomposeapp.ui.theme.MyComposeAppTheme
@@ -24,7 +27,8 @@ object InventoryItemEditDestination : InventoryNavDestination {
 fun InventoryItemEditScreen(
     navigateBack: () -> Unit,
     onNavigateUp: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    viewModel: InventoryItemEditViewModel = viewModel(factory = InventoryAppViewModelProvider.Factory)
 ) {
     Scaffold(
         topBar = {
@@ -35,8 +39,13 @@ fun InventoryItemEditScreen(
             )
         },
         modifier = modifier
-    ) {
-
+    ) { innerPadding ->
+        InventoryItemEntryBody(
+            itemUiState = viewModel.itemUiState,
+            onItemValueChange = { },
+            onSaveClick = { },
+            modifier = Modifier.padding(innerPadding)
+        )
     }
 }
 
