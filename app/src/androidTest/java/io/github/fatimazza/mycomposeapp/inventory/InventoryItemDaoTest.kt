@@ -22,6 +22,7 @@ class InventoryItemDaoTest {
     private lateinit var itemDao: InventoryItemDao
     private lateinit var inventoryDatabase: InventoryDatabase
     private val item1 = InventoryItem(1, "Apples", 10.0, 20)
+    private val item2 = InventoryItem(2, "Bananas", 15.0, 97)
 
     @Before
     fun createDb() {
@@ -49,8 +50,22 @@ class InventoryItemDaoTest {
         assertEquals(allItems[0], item1)
     }
 
+    @Test
+    @Throws(Exception::class)
+    fun daoGetAllItems_returnsAllItemsFromDB() = runBlocking {
+        addTwoItemsToDb()
+        val allItems = itemDao.getAllItems().first()
+        assertEquals(allItems[0], item1)
+        assertEquals(allItems[1], item2)
+    }
+
     private suspend fun addOneItemToDb() {
         itemDao.insert(item1)
+    }
+
+    private suspend fun addTwoItemsToDb() {
+        itemDao.insert(item1)
+        itemDao.insert(item2)
     }
 
 }
