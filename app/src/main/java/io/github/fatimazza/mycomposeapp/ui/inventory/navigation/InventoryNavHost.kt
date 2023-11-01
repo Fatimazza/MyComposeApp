@@ -10,7 +10,7 @@ import androidx.navigation.navArgument
 import io.github.fatimazza.mycomposeapp.ui.inventory.home.HomeDestination
 import io.github.fatimazza.mycomposeapp.ui.inventory.home.InventoryHomeScreen
 import io.github.fatimazza.mycomposeapp.ui.inventory.item.InventoryItemDetailsScreen
-import io.github.fatimazza.mycomposeapp.ui.inventory.item.ItemDetailsDestination
+import io.github.fatimazza.mycomposeapp.ui.inventory.item.InventoryItemDetailsDestination
 
 /**
  * Provides Navigation graph for the application.
@@ -28,13 +28,13 @@ fun InventoryNavHost(
         composable(route = HomeDestination.route) {
             InventoryHomeScreen(
                 navigateToItemUpdate = {
-                    navController.navigate("${ItemDetailsDestination.route}/${it}")
+                    navController.navigate("${InventoryItemDetailsDestination.route}/${it}")
                 }
             )
         }
         composable(
-            route = ItemDetailsDestination.routeWithArgs,
-            arguments = listOf(navArgument(ItemDetailsDestination.itemIdArg) {
+            route = InventoryItemDetailsDestination.routeWithArgs,
+            arguments = listOf(navArgument(InventoryItemDetailsDestination.itemIdArg) {
                 type = NavType.IntType
             })
         ) {

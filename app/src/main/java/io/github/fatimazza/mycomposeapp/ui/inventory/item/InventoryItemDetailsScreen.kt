@@ -26,7 +26,7 @@ import io.github.fatimazza.mycomposeapp.R
 import io.github.fatimazza.mycomposeapp.ui.inventory.InventoryTopAppBar
 import io.github.fatimazza.mycomposeapp.ui.inventory.navigation.InventoryNavDestination
 
-object ItemDetailsDestination : InventoryNavDestination {
+object InventoryItemDetailsDestination : InventoryNavDestination {
     override val route = "item_details"
     override val titleRes = R.string.inventory_item_detail_title
     const val itemIdArg = "itemId"
@@ -43,7 +43,7 @@ fun InventoryItemDetailsScreen(
     Scaffold(
         topBar = {
             InventoryTopAppBar(
-                title = stringResource(ItemDetailsDestination.titleRes),
+                title = stringResource(InventoryItemDetailsDestination.titleRes),
                 canNavigateBack = true,
                 navigateUp = navigateBack
             )
