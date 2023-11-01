@@ -20,7 +20,7 @@ object InventoryAppViewModelProvider {
     val Factory = viewModelFactory {
         // Initializer for HomeViewModel
         initializer {
-            InventoryHomeViewModel()
+            InventoryHomeViewModel(inventoryApplication().container.itemsRepository)
         }
         // Initializer for ItemDetailsViewModel
         initializer {
