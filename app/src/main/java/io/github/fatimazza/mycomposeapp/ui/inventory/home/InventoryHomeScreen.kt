@@ -47,6 +47,7 @@ object HomeDestination : InventoryNavDestination {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun InventoryHomeScreen(
+    navigateToItemUpdate: (Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
@@ -74,6 +75,7 @@ fun InventoryHomeScreen(
     ) { innerPadding ->
         HomeBody(
             itemList = listOf(),
+            onItemClick = navigateToItemUpdate,
             modifier = Modifier
                 .padding(innerPadding)
                 .fillMaxSize()
@@ -84,6 +86,7 @@ fun InventoryHomeScreen(
 @Composable
 private fun HomeBody(
     itemList: List<InventoryItem>,
+    onItemClick: (Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -99,6 +102,7 @@ private fun HomeBody(
         } else {
             InventoryList(
                 itemList = itemList,
+                onItemClick = { onItemClick(it.id) },
                 modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.padding_small))
             )
         }
@@ -108,6 +112,7 @@ private fun HomeBody(
 @Composable
 private fun InventoryList(
     itemList: List<InventoryItem>,
+    onItemClick: (InventoryItem) -> Unit,
     modifier: Modifier = Modifier
 ) {
     LazyColumn(modifier = modifier) {
@@ -116,7 +121,7 @@ private fun InventoryList(
                 item = item,
                 modifier = Modifier
                     .padding(dimensionResource(id = R.dimen.padding_small))
-                    .clickable { })
+                    .clickable { onItemClick(item) })
         }
     }
 }
@@ -169,7 +174,7 @@ fun InventoryItemPreview() {
 @Composable
 fun InventoryHomeBodyEmptyListPreview() {
     MyComposeAppTheme {
-        HomeBody(listOf())
+        HomeBody(listOf(), onItemClick = {})
     }
 }
 
@@ -181,6 +186,6 @@ fun InventoryHomeBodyPreview() {
             InventoryItem(1, "Game", 100.0, 20),
             InventoryItem(2, "Pen", 200.0, 30),
             InventoryItem(3, "TV", 300.0, 50)
-        ))
+        ), onItemClick = {})
     }
 }
