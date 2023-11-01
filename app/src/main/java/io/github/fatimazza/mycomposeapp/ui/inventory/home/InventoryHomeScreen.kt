@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.Card
@@ -30,9 +31,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import io.github.fatimazza.mycomposeapp.R
+import io.github.fatimazza.mycomposeapp.data.inventory.InventoryItem
 import io.github.fatimazza.mycomposeapp.ui.inventory.InventoryTopAppBar
 import io.github.fatimazza.mycomposeapp.ui.inventory.navigation.InventoryNavDestination
 import io.github.fatimazza.mycomposeapp.ui.theme.MyComposeAppTheme
+import java.text.NumberFormat
 
 
 object HomeDestination : InventoryNavDestination {
@@ -70,6 +73,7 @@ fun InventoryHomeScreen(
         },
     ) { innerPadding ->
         HomeBody(
+            itemList = listOf(),
             modifier = Modifier
                 .padding(innerPadding)
                 .fillMaxSize()
@@ -79,27 +83,37 @@ fun InventoryHomeScreen(
 
 @Composable
 private fun HomeBody(
+    itemList: List<InventoryItem>,
     modifier: Modifier = Modifier
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier
     ) {
-        Text(
-            text = stringResource(R.string.inventory_no_item_description),
-            textAlign = TextAlign.Center,
-            style = MaterialTheme.typography.titleLarge
-        )
+        if (itemList.isEmpty()) {
+            Text(
+                text = stringResource(R.string.inventory_no_item_description),
+                textAlign = TextAlign.Center,
+                style = MaterialTheme.typography.titleLarge
+            )
+        } else {
+            InventoryList(
+                itemList = itemList,
+                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.padding_small))
+            )
+        }
     }
 }
 
 @Composable
 private fun InventoryList(
+    itemList: List<InventoryItem>,
     modifier: Modifier = Modifier
 ) {
     LazyColumn(modifier = modifier) {
-        item {
+        items(items = itemList, key = { it.id }) { item ->
             InventoryItem(
+                item = item,
                 modifier = Modifier
                     .padding(dimensionResource(id = R.dimen.padding_small))
                     .clickable { })
@@ -109,6 +123,7 @@ private fun InventoryList(
 
 @Composable
 private fun InventoryItem(
+    item: InventoryItem,
     modifier: Modifier = Modifier
 ) {
     Card(
@@ -123,17 +138,17 @@ private fun InventoryItem(
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Text(
-                    text = "item",
+                    text = item.name,
                     style = MaterialTheme.typography.titleLarge,
                 )
                 Spacer(Modifier.weight(1f))
                 Text(
-                    text = "Rp 0",
+                    text = NumberFormat.getCurrencyInstance().format(item.price),
                     style = MaterialTheme.typography.titleMedium
                 )
             }
             Text(
-                text = stringResource(R.string.inventory_in_stock, 0),
+                text = stringResource(R.string.inventory_in_stock, item.quantity),
                 style = MaterialTheme.typography.titleMedium
             )
         }
@@ -144,7 +159,9 @@ private fun InventoryItem(
 @Composable
 fun InventoryItemPreview() {
     MyComposeAppTheme {
-        InventoryItem()
+        InventoryItem(
+            InventoryItem(1, "Game", 100.0, 20)
+        )
     }
 }
 
