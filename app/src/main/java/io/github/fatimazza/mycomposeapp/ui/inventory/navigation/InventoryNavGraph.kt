@@ -11,6 +11,8 @@ import io.github.fatimazza.mycomposeapp.ui.inventory.home.HomeDestination
 import io.github.fatimazza.mycomposeapp.ui.inventory.home.InventoryHomeScreen
 import io.github.fatimazza.mycomposeapp.ui.inventory.item.InventoryItemDetailsScreen
 import io.github.fatimazza.mycomposeapp.ui.inventory.item.InventoryItemDetailsDestination
+import io.github.fatimazza.mycomposeapp.ui.inventory.item.InventoryItemEditDestination
+import io.github.fatimazza.mycomposeapp.ui.inventory.item.InventoryItemEditScreen
 import io.github.fatimazza.mycomposeapp.ui.inventory.item.InventoryItemEntryDestination
 import io.github.fatimazza.mycomposeapp.ui.inventory.item.InventoryItemEntryScreen
 
@@ -49,6 +51,17 @@ fun InventoryNavHost(
         ) {
             InventoryItemDetailsScreen(
                 navigateBack = { navController.navigateUp() }
+            )
+        }
+        composable(
+            route = InventoryItemEditDestination.routeWithArgs,
+            arguments = listOf(navArgument(InventoryItemEditDestination.itemIdArg) {
+                type = NavType.IntType
+            })
+        ) {
+            InventoryItemEditScreen(
+                navigateBack = { navController.popBackStack() },
+                onNavigateUp = { navController.navigateUp() }
             )
         }
     }
