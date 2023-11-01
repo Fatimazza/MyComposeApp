@@ -1,5 +1,6 @@
 package io.github.fatimazza.mycomposeapp.ui.inventory
 
+import android.annotation.SuppressLint
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -11,7 +12,19 @@ import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import io.github.fatimazza.mycomposeapp.R.string
+import io.github.fatimazza.mycomposeapp.ui.inventory.navigation.InventoryNavHost
+
+/**
+ * Top level composable that represents screens for the application.
+ */
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
+@Composable
+fun InventoryApp(navController: NavHostController = rememberNavController()) {
+    InventoryNavHost(navController = navController)
+}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

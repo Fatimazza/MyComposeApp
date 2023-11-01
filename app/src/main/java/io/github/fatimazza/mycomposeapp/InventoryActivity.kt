@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material3.ExperimentalMaterial3Api
-import io.github.fatimazza.mycomposeapp.ui.inventory.InventoryTopAppBar
+import io.github.fatimazza.mycomposeapp.ui.inventory.InventoryApp
 import io.github.fatimazza.mycomposeapp.ui.theme.MyComposeAppTheme
 
 class InventoryActivity : ComponentActivity() {
@@ -13,7 +13,7 @@ class InventoryActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MyComposeAppTheme {
-                InventoryTopAppBar()
+                InventoryApp()
             }
         }
     }
