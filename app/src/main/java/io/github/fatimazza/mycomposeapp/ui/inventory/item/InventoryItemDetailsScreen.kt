@@ -77,6 +77,7 @@ fun InventoryItemDetailsScreen(
         modifier = modifier
     ) { innerPadding ->
         InventoryItemDetailsBody(
+            itemDetailsUiState = InventoryItemDetailsUiState(),
             onSellItem = { },
             onDelete = { },
             modifier = Modifier
@@ -88,6 +89,7 @@ fun InventoryItemDetailsScreen(
 
 @Composable
 private fun InventoryItemDetailsBody(
+    itemDetailsUiState: InventoryItemDetailsUiState,
     onSellItem: () -> Unit,
     onDelete: () -> Unit,
     modifier: Modifier = Modifier
@@ -98,7 +100,7 @@ private fun InventoryItemDetailsBody(
         verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.padding_medium))
     ) {
         InventoryItemDetails(
-            item = InventoryItem(1, "Game", 100.0, 20),
+            item = itemDetailsUiState.itemDetails.toItem(),
             modifier = Modifier.fillMaxWidth()
         )
         Button(

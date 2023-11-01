@@ -16,3 +16,11 @@ class InventoryItemDetailsViewModel(
         private const val TIMEOUT_MILLIS = 5_000L
     }
 }
+
+/**
+ * UI state for ItemDetailsScreen
+ */
+data class InventoryItemDetailsUiState(
+    val outOfStock: Boolean = true,
+    val itemDetails: InventoryItemDetails = InventoryItemDetails()
+)
