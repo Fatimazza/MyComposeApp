@@ -82,6 +82,7 @@ fun InventoryItemEntryBody(
 @Composable
 fun InventoryItemInputForm(
     modifier: Modifier = Modifier,
+    enabled: Boolean = true
 ) {
     val outlineTextFieldColors = OutlinedTextFieldDefaults.colors(
             focusedContainerColor = MaterialTheme.colorScheme.secondaryContainer,
@@ -99,6 +100,7 @@ fun InventoryItemInputForm(
             label = { Text(stringResource(R.string.inventory_item_name_req)) },
             colors = outlineTextFieldColors,
             modifier = Modifier.fillMaxWidth(),
+            enabled = enabled,
             singleLine = true
         )
         OutlinedTextField(
@@ -109,6 +111,7 @@ fun InventoryItemInputForm(
             colors = outlineTextFieldColors,
             leadingIcon = { Text(Currency.getInstance(Locale.getDefault()).symbol) },
             modifier = Modifier.fillMaxWidth(),
+            enabled = enabled,
             singleLine = true
         )
         OutlinedTextField(
@@ -118,12 +121,15 @@ fun InventoryItemInputForm(
             label = { Text(stringResource(R.string.inventory_quantity_req)) },
             colors = outlineTextFieldColors,
             modifier = Modifier.fillMaxWidth(),
+            enabled = enabled,
             singleLine = true
         )
-        Text(
-            text = stringResource(R.string.inventory_required_fields),
-            modifier = Modifier.padding(start = dimensionResource(id = R.dimen.padding_medium))
-        )
+        if (enabled) {
+            Text(
+                text = stringResource(R.string.inventory_required_fields),
+                modifier = Modifier.padding(start = dimensionResource(id = R.dimen.padding_medium))
+            )
+        }
     }
 }
 
