@@ -9,6 +9,7 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import io.github.fatimazza.mycomposeapp.InventoryApplication
 import io.github.fatimazza.mycomposeapp.ui.inventory.home.InventoryHomeViewModel
 import io.github.fatimazza.mycomposeapp.ui.inventory.item.InventoryItemDetailsViewModel
+import io.github.fatimazza.mycomposeapp.ui.inventory.item.InventoryItemEntryViewModel
 
 
 /**
@@ -25,6 +26,10 @@ object InventoryAppViewModelProvider {
             InventoryItemDetailsViewModel(
                 this.createSavedStateHandle()
             )
+        }
+        // Initializer for ItemEntryViewModel
+        initializer {
+            InventoryItemEntryViewModel()
         }
     }
 }
