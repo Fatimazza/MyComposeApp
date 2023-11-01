@@ -50,6 +50,7 @@ fun InventoryItemEntryScreen(
         }
     ) { innerPadding ->
         InventoryItemEntryBody(
+            onSaveClick = { },
             modifier = Modifier
                 .padding(innerPadding)
                 .verticalScroll(rememberScrollState())
@@ -60,6 +61,7 @@ fun InventoryItemEntryScreen(
 
 @Composable
 fun InventoryItemEntryBody(
+    onSaveClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -70,7 +72,7 @@ fun InventoryItemEntryBody(
             modifier = Modifier.fillMaxWidth()
         )
         Button(
-            onClick = {},
+            onClick = onSaveClick,
             shape = MaterialTheme.shapes.small,
             modifier = Modifier.fillMaxWidth()
         ) {
