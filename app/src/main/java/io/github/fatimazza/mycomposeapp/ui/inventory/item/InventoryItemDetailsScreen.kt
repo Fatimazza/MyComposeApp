@@ -50,6 +50,7 @@ object InventoryItemDetailsDestination : InventoryNavDestination {
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun InventoryItemDetailsScreen(
+    navigateToEditItem: (Int) -> Unit,
     navigateBack: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -63,7 +64,7 @@ fun InventoryItemDetailsScreen(
         },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = { },
+                onClick = { navigateToEditItem(0) },
                 shape = MaterialTheme.shapes.medium,
                 modifier = Modifier.padding(dimensionResource(id = R.dimen.padding_large))
 
@@ -222,6 +223,7 @@ fun InventoryDeleteConfirmationDialogPreview() {
 @Composable
 fun InventoryItemDetailsScreenPreview() {
     InventoryItemDetailsScreen(
+        navigateToEditItem = { },
         navigateBack = { }
     )
 }
