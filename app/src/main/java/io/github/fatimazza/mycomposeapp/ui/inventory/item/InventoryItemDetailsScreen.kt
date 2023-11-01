@@ -38,7 +38,6 @@ import io.github.fatimazza.mycomposeapp.R
 import io.github.fatimazza.mycomposeapp.data.inventory.InventoryItem
 import io.github.fatimazza.mycomposeapp.ui.inventory.InventoryTopAppBar
 import io.github.fatimazza.mycomposeapp.ui.inventory.navigation.InventoryNavDestination
-import java.text.NumberFormat
 
 object InventoryItemDetailsDestination : InventoryNavDestination {
     override val route = "item_details"
@@ -166,7 +165,7 @@ fun InventoryItemDetails(
             )
             InventoryItemDetailsRow(
                 labelResID = R.string.inventory_price,
-                itemDetail = NumberFormat.getCurrencyInstance().format(item.price),
+                itemDetail = item.formatedPrice(),
                 modifier = Modifier.padding(
                     horizontal = dimensionResource(id = R.dimen.padding_medium)
                 )

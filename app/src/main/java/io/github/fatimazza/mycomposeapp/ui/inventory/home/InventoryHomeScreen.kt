@@ -34,9 +34,9 @@ import androidx.compose.ui.unit.dp
 import io.github.fatimazza.mycomposeapp.R
 import io.github.fatimazza.mycomposeapp.data.inventory.InventoryItem
 import io.github.fatimazza.mycomposeapp.ui.inventory.InventoryTopAppBar
+import io.github.fatimazza.mycomposeapp.ui.inventory.item.formatedPrice
 import io.github.fatimazza.mycomposeapp.ui.inventory.navigation.InventoryNavDestination
 import io.github.fatimazza.mycomposeapp.ui.theme.MyComposeAppTheme
-import java.text.NumberFormat
 
 
 object HomeDestination : InventoryNavDestination {
@@ -154,7 +154,7 @@ private fun InventoryItem(
                 )
                 Spacer(Modifier.weight(1f))
                 Text(
-                    text = NumberFormat.getCurrencyInstance().format(item.price),
+                    text = item.formatedPrice(),
                     style = MaterialTheme.typography.titleMedium
                 )
             }
