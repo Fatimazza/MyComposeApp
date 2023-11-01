@@ -30,7 +30,7 @@ object InventoryAppViewModelProvider {
         }
         // Initializer for ItemEntryViewModel
         initializer {
-            InventoryItemEntryViewModel()
+            InventoryItemEntryViewModel(inventoryApplication().container.itemsRepository)
         }
         // Initializer for ItemEditViewModel
         initializer {

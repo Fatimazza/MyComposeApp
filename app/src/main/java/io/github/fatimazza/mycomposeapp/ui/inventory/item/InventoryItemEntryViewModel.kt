@@ -5,12 +5,13 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import io.github.fatimazza.mycomposeapp.data.inventory.InventoryItem
+import io.github.fatimazza.mycomposeapp.data.inventory.InventoryItemsRepository
 import java.text.NumberFormat
 
 /**
  * ViewModel to validate and insert items in the Room database.
  */
-class InventoryItemEntryViewModel : ViewModel() {
+class InventoryItemEntryViewModel(private val itemsRepository: InventoryItemsRepository) : ViewModel() {
     /**
      * Holds current item ui state
      */
@@ -27,6 +28,12 @@ class InventoryItemEntryViewModel : ViewModel() {
                 itemDetails = itemDetails,
                 isEntryValid = validateInput(itemDetails)
             )
+    }
+
+    suspend fun saveItem() {
+        if (validateInput()) {
+            itemsRepository.insertItem(itemUiState.itemDetails.toItem())
+        }
     }
 
     private fun validateInput(uiState: InventoryItemDetails = itemUiState.itemDetails): Boolean {
