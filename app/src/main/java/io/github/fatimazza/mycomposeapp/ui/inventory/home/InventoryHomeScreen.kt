@@ -167,8 +167,20 @@ fun InventoryItemPreview() {
 
 @Preview(showBackground = true)
 @Composable
-fun HomeScreenPreview() {
+fun InventoryHomeBodyEmptyListPreview() {
     MyComposeAppTheme {
-        InventoryHomeScreen()
+        HomeBody(listOf())
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun InventoryHomeBodyPreview() {
+    MyComposeAppTheme {
+        HomeBody(listOf(
+            InventoryItem(1, "Game", 100.0, 20),
+            InventoryItem(2, "Pen", 200.0, 30),
+            InventoryItem(3, "TV", 300.0, 50)
+        ))
     }
 }
