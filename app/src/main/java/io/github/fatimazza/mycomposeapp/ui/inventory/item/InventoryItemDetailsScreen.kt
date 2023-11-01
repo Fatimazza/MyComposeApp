@@ -29,8 +29,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import io.github.fatimazza.mycomposeapp.R
+import io.github.fatimazza.mycomposeapp.data.inventory.InventoryItem
 import io.github.fatimazza.mycomposeapp.ui.inventory.InventoryTopAppBar
 import io.github.fatimazza.mycomposeapp.ui.inventory.navigation.InventoryNavDestination
+import java.text.NumberFormat
 
 object InventoryItemDetailsDestination : InventoryNavDestination {
     override val route = "item_details"
@@ -86,6 +88,7 @@ private fun InventoryItemDetailsBody(
         verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.padding_medium))
     ) {
         InventoryItemDetails(
+            item = InventoryItem(1, "Game", 100.0, 20),
             modifier = Modifier.fillMaxWidth()
         )
         Button(
@@ -108,6 +111,7 @@ private fun InventoryItemDetailsBody(
 
 @Composable
 fun InventoryItemDetails(
+    item: InventoryItem,
     modifier: Modifier = Modifier
 ) {
     Card(
@@ -127,7 +131,21 @@ fun InventoryItemDetails(
         ) {
             InventoryItemDetailsRow(
                 labelResID = R.string.inventory_item,
-                itemDetail = "Item",
+                itemDetail = item.name,
+                modifier = Modifier.padding(
+                    horizontal = dimensionResource(id = R.dimen.padding_medium)
+                )
+            )
+            InventoryItemDetailsRow(
+                labelResID = R.string.inventory_quantity_in_stock,
+                itemDetail = item.quantity.toString(),
+                modifier = Modifier.padding(
+                    horizontal = dimensionResource(id = R.dimen.padding_medium)
+                )
+            )
+            InventoryItemDetailsRow(
+                labelResID = R.string.inventory_price,
+                itemDetail = NumberFormat.getCurrencyInstance().format(item.price),
                 modifier = Modifier.padding(
                     horizontal = dimensionResource(id = R.dimen.padding_medium)
                 )
