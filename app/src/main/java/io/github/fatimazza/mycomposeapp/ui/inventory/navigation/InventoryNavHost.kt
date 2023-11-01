@@ -3,10 +3,13 @@ package io.github.fatimazza.mycomposeapp.ui.inventory.navigation
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import io.github.fatimazza.mycomposeapp.ui.inventory.home.HomeDestination
 import io.github.fatimazza.mycomposeapp.ui.inventory.home.InventoryHomeScreen
+import io.github.fatimazza.mycomposeapp.ui.inventory.item.InventoryItemDetailsScreen
 import io.github.fatimazza.mycomposeapp.ui.inventory.item.ItemDetailsDestination
 
 /**
@@ -27,6 +30,16 @@ fun InventoryNavHost(
                 navigateToItemUpdate = {
                     navController.navigate("${ItemDetailsDestination.route}/${it}")
                 }
+            )
+        }
+        composable(
+            route = ItemDetailsDestination.routeWithArgs,
+            arguments = listOf(navArgument(ItemDetailsDestination.itemIdArg) {
+                type = NavType.IntType
+            })
+        ) {
+            InventoryItemDetailsScreen(
+                navigateBack = { navController.navigateUp() }
             )
         }
     }
