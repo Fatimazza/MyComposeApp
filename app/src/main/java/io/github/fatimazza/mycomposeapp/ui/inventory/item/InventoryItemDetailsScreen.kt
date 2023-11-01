@@ -25,6 +25,10 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
@@ -74,6 +78,7 @@ fun InventoryItemDetailsScreen(
         modifier = modifier
     ) { innerPadding ->
         InventoryItemDetailsBody(
+            onDelete = { },
             modifier = Modifier
                 .padding(innerPadding)
                 .verticalScroll(rememberScrollState())
@@ -83,8 +88,10 @@ fun InventoryItemDetailsScreen(
 
 @Composable
 private fun InventoryItemDetailsBody(
+    onDelete: () -> Unit,
     modifier: Modifier = Modifier
 ) {
+    var deleteConfirmationRequired by rememberSaveable { mutableStateOf(false) }
     Column(
         modifier = modifier.padding(dimensionResource(id = R.dimen.padding_medium)),
         verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.padding_medium))
@@ -102,11 +109,21 @@ private fun InventoryItemDetailsBody(
             Text(stringResource(R.string.inventory_sell))
         }
         OutlinedButton(
-            onClick = { },
+            onClick = { deleteConfirmationRequired = true },
             shape = MaterialTheme.shapes.small,
             modifier = Modifier.fillMaxWidth()
         ) {
             Text(stringResource(R.string.inventory_delete))
+        }
+        if (deleteConfirmationRequired) {
+            InventoryDeleteConfirmationDialog(
+                onDeleteConfirm = {
+                    deleteConfirmationRequired = false
+                    onDelete()
+                },
+                onDeleteCancel = { deleteConfirmationRequired = false },
+                modifier = Modifier.padding(dimensionResource(id = R.dimen.padding_medium))
+            )
         }
     }
 }
