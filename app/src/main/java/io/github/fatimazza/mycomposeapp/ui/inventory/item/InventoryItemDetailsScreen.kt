@@ -78,6 +78,7 @@ fun InventoryItemDetailsScreen(
         modifier = modifier
     ) { innerPadding ->
         InventoryItemDetailsBody(
+            onSellItem = { },
             onDelete = { },
             modifier = Modifier
                 .padding(innerPadding)
@@ -88,6 +89,7 @@ fun InventoryItemDetailsScreen(
 
 @Composable
 private fun InventoryItemDetailsBody(
+    onSellItem: () -> Unit,
     onDelete: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -101,7 +103,7 @@ private fun InventoryItemDetailsBody(
             modifier = Modifier.fillMaxWidth()
         )
         Button(
-            onClick = {  },
+            onClick = onSellItem,
             modifier = Modifier.fillMaxWidth(),
             shape = MaterialTheme.shapes.small,
             enabled = true
