@@ -1,6 +1,7 @@
 package io.github.fatimazza.mycomposeapp.ui.inventory.home
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -8,6 +9,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.Card
@@ -88,6 +90,20 @@ private fun HomeBody(
             textAlign = TextAlign.Center,
             style = MaterialTheme.typography.titleLarge
         )
+    }
+}
+
+@Composable
+private fun InventoryList(
+    modifier: Modifier = Modifier
+) {
+    LazyColumn(modifier = modifier) {
+        item {
+            InventoryItem(
+                modifier = Modifier
+                    .padding(dimensionResource(id = R.dimen.padding_small))
+                    .clickable { })
+        }
     }
 }
 
