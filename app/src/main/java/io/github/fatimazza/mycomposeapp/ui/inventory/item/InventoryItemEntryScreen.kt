@@ -16,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import io.github.fatimazza.mycomposeapp.R
 import io.github.fatimazza.mycomposeapp.ui.inventory.InventoryTopAppBar
 import io.github.fatimazza.mycomposeapp.ui.inventory.navigation.InventoryNavDestination
@@ -67,4 +68,13 @@ fun InventoryItemEntryBody(
             Text(text = stringResource(R.string.inventory_save_action))
         }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun InventoryItemEntryScreenPreview() {
+    InventoryItemEntryScreen(
+        navigateBack = { },
+        onNavigateUp = {}
+    )
 }
