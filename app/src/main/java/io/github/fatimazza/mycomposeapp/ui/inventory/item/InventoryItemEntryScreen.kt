@@ -10,10 +10,13 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -60,6 +63,9 @@ fun InventoryItemEntryBody(
         verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.padding_large)),
         modifier = modifier.padding(dimensionResource(id = R.dimen.padding_medium))
     ) {
+        InventoryItemInputForm(
+            modifier = Modifier.fillMaxWidth()
+        )
         Button(
             onClick = {},
             shape = MaterialTheme.shapes.small,
@@ -67,6 +73,21 @@ fun InventoryItemEntryBody(
         ) {
             Text(text = stringResource(R.string.inventory_save_action))
         }
+    }
+}
+
+@Composable
+fun InventoryItemInputForm(
+    modifier: Modifier = Modifier,
+) {
+    Column(
+        modifier = modifier,
+        verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.padding_medium))
+    ) {
+        Text(
+            text = stringResource(R.string.inventory_required_fields),
+            modifier = Modifier.padding(start = dimensionResource(id = R.dimen.padding_medium))
+        )
     }
 }
 
