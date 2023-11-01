@@ -25,6 +25,7 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -52,7 +53,7 @@ fun InventoryHomeScreen(
 ) {
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
     Scaffold(
-        modifier = modifier,
+        modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             InventoryTopAppBar(
                 title = stringResource(HomeDestination.titleRes),
@@ -73,7 +74,7 @@ fun InventoryHomeScreen(
             }
         },
     ) { innerPadding ->
-        HomeBody(
+        InventoryHomeBody(
             itemList = listOf(
                 InventoryItem(1, "Game", 100.0, 20),
                 InventoryItem(2, "Pen", 200.0, 30),
@@ -88,7 +89,7 @@ fun InventoryHomeScreen(
 }
 
 @Composable
-private fun HomeBody(
+private fun InventoryHomeBody(
     itemList: List<InventoryItem>,
     onItemClick: (Int) -> Unit,
     modifier: Modifier = Modifier
@@ -178,7 +179,7 @@ fun InventoryItemPreview() {
 @Composable
 fun InventoryHomeBodyEmptyListPreview() {
     MyComposeAppTheme {
-        HomeBody(listOf(), onItemClick = {})
+        InventoryHomeBody(listOf(), onItemClick = {})
     }
 }
 
@@ -186,7 +187,7 @@ fun InventoryHomeBodyEmptyListPreview() {
 @Composable
 fun InventoryHomeBodyPreview() {
     MyComposeAppTheme {
-        HomeBody(listOf(
+        InventoryHomeBody(listOf(
             InventoryItem(1, "Game", 100.0, 20),
             InventoryItem(2, "Pen", 200.0, 30),
             InventoryItem(3, "TV", 300.0, 50)
