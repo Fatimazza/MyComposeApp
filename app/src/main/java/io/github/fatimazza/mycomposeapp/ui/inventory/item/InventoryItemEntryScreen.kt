@@ -21,7 +21,9 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
 import io.github.fatimazza.mycomposeapp.R
+import io.github.fatimazza.mycomposeapp.ui.inventory.InventoryAppViewModelProvider
 import io.github.fatimazza.mycomposeapp.ui.inventory.InventoryTopAppBar
 import io.github.fatimazza.mycomposeapp.ui.inventory.navigation.InventoryNavDestination
 import java.util.Currency
@@ -39,6 +41,7 @@ fun InventoryItemEntryScreen(
     navigateBack: () -> Unit,
     onNavigateUp: () -> Unit,
     canNavigateBack: Boolean = true,
+    viewModel: InventoryItemEntryViewModel = viewModel(factory = InventoryAppViewModelProvider.Factory)
 ) {
     Scaffold(
         topBar = {
@@ -50,6 +53,8 @@ fun InventoryItemEntryScreen(
         }
     ) { innerPadding ->
         InventoryItemEntryBody(
+            itemUiState = viewModel.itemUiState,
+            onItemValueChange = viewModel::updateUiState,
             onSaveClick = { },
             modifier = Modifier
                 .padding(innerPadding)
@@ -61,6 +66,8 @@ fun InventoryItemEntryScreen(
 
 @Composable
 fun InventoryItemEntryBody(
+    itemUiState: InventoryItemUiState,
+    onItemValueChange: (InventoryItemDetails) -> Unit,
     onSaveClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -69,6 +76,8 @@ fun InventoryItemEntryBody(
         modifier = modifier.padding(dimensionResource(id = R.dimen.padding_medium))
     ) {
         InventoryItemInputForm(
+            itemDetails = itemUiState.itemDetails,
+            onValueChange = onItemValueChange,
             modifier = Modifier.fillMaxWidth()
         )
         Button(
@@ -83,7 +92,9 @@ fun InventoryItemEntryBody(
 
 @Composable
 fun InventoryItemInputForm(
+    itemDetails: InventoryItemDetails,
     modifier: Modifier = Modifier,
+    onValueChange: (InventoryItemDetails) -> Unit = {},
     enabled: Boolean = true
 ) {
     val outlineTextFieldColors = OutlinedTextFieldDefaults.colors(
@@ -97,8 +108,8 @@ fun InventoryItemInputForm(
         verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.padding_medium))
     ) {
         OutlinedTextField(
-            value = "",
-            onValueChange = {  },
+            value = itemDetails.name,
+            onValueChange = { onValueChange(itemDetails.copy(name = it)) },
             label = { Text(stringResource(R.string.inventory_item_name_req)) },
             colors = outlineTextFieldColors,
             modifier = Modifier.fillMaxWidth(),
@@ -106,8 +117,8 @@ fun InventoryItemInputForm(
             singleLine = true
         )
         OutlinedTextField(
-            value = "",
-            onValueChange = { },
+            value = itemDetails.price,
+            onValueChange = { onValueChange(itemDetails.copy(price = it)) },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
             label = { Text(stringResource(R.string.inventory_item_price_req)) },
             colors = outlineTextFieldColors,
@@ -117,8 +128,8 @@ fun InventoryItemInputForm(
             singleLine = true
         )
         OutlinedTextField(
-            value = "",
-            onValueChange = { },
+            value = itemDetails.quantity,
+            onValueChange = { onValueChange(itemDetails.copy(quantity = it)) },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             label = { Text(stringResource(R.string.inventory_quantity_req)) },
             colors = outlineTextFieldColors,
