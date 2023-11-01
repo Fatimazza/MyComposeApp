@@ -48,6 +48,7 @@ object HomeDestination : InventoryNavDestination {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun InventoryHomeScreen(
+    navigateToItemEntry: () -> Unit,
     navigateToItemUpdate: (Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -63,7 +64,7 @@ fun InventoryHomeScreen(
         },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = { },
+                onClick = navigateToItemEntry,
                 shape = MaterialTheme.shapes.medium,
                 modifier = Modifier.padding(dimensionResource(id = R.dimen.padding_large))
             ) {
