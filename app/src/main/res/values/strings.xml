@@ -304,4 +304,6 @@
     <string name="inventory_sell">Sell</string>
     <string name="inventory_yes">Yes</string>
     <string name="inventory_required_fields">*required fields</string>
+    
+    <string name="title_activity_dessert_release">DessertReleaseActivity</string>
 </resources>
