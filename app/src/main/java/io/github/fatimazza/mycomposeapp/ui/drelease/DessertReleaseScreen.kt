@@ -176,6 +176,22 @@ fun DessertReleaseGridLayout(
     }
 }
 
+@Preview(showBackground = true)
+@Composable
+fun DessertReleaseLinearLayoutPreview() {
+    MyComposeAppTheme {
+        DessertReleaseLinearLayout()
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun DessertReleaseGridLayoutPreview() {
+    MyComposeAppTheme {
+        DessertReleaseGridLayout()
+    }
+}
+
 @Preview
 @Composable
 fun DessertReleaseAppPreview() {
