@@ -59,6 +59,18 @@ class InventoryItemDaoTest {
         assertEquals(allItems[1], item2)
     }
 
+    @Test
+    @Throws(Exception::class)
+    fun daoUpdateItems_updatesItemsInDB() = runBlocking {
+        addTwoItemsToDb()
+        itemDao.update(InventoryItem(1, "Apples", 15.0, 25))
+        itemDao.update(InventoryItem(2, "Bananas", 5.0, 50))
+
+        val allItems = itemDao.getAllItems().first()
+        assertEquals(allItems[0], InventoryItem(1, "Apples", 15.0, 25))
+        assertEquals(allItems[1], InventoryItem(2, "Bananas", 5.0, 50))
+    }
+
     private suspend fun addOneItemToDb() {
         itemDao.insert(item1)
     }
