@@ -7,6 +7,7 @@ import androidx.lifecycle.viewmodel.CreationExtras
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import io.github.fatimazza.mycomposeapp.InventoryApplication
+import io.github.fatimazza.mycomposeapp.MyComposeApplication
 import io.github.fatimazza.mycomposeapp.ui.inventory.home.InventoryHomeViewModel
 import io.github.fatimazza.mycomposeapp.ui.inventory.item.InventoryItemDetailsViewModel
 import io.github.fatimazza.mycomposeapp.ui.inventory.item.InventoryItemEditViewModel
@@ -20,24 +21,24 @@ object InventoryAppViewModelProvider {
     val Factory = viewModelFactory {
         // Initializer for HomeViewModel
         initializer {
-            InventoryHomeViewModel(inventoryApplication().container.itemsRepository)
+            InventoryHomeViewModel(inventoryApplication().myInventoryContainer.itemsRepository)
         }
         // Initializer for ItemDetailsViewModel
         initializer {
             InventoryItemDetailsViewModel(
                 this.createSavedStateHandle(),
-                inventoryApplication().container.itemsRepository
+                inventoryApplication().myInventoryContainer.itemsRepository
             )
         }
         // Initializer for ItemEntryViewModel
         initializer {
-            InventoryItemEntryViewModel(inventoryApplication().container.itemsRepository)
+            InventoryItemEntryViewModel(inventoryApplication().myInventoryContainer.itemsRepository)
         }
         // Initializer for ItemEditViewModel
         initializer {
             InventoryItemEditViewModel(
                 this.createSavedStateHandle(),
-                inventoryApplication().container.itemsRepository
+                inventoryApplication().myInventoryContainer.itemsRepository
             )
         }
     }
@@ -47,6 +48,6 @@ object InventoryAppViewModelProvider {
  * Extension function to queries for [Application] object and returns an instance of
  * [InventoryApplication].
  */
-fun CreationExtras.inventoryApplication(): InventoryApplication =
-    (this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as InventoryApplication)
+fun CreationExtras.inventoryApplication(): MyComposeApplication =
+    (this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as MyComposeApplication)
 
