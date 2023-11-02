@@ -24,6 +24,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
@@ -33,6 +34,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import io.github.fatimazza.mycomposeapp.R
 import io.github.fatimazza.mycomposeapp.data.drelease.LocalDessertReleaseData
 import io.github.fatimazza.mycomposeapp.ui.theme.MyComposeAppTheme
@@ -41,26 +43,38 @@ import io.github.fatimazza.mycomposeapp.ui.theme.MyComposeAppTheme
  * Screen level composable
  */
 @Composable
-fun DessertReleaseApp() {
-    DessertReleaseScreen()
+fun DessertReleaseApp(
+    dessertReleaseViewModel: DessertReleaseViewModel = viewModel(
+        factory = DessertReleaseViewModel.Factory
+    )
+) {
+    DessertReleaseScreen(
+        uiState = dessertReleaseViewModel.uiState.collectAsState().value,
+        selectLayout = dessertReleaseViewModel::selectLayout
+    )
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-private fun DessertReleaseScreen() {
-    val isLinearLayout = false
+private fun DessertReleaseScreen(
+    uiState: DessertReleaseUiState,
+    selectLayout: (Boolean) -> Unit
+) {
+    val isLinearLayout = uiState.isLinearLayout
     Scaffold(
         topBar = {
             TopAppBar(
                 title = { Text(stringResource(R.string.release_top_bar_name)) },
                 actions = {
                     IconButton(
-                        onClick = {}
+                        onClick = {
+                            selectLayout(!isLinearLayout)
+                        }
                     ) {
                         Icon(
-                            painter = painterResource(R.drawable.ic_release_linear_layout),
-                            contentDescription = "",
+                            painter = painterResource(uiState.toggleIcon),
+                            contentDescription = stringResource(uiState.toggleContentDescription),
                             tint = MaterialTheme.colorScheme.onBackground
                         )
                     }
@@ -166,6 +180,9 @@ fun DessertReleaseGridLayout(
 @Composable
 fun DessertReleaseAppPreview() {
     MyComposeAppTheme {
-        DessertReleaseScreen()
+        DessertReleaseScreen(
+            uiState = DessertReleaseUiState(),
+            selectLayout = {}
+        )
     }
 }
