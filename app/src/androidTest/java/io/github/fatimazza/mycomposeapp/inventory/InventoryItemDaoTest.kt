@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -69,6 +70,16 @@ class InventoryItemDaoTest {
         val allItems = itemDao.getAllItems().first()
         assertEquals(allItems[0], InventoryItem(1, "Apples", 15.0, 25))
         assertEquals(allItems[1], InventoryItem(2, "Bananas", 5.0, 50))
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun daoDeleteItems_deletesAllItemsFromDB() = runBlocking {
+        addTwoItemsToDb()
+        itemDao.delete(item1)
+        itemDao.delete(item2)
+        val allItems = itemDao.getAllItems().first()
+        assertTrue(allItems.isEmpty())
     }
 
     private suspend fun addOneItemToDb() {
