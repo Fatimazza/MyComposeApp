@@ -25,7 +25,8 @@ object InventoryAppViewModelProvider {
         // Initializer for ItemDetailsViewModel
         initializer {
             InventoryItemDetailsViewModel(
-                this.createSavedStateHandle()
+                this.createSavedStateHandle(),
+                inventoryApplication().container.itemsRepository
             )
         }
         // Initializer for ItemEntryViewModel
