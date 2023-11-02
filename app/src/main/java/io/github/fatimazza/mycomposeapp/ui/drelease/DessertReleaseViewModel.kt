@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import io.github.fatimazza.mycomposeapp.DessertReleaseApplication
+import io.github.fatimazza.mycomposeapp.MyComposeApplication
 import io.github.fatimazza.mycomposeapp.R
 import io.github.fatimazza.mycomposeapp.data.drelease.DessertReleaseUserPreferencesRepository
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -52,8 +53,8 @@ class DessertReleaseViewModel(
     companion object {
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
-                val application = (this[APPLICATION_KEY] as DessertReleaseApplication)
-                DessertReleaseViewModel(application.userPreferencesRepository)
+                val application = (this[APPLICATION_KEY] as MyComposeApplication)
+                DessertReleaseViewModel(application.myUserPreferencesRepository)
             }
         }
     }
