@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -32,6 +33,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import io.github.fatimazza.mycomposeapp.R
+import io.github.fatimazza.mycomposeapp.data.drelease.LocalDessertReleaseData
 import io.github.fatimazza.mycomposeapp.ui.theme.MyComposeAppTheme
 
 /*
@@ -46,6 +48,7 @@ fun DessertReleaseApp() {
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 private fun DessertReleaseScreen() {
+    val isLinearLayout = true
     Scaffold(
         topBar = {
             TopAppBar(
@@ -73,14 +76,17 @@ private fun DessertReleaseScreen() {
                 start = dimensionResource(R.dimen.padding_medium),
                 end = dimensionResource(R.dimen.padding_medium),
             )
-        DessertReleaseLinearLayout(
-            modifier = modifier.fillMaxWidth(),
-            contentPadding = innerPadding
-        )
-        DessertReleaseGridLayout(
-            modifier = modifier,
-            contentPadding = innerPadding,
-        )
+        if (isLinearLayout) {
+            DessertReleaseLinearLayout(
+                modifier = modifier.fillMaxWidth(),
+                contentPadding = innerPadding
+            )
+        } else {
+            DessertReleaseGridLayout(
+                modifier = modifier,
+                contentPadding = innerPadding,
+            )
+        }
     }
 }
 
@@ -94,7 +100,10 @@ fun DessertReleaseLinearLayout(
         contentPadding = contentPadding,
         verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_small)),
     ) {
-        item {
+        items(
+            items = LocalDessertReleaseData.dessertReleases,
+            key = { dessert -> dessert }
+        ) { dessert ->
             Card(
                 colors = CardDefaults.cardColors(
                     containerColor = MaterialTheme.colorScheme.primary
@@ -102,7 +111,7 @@ fun DessertReleaseLinearLayout(
                 shape = MaterialTheme.shapes.medium
             ) {
                 Text(
-                    text = "dessert",
+                    text = dessert,
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(dimensionResource(R.dimen.padding_medium)),
