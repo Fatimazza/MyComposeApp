@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -48,7 +49,7 @@ fun DessertReleaseApp() {
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 private fun DessertReleaseScreen() {
-    val isLinearLayout = true
+    val isLinearLayout = false
     Scaffold(
         topBar = {
             TopAppBar(
@@ -134,7 +135,10 @@ fun DessertReleaseGridLayout(
         verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_medium)),
         horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_medium))
     ) {
-        item {
+        items(
+            items = LocalDessertReleaseData.dessertReleases,
+            key = { dessert -> dessert }
+        ) { dessert ->
             Card(
                 colors = CardDefaults.cardColors(
                     containerColor = MaterialTheme.colorScheme.primary
@@ -143,7 +147,7 @@ fun DessertReleaseGridLayout(
                 shape = MaterialTheme.shapes.medium
             ) {
                 Text(
-                    text = "dessert",
+                    text = dessert,
                     maxLines = 2,
                     overflow = TextOverflow.Ellipsis,
                     modifier = Modifier
