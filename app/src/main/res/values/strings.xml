@@ -307,4 +307,7 @@
     
     <string name="title_activity_dessert_release">DessertReleaseActivity</string>
     <string name="title_dessert_release">Dessert Release App</string>
+    <string name="release_top_bar_name">Android Dessert Release</string>
+    <string name="release_grid_layout_toggle">Grid layout</string>
+    <string name="release_linear_layout_toggle">Linear layout</string>
 </resources>
