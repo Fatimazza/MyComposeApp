@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -13,6 +14,7 @@ import io.github.fatimazza.mycomposeapp.ui.inventory.InventoryAppViewModelProvid
 import io.github.fatimazza.mycomposeapp.ui.inventory.InventoryTopAppBar
 import io.github.fatimazza.mycomposeapp.ui.inventory.navigation.InventoryNavDestination
 import io.github.fatimazza.mycomposeapp.ui.theme.MyComposeAppTheme
+import kotlinx.coroutines.launch
 
 
 object InventoryItemEditDestination : InventoryNavDestination {
@@ -30,6 +32,7 @@ fun InventoryItemEditScreen(
     modifier: Modifier = Modifier,
     viewModel: InventoryItemEditViewModel = viewModel(factory = InventoryAppViewModelProvider.Factory)
 ) {
+    val coroutineScope = rememberCoroutineScope()
     Scaffold(
         topBar = {
             InventoryTopAppBar(
@@ -42,8 +45,13 @@ fun InventoryItemEditScreen(
     ) { innerPadding ->
         InventoryItemEntryBody(
             itemUiState = viewModel.itemUiState,
-            onItemValueChange = { },
-            onSaveClick = { },
+            onItemValueChange = viewModel::updateUiState,
+            onSaveClick = {
+                coroutineScope.launch {
+                    viewModel.updateItem()
+                    navigateBack()
+                }
+            },
             modifier = Modifier.padding(innerPadding)
         )
     }

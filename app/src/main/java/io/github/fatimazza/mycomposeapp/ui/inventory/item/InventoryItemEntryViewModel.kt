@@ -19,6 +19,15 @@ class InventoryItemEntryViewModel(private val itemsRepository: InventoryItemsRep
         private set
 
     /**
+     * Update the item in the [ItemsRepository]'s data source
+     */
+    suspend fun updateItem() {
+        if (validateInput(itemUiState.itemDetails)) {
+            itemsRepository.updateItem(itemUiState.itemDetails.toItem())
+        }
+    }
+
+    /**
      * Updates the [itemUiState] with the value provided in the argument. This method also triggers
      * a validation for input values.
      */

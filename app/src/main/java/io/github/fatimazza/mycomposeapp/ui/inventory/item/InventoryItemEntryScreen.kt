@@ -90,6 +90,7 @@ fun InventoryItemEntryBody(
         )
         Button(
             onClick = onSaveClick,
+            enabled = itemUiState.isEntryValid,
             shape = MaterialTheme.shapes.small,
             modifier = Modifier.fillMaxWidth()
         ) {

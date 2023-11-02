@@ -36,6 +36,24 @@ class InventoryItemEditViewModel(
         }
     }
 
+    /**
+     * Update the item in the [ItemsRepository]'s data source
+     */
+    suspend fun updateItem() {
+        if (validateInput(itemUiState.itemDetails)) {
+            itemsRepository.updateItem(itemUiState.itemDetails.toItem())
+        }
+    }
+
+    /**
+     * Updates the [itemUiState] with the value provided in the argument. This method also triggers
+     * a validation for input values.
+     */
+    fun updateUiState(itemDetails: InventoryItemDetails) {
+        itemUiState =
+            InventoryItemUiState(itemDetails = itemDetails, isEntryValid = validateInput(itemDetails))
+    }
+
     private fun validateInput(uiState: InventoryItemDetails = itemUiState.itemDetails): Boolean {
         return with(uiState) {
             name.isNotBlank() && price.isNotBlank() && quantity.isNotBlank()
