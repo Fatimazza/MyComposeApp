@@ -75,12 +75,12 @@ private fun DessertReleaseScreen(
                         Icon(
                             painter = painterResource(uiState.toggleIcon),
                             contentDescription = stringResource(uiState.toggleContentDescription),
-                            tint = MaterialTheme.colorScheme.onBackground
+                            tint = MaterialTheme.colorScheme.primary
                         )
                     }
                 },
                 colors = TopAppBarDefaults.largeTopAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.inversePrimary
+                    containerColor = MaterialTheme.colorScheme.primaryContainer
                 )
             )
         }
