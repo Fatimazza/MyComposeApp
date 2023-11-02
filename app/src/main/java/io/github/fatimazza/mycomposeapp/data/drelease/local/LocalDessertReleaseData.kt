@@ -1,4 +1,4 @@
-package io.github.fatimazza.mycomposeapp.data.drelease
+package io.github.fatimazza.mycomposeapp.data.drelease.local
 
 /*
  * Set data for Android Release dessert name
