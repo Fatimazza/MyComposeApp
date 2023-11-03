@@ -10,6 +10,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import io.github.fatimazza.mycomposeapp.MarsPhotosApplication
+import io.github.fatimazza.mycomposeapp.MyComposeApplication
 import io.github.fatimazza.mycomposeapp.data.mars.MarsPhotosRepository
 import io.github.fatimazza.mycomposeapp.data.mars.NetworkMarsPhotosRepository
 import io.github.fatimazza.mycomposeapp.model.MarsPhoto
@@ -58,8 +59,8 @@ class MarsViewModel(private val marsPhotosRepository: MarsPhotosRepository) : Vi
     companion object {
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
-                val application = (this[APPLICATION_KEY] as MarsPhotosApplication)
-                val marsPhotosRepository = application.container.marsPhotosRepository
+                val application = (this[APPLICATION_KEY] as MyComposeApplication)
+                val marsPhotosRepository = application.myMarsContainer.marsPhotosRepository
                 MarsViewModel(marsPhotosRepository = marsPhotosRepository)
             }
         }
